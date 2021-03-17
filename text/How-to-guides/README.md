@@ -1,5 +1,0 @@
-# Substrate how-to guide book 
-
-Substrate is all about combining primitives and building on them in ways that result in powerful, complex and robust programmable logic. The **Substrate how-to guide book** helps new Substrate developers to do just that. By building things up from simple components of Substrate development, the purpose of this book is to serve as a "how-to" guide for developers looking to understand integration techniques of both simple and more complex capabilities that Substrate offers.
-
-Each guide contains various links to [Knowledge Base](https://substrate.dev/docs/en/) key terms and other [Developer hub](https://substrate.dev/en/) ressources. Most beginner guides link to other intermediate or advanced guides that use the primitives from the beginner friendly guides they build on. In this way, this guide book aims to become a modular and extensible framework that connects related resources from the developer hub in the form of practical guides for Substrate developers.
