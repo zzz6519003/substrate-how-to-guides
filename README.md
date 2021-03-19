@@ -1,3 +1,4 @@
+⚠️ *WIP*
 # Substrate How-to Guide Book 
 
 :rocket: Substrate is all about combining [bullet-proof primitives](https://substrate.dev/docs/en/knowledgebase/runtime/primitives) and building on them in ways that offer powerful and robust programmable logic. The **Substrate how-to guide book** helps new Substrate developers to do just that. By building things up from simple components, the purpose of this book is to serve as a "how-to" guide for developers looking to understand integration techniques of both simple and more complex capabilities that Substrate and FRAME offers.
