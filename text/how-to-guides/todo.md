@@ -17,3 +17,36 @@
 - [ ]  Add 3 Custom RPCs to Interact with the Polkadot JS API ([https://substrate.dev/recipes/custom-rpc.html](https://substrate.dev/recipes/custom-rpc.html))
 - [ ]  Require Nodes to Follow A Custom Mining Algorithm ([https://substrate.dev/recipes/basic-pow.html](https://substrate.dev/recipes/basic-pow.html))
 - [ ]  Create Hybrid Consensus for a Substrate Chain ([https://substrate.dev/recipes/hybrid-consensus.html](https://substrate.dev/recipes/hybrid-consensus.html))
+
+## Other 
+
+### Beginner
+
+- [ ]  Error checking
+- [ ]  How to configure session keys
+- [ ]  How to create a custom origin
+- [ ]  Configure Genesis with Multi-sig instead of Sudo
+- [ ]  Setting up a bi-cameral governance model
+- [ ]  How to create a proxy account
+- [ ]  How to configure relay chain validators
+
+### Advanced
+
+- [ ]  Storage migrations
+    - [ ]  Schedule a storage migration 
+    - [ ]  Trigger a migration from an extrinsic
+    - [ ]  Incremental migrations
+    - [ ]  Migrations with off-chain storage
+- [ ]  How to configure parachain collators
+- [ ]  Storage costs best practices 
+
+### Misc 
+
+- [ ]  Security sanity checks
+- [ ]  Enforcing origins
+- [ ]  Understanding commonly used Rust methods in Substrate and others and why (e.g. .into(), clone(), copy(), Ok(), block_number(), on_initialize, saturating_add()..) *likely better suited to emerge out of a KB article*
+- [ ]  Benchmarking and testing
+- [ ]  How to compile to native runtime + use cases for it
+- [ ]  Recipes for building with Substrate Node (using JSON file)
+- [ ]  Recipes for building with Substrate Core (compiling whatever to WASM)
+- [ ]  How and where to use hooks *likely more on the KB side*

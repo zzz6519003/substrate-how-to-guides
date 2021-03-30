@@ -10,12 +10,10 @@
 
 ## Goal
 
-1. Understand how to customize genesis configuration
-2. Create custom Config for your pallet
+Learn how to customize a chain's genesis configuration for Balances.
 
 ## Use cases
 
-- Initialize endowed accounts
 - Initialize balances for endowed accounts
 
 ## Overview
@@ -64,9 +62,9 @@ pallet_balances: Some(BalancesConfig {
 
 ## Examples
 
-1. Assign custom amounts to `endowed_accounts`
-2. Configure a genesis state with a custom set of accounts
+1. Configure a genesis state with a custom set of accounts
 
 ## Related material
 
 - Custom pallet Genesis configuration (Recipe)
+- Add a pallet [Tutorial](https://substrate.dev/docs/en/tutorials/add-contracts-pallet#genesis-configuration)

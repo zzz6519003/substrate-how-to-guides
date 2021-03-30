@@ -15,10 +15,11 @@ Understand how to calculate transaction weights for a basic dispatch function.
 
 ## Use cases
 
-Assign the correct weight before a function call to storage, required to calculate transaction fees.
+- Assign the correct weight before a function call to storage. 
+- Calculate transaction fees.
 
 ## Overview
-Weights are an important part of Substrate development as they provide information about what the maximum cost a function can be in terms of the block size it will take up. This way, the [weighting system](https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight) checks what the cost will be before a function is executed. As a runtime engineers, we care about weights to as they not only help add security checks around the functions we create, but they also force us to think about the computational ressources consumed by a transaction and [calculate what fees to charge](https://substrate.dev/docs/en/knowledgebase/runtime/fees) users.
+Weights are an important part of Substrate development as they provide information about what the maximum cost a function can be in terms of the block size it will take up. This way, the [weighting system](https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight) checks what the cost will be before a function is executed. As runtime engineers, we care about weights as they not only help add security checks around the functions we create, but they also force us to think about the computational ressources consumed by a transaction and [calculate what fees to charge](https://substrate.dev/docs/en/knowledgebase/runtime/fees) users.
 
 Traits
 
@@ -50,10 +51,10 @@ Using `call.get_dispatch_info()`, calculate the maximum possible weight before t
 			(dispatch_info.weight, dispatch_info.class, Pays::Yes)
             }]
 
-        // Define a function header that returns DispatchResultWithPostInfo
-		fn do_three_reads(origin, call: Box<<T as Config>::Call>) -> DispatchResultWithPostInfo {
-            // Function logic
-        }
+      // Define a function header that returns DispatchResultWithPostInfo.
+		  fn do_three_reads(origin, call: Box<<T as Config>::Call>) -> DispatchResultWithPostInfo {
+      // Function logic.
+        }     
 ```
 [GetDispatchInfo](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.GetDispatchInfo.html) provides the `get_dispatch_info()` method we need to retrieve information about the function's weight.
 
@@ -82,6 +83,6 @@ Feeless transaction pallet (link to playground).
 - Calculating weights in storage migrations (Recipe)
 - Transaction Weights ([Knowledge base](https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight))
 - Transaction Fees ([Knowledge base](https://substrate.dev/docs/en/knowledgebase/runtime/fees))
-- In Polkadot: [https://wiki.polkadot.network/docs/en/learn-transaction-fees](https://wiki.polkadot.network/docs/en/learn-transaction-fees)
+- Polkadot's [Transaction Fees](https://wiki.polkadot.network/docs/en/learn-transaction-fees)
 - [`WeightData`](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.WeighData.html
 - [`ClassifyDispatch`](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.ClassifyDispatch.html)

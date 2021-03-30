@@ -11,14 +11,13 @@
 
 ## Goal
 
-- Understand why it can be desirable to have multiple instances of the same pallet in a runtime
-- Learn how to configure different constant variable types for two instances of the same pallet
+Learn how to configure instantiable pallets.
 
 ## Use cases
 
 1. Token chain hosts two independent cryptocurrencies
 2. Governance has two (or more) houses which act similarly internally
-3. A social network chain that maintains different treasuries.
+3. A social network chain that maintains different treasuries
 
 ## Overview
 
