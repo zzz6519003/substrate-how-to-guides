@@ -1,14 +1,9 @@
+---
+sidebar_position: 1
+---
 
 # Weighting Struct
-- [Goal](#goal)
-- [Use cases](#use-cases)
-- [Overview](#overview)
-- [Steps](#steps)
-  * [1. Write the WeighData struct](#1-write-the-weighdata-struct)
-  * [2. Classify dispatch calls](#2-classify-dispatch-calls)
-  * [2. Implement PaysFee](#2-implement-paysfee)
-- [Examples](#examples)
-- [Related material](#related-material)
+_There's always more than one way &mdash; we can't wait for you to find out._ 
 
 ## Goal
 

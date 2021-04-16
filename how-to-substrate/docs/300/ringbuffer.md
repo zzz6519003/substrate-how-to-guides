@@ -1,29 +1,9 @@
-# Ringbuffer Queue
-`pallets/ringbuffer-queue`
-[
-	![Try on playground](https://img.shields.io/badge/Playground-Try%20it!-brightgreen?logo=Parity%20Substrate)
-](https://playground.substrate.dev/?deploy=recipes&files=%2Fhome%2Fsubstrate%2Fworkspace%2Fpallets%2Fringbuffer-queue%2Fsrc%2Flib.rs)
-[
-	![View on GitHub](https://img.shields.io/badge/Github-View%20Code-brightgreen?logo=github)
-](https://github.com/substrate-developer-hub/recipes/tree/master/pallets/ringbuffer-queue/src/lib.rs)
+---
+sidebar_position: 1
+---
 
-- [Ringbuffer Queue](#ringbuffer-queue)
-  * [Goal](#goal)
-  * [Use cases](#use-cases)
-  * [Overview](#overview)
-  * [Steps](#steps)
-    + [1. Defining the RingBuffer trait](#1-defining-the-ringbuffer-trait)
-    + [2. Specifying the Ringbuffer transient](#2-specifying-the-ringbuffer-transient)
-      - [Start and End bounds](#start-and-end-bounds)
-      - [Defining storage interface bounds](#defining-storage-interface-bounds)
-      - [Specifying type constraints for `Index`](#specifying-type-constraints-for--index-)
-    + [3. RingBuffer implementation](#3-ringbuffer-implementation)
-      - [Initialize the transient](#initialize-the-transient)
-      - [Implementing `RingBufferTrait`](#implementing--ringbuffertrait-)
-      - [The need for the `WrappingOps` trait](#the-need-for-the--wrappingops--trait)
-      - [Implementing the `Drop` trait](#implementing-the--drop--trait)
-  * [Examples](#examples)
-  * [References](#references)
+# Ringbuffer Queue
+_"They who dares, rings ...", Placeholder quote._
 
 ## Goal
 

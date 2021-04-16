@@ -1,15 +1,9 @@
+---
+sidebar_position: 1
+---
+
 # Basic pallet integration
-- [Goal](#goal)
-- [Use cases](#use-cases)
-- [Overview](#overview)
-- [Steps](#steps)
-  * [1. Import your pallet](#1-import-your-pallet)
-  * [2. Configure its runtime implementation](#2-configure-its-runtime-implementation)
-  * [3. Include it in your runtime](#3-include-it-in-your-runtime)
-  * [4. Indicate your local dependency](#4-indicate-your-local-dependency)
-  * [5. Include your pallet in `std`](#5-include-your-pallet-in--std-)
-- [Examples](#examples)
-- [Related material](#related-material)
+_"I haven't quite yet internalized the basic process of integrating a pallet in my runtime...Ugh!" Totally get it, it's OK, you won't even need this way sooner than you know. _
 
 ## Goal
 

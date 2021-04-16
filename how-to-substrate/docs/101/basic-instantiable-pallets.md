@@ -1,13 +1,9 @@
-# Basic instantiable pallets
+---
+sidebar_position: 5
+---
 
-- [Goal](#goal)
-- [Use cases](#use-cases)
-- [Overview](#overview)
-- [Steps](#steps)
-  * [1. Implement the `Instance` type](#1-implement-the--instance--type)
-  * [2. Configure your runtime](#2-configure-your-runtime)
-- [Examples](#examples)
-- [Related material](#related-material)
+# Basic instantiable pallets
+_ There's gotta be a better way than re-writing the same pallet twice..._ 
 
 ## Goal
 

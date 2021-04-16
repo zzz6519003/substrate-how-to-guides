@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 **Note:** This is the template for writing a Substrate how-to guide. Please refer to the README of this repo to understand the general approach for writing these guides. 
 
 # Title
@@ -10,7 +14,7 @@
 
 ## Use cases
 
-*What practical use cases can this guide be applied to? This can be general, e.g. "implementing a second currency for users to pay fees in" or specific, for e.g. "a runtime migration from a Vec<u32> to SomeStruct ". It is likely that the more advanced the guide, the more scpecific its use cases will be.*
+*What practical use cases can this guide be applied to? This can be general, e.g. "implementing a second currency for users to pay fees in" or specific, for e.g. "a runtime migration from a `Vec<u32>` to SomeStruct ". It is likely that the more advanced the guide, the more specific its use cases will be.*
 
 ## Overview
 

@@ -1,14 +1,9 @@
-# Basic Transaction Weight Calculations
-- [Goal](#goal)
-- [Use cases](#use-cases)
-- [Overview](#overview)
-- [Steps](#steps)
-  * [1. Import weight configuration tools](#1-import-weight-configuration-tools)
-  * [2. Calculate maximum weight before a function](#2-calculate-maximum-weight-before-a-function)
-  * [3. Calculate the actual weight linked to function's logic](#3-calculate-the-actual-weight-linked-to-function-s-logic)
-- [Examples](#examples)
-- [Related material](#related-material)
+---
+sidebar_position: 4
+---
 
+# Calculating transaction weights
+_Been here long enough to know these weights are actually pretty darn important ..._
 ## Goal
 
 Understand how to calculate transaction weights for a basic dispatch function.

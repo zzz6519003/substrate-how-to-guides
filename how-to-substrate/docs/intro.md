@@ -1,5 +1,7 @@
-⚠️ *WIP*
-# Substrate How-to Guide Book 
+---
+sidebar_position: 1
+---
+# Welcome
 
 :rocket: Substrate is all about combining [bullet-proof primitives](https://substrate.dev/docs/en/knowledgebase/runtime/primitives) and building on them in ways that offer powerful and robust programmable logic. The **Substrate how-to guide book** helps new Substrate developers to do just that. By building things up from simple components, the purpose of this book is to serve as a "how-to" guide for developers looking to understand integration techniques of both simple and more complex capabilities that Substrate and FRAME offers.
 
@@ -8,7 +10,7 @@
 - provides an indispensible collection of guides for developers of all levels building with Substrate;
 - connects related resources from the developer hub, including documentation and knowledge base article.
 
-## Table of Contents
+<!-- ## Table of Contents
 - [How-to Guides]()
     * 101 - Beginner
         + [Basic Pallet Integration](./text/how-to-guides/101/basic-pallet-integration.md)
@@ -25,7 +27,7 @@
     * 500 - Advanced II
 - [Guidelines](#guidelines)
 - [Guide Template](./how-to-template.md)
-- [FAQ](#faq)
+- [FAQ](#faq) -->
 
 ## Guidelines
 

@@ -1,14 +1,9 @@
-# Simple token mint using primitive account-to-balances mapping
-- [Goal](#goal)
-- [Use cases](#use-cases)
-- [Overview](#overview)
-- [Steps](#steps)
-  * [1. Setup your Config trait](#1-setup-your-config-trait)
-  * [2. Declare your pallets Traits](#2-declare-your-pallets-traits)
-  * [3. Create your pallet’s functions](#3-create-your-pallet-s-functions)
-  * [4. Include your pallet in your runtime](#4-include-your-pallet-in-your-runtime)
-- [Examples](#examples)
-- [**Related material**](#--related-material--)
+---
+sidebar_position: 2
+---
+
+# Primitive token mint
+_ A simple thing you can do that'll get you asking all sorts of questions and hungry to learn more ... _ 
 
 ## Goal
 
