@@ -23,9 +23,11 @@ module.exports = {
           position: 'left',
           label: 'How-to Guides',
         },
-        {to: '/blog', label: 'Seminar Archives', position: 'left'},
+        {to: '/t', label: 'Tutorials', position: 'left'},           // visual candy
+        {to: '/kb', label: 'Knowledgebase', position: 'left'},      // visual candy
+        {to: '/blog', label: 'Seminar Archives', position: 'left'}, // visual candy
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/sacha-l/substrate-how-to-guides',
           label: 'GitHub',
           position: 'right',
         },
@@ -35,14 +37,27 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Learn Substrate',
           items: [
             {
               label: 'How-to Guides',
               to: '/docs/intro',
             },
+            {
+              label: 'Tutorials',          // visual candy
+              to: '/docs/t',
+            },
+            {
+              label: 'Knowledgebase',      // visual candy
+              to: '/docs/kb',
+            },
+            {
+              label: 'Seminar Archives',   // visual candy
+              to: '/docs/blog',
+            },
           ],
         },
+        
       ],
       copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },

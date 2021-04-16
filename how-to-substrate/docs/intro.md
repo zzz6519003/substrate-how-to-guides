@@ -2,34 +2,15 @@
 sidebar_position: 1
 ---
 # Welcome
+_Hello Substrate runtime engineer!_
+## Guidelines
 
-:rocket: Substrate is all about combining [bullet-proof primitives](https://substrate.dev/docs/en/knowledgebase/runtime/primitives) and building on them in ways that offer powerful and robust programmable logic. The **Substrate how-to guide book** helps new Substrate developers to do just that. By building things up from simple components, the purpose of this book is to serve as a "how-to" guide for developers looking to understand integration techniques of both simple and more complex capabilities that Substrate and FRAME offers.
-
-:monocle_face: Each guide contains various links to [Knowledge Base](https://substrate.dev/docs/en/) key terms and other [Developer hub](https://substrate.dev/en/) ressources. Most beginner guides link to other intermediate or advanced guides that use the foundations from the more basic guides they build on. In this way, this book aims to become a modular and extensible framework that:
+Each guide contains various links to [Knowledge Base](https://substrate.dev/docs/en/) key terms and other [Developer hub](https://substrate.dev/en/) ressources. Most beginner guides link to other intermediate or advanced guides that use the foundations from the more basic guides they build on. In this way, this book aims to become a modular and extensible framework that:
 - can expand overtime, by virtue of the ease for contributors to integrate new content that follows these linking guidelines and structure;
 - provides an indispensible collection of guides for developers of all levels building with Substrate;
 - connects related resources from the developer hub, including documentation and knowledge base article.
 
-<!-- ## Table of Contents
-- [How-to Guides]()
-    * 101 - Beginner
-        + [Basic Pallet Integration](./text/how-to-guides/101/basic-pallet-integration.md)
-        + [Gensis Configuration for Balances](./text/how-to-guides/101/genesis-config-balances.md)
-        + [Transaction Weight Calculations](./text/how-to-guides/101/basic-tx-weight-calculations.md)
-        + [Simple Token Mint Pallet](./text/how-to-guides/101/mint-token.md)
-        + [Basic Instantiable Pallets](./text/how-to-guides/101/basic-instantiable-pallets.md)
-    * 201 - Intermediate I
-        + [Gensis Configuration for Balances](./text/how-to-guides/201/weighting-struct.md)
-    * 300 - Intermediate II
-        + [Ringbuffer](./text/how-to-guides/300/ringbuffer.md)
-        + [Migration Tests](./text/how-to-guides/300/migration-tests.md)
-    * 490 - Advanced I
-    * 500 - Advanced II
-- [Guidelines](#guidelines)
-- [Guide Template](./how-to-template.md)
-- [FAQ](#faq) -->
-
-## Guidelines
+The following points touch on the approach for building content for the Substrate How-to Guides ressource.
 
 - :black_medium_square: **Modularity**. This means that devhub ressources need to be linked in a way that they can adapt to change: each piece needs to be a standalone guide that has a well-defined and useful focus. Last, they need to be able to handle changes to Substrate in a way that offers a path of least resistance when implementing those changes.
 - :link: **Linking**. *TBD how exactly each "link type" is differentiated from one another.* What matters is where ever there's a link, it's clear where it will take the reader, whether colors or marked, for e.g. "this link (Knowledge base)".

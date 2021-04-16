@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 ---
-
+# How-to Template
 **Note:** This is the template for writing a Substrate how-to guide. Please refer to the README of this repo to understand the general approach for writing these guides. 
 
 # Title
