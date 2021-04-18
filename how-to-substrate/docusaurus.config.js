@@ -4,7 +4,7 @@ module.exports = {
   tagline: 'A modular approach to learning Substrate for all levels',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'paritytech', // Usually your GitHub org/user name.
