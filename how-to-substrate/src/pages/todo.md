@@ -15,8 +15,8 @@
 - [ ]  Collecting Fees to An Instantiable Treasury Pallet ([https://substrate.dev/recipes/fees.html](https://substrate.dev/recipes/fees.html))
 - [ ]  How to use the Kitchen Node ([https://substrate.dev/recipes/kitchen-node.html](https://substrate.dev/recipes/kitchen-node.html))
 - [ ]  Add 3 Custom RPCs to Interact with the Polkadot JS API ([https://substrate.dev/recipes/custom-rpc.html](https://substrate.dev/recipes/custom-rpc.html))
-- [ ]  Require Nodes to Follow A Custom Mining Algorithm ([https://substrate.dev/recipes/basic-pow.html](https://substrate.dev/recipes/basic-pow.html))
 - [ ]  Create Hybrid Consensus for a Substrate Chain ([https://substrate.dev/recipes/hybrid-consensus.html](https://substrate.dev/recipes/hybrid-consensus.html))
+- [x]  Require Nodes to Follow A Custom Mining Algorithm ([https://substrate.dev/recipes/basic-pow.html](https://substrate.dev/recipes/basic-pow.html))
 
 ## Other 
 
@@ -29,6 +29,10 @@
 - [ ]  Setting up a bi-cameral governance model
 - [ ]  How to create a proxy account
 - [ ]  How to configure relay chain validators
+- [ ]  Interacting with a Pallet using Apps (see [#639](https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/639) )
+
+### Intermediate
+- [ ] Debugging using `println!` and breakpoints
 
 ### Advanced
 
@@ -39,6 +43,12 @@
     - [ ]  Migrations with off-chain storage
 - [ ]  How to configure parachain collators
 - [ ]  Storage costs best practices 
+- [ ] benchmarking a single function that returns a weight (like on init)
+- [ ] benchmark estimating by putting bounded amount for every loop (see: https://substrate.dev/docs/en/knowledgebase/runtime/benchmarking)
+- [ ] event triggers
+- [ ] patterns with hooks
+- [ ] converting to parachain
+- [ ] unbounded on_finale calculations 
 
 ### Misc 
 
@@ -50,3 +60,5 @@
 - [ ]  Recipes for building with Substrate Node (using JSON file)
 - [ ]  Recipes for building with Substrate Core (compiling whatever to WASM)
 - [ ]  How and where to use hooks *likely more on the KB side*
+
+### Queue
