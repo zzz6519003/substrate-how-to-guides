@@ -3,17 +3,20 @@ sidebar_position: 4
 ---
 
 # Calculating transaction weights
+
 _Been here long enough to know these weights are actually pretty darn important ..._
+
 ## Goal
 
 Understand how to calculate transaction weights for a basic dispatch function.
 
 ## Use cases
 
-- Assign the correct weight before a function call to storage. 
+- Assign the correct weight before a function call to storage.
 - Calculate transaction fees.
 
 ## Overview
+
 Weights are an important part of Substrate development as they provide information about what the maximum cost a function can be in terms of the block size it will take up. This way, the [weighting system](https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight) checks what the cost will be before a function is executed. As runtime engineers, we care about weights as they not only help add security checks around the functions we create, but they also force us to think about the computational ressources consumed by a transaction and [calculate what fees to charge](https://substrate.dev/docs/en/knowledgebase/runtime/fees) users.
 
 Traits:
@@ -24,7 +27,7 @@ Traits:
 
 ## Steps
 
-### 1. Import weight configuration tools 
+### 1. Import weight configuration tools
 
 Make sure you have the right dependencies for basic weight configuring.
 
@@ -49,8 +52,9 @@ Using `call.get_dispatch_info()`, calculate the maximum possible weight before t
       // Define a function header that returns DispatchResultWithPostInfo.
 		  fn do_three_reads(origin, call: Box<<T as Config>::Call>) -> DispatchResultWithPostInfo {
       // Function logic.
-        }     
+        }
 ```
+
 [GetDispatchInfo](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.GetDispatchInfo.html) provides the `get_dispatch_info()` method we need to retrieve information about the function's weight.
 
 ### 3. Calculate the actual weight linked to function's logic
@@ -61,7 +65,7 @@ For a function whose logic does 3 storage reads, calculate it using `DbWeight` a
 
 ```rust
 // Function returns a calculation corresponding to 3 DB reads
-let check_logic_weight = T::DbWeight::get().reads(3);		
+let check_logic_weight = T::DbWeight::get().reads(3);
 return Ok(Some(check_logic_weight).into())
 
 //Remove fee assoicated to weight
@@ -71,6 +75,7 @@ Ok(Pays::Yes.into())
 This is the basic procedure of confirguring weights. There are more advanced methods that suit different use cases. For a simple function with a fixed amount of storage reads, this method is most robust.
 
 ## Examples
+
 Feeless transaction pallet (link to playground).
 
 ## Related material

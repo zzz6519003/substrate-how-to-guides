@@ -19,9 +19,9 @@ Use a constant to keep track of the amount of times a function is called.
 Declaring a constant value in a runtime is a useful tool to either define fixed values or define values that change dynamically according to some factor(s). This guide steps through the process of defining a value for a runtime using a pallet that has functions to do manipulate the value over time.
 
 This guide makes use of:
+
 - [`Get`](https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.Get.html)
 - [`#[pallet::extra_constants]`](https://crates.parity.io/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional)
-
 
 ## Steps
 
@@ -47,6 +47,7 @@ This guide makes use of:
         type ClearFrequency: Get<Self::BlockNumber>;
 	}
 ```
+
 ### 2. Declare `MaxAddend` and `ClearFrequency` in Storage.
 
 Using the storage attribute macro:
@@ -93,11 +94,12 @@ Using the storage attribute macro:
 
 ```
 
-### 4. Create a runtime method that allows users to manipulate the value 
+### 4. Create a runtime method that allows users to manipulate the value
 
 The `add_value` method increases `SingleValue` so long as each call adds less than the `MaxAddend` value. In more complex patterns, the constant value may be used as a static base value that is scaled by a multiplier to incorporate stateful context for calculating some dynamic fee (i.e. floating transaction fees).
 
 For this function, make sure:
+
 - include checks using `ensure!`
 - keep track of the previous value
 - check for overflow
@@ -110,7 +112,7 @@ For this function, make sure:
     #[pallet::weight(1_000)]
 
     fn add_value(
-        origin: OriginFor<T>, 
+        origin: OriginFor<T>,
         val_to_add: u32
         ) -> DispatchResultWithPostInfo {
             let _ = ensure_signed(origin)?;
@@ -132,9 +134,10 @@ For this function, make sure:
 ```
 
 ### 5. Supply the constant value
+
 In `runtime/lib.rs`, declare the values for your pallet's implementation:
 
-```rust 
+```rust
 parameter_types! {
     pub const MaxAddend: u32 = 1738;
     pub const ClearFrequency: u32 = 10;

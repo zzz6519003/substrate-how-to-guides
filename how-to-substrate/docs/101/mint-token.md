@@ -3,7 +3,8 @@ sidebar_position: 2
 ---
 
 # Primitive token mint
-_ A simple thing you can do that'll get you asking all sorts of questions and hungry to learn more ... _ 
+
+_ A simple thing you can do that'll get you asking all sorts of questions and hungry to learn more ... _
 
 ## Goal
 
@@ -15,7 +16,7 @@ Give any user the ability to create a token supply in exchange for native token 
 
 ## Overview
 
-**Storage items:** 
+**Storage items:**
 
 - `TotalSupply: u64;`
 - `Balances: map hasher(blake2_128_concat) T::AccountId => u64;`
@@ -25,7 +26,7 @@ Give any user the ability to create a token supply in exchange for native token 
 - `init()`
 - `transfer()`
 
-This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that [StorageMap](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageMap.html) **(Rust docs)** gives us. To achieve this, this technique uses an `AccountId` to `u64` mapping provided by the [blake2_128_concat](https://substrate.dev/docs/en/knowledgebase/runtime/storage#hashing-algorithms)  `hasher`, similar to how the [Balances Pallet](https://substrate.dev/docs/en/knowledgebase/runtime/frame#balances) **(Rust docs)** makes use of it to store and keep track of account balances.
+This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that [StorageMap](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageMap.html) **(Rust docs)** gives us. To achieve this, this technique uses an `AccountId` to `u64` mapping provided by the [blake2_128_concat](https://substrate.dev/docs/en/knowledgebase/runtime/storage#hashing-algorithms) `hasher`, similar to how the [Balances Pallet](https://substrate.dev/docs/en/knowledgebase/runtime/frame#balances) **(Rust docs)** makes use of it to store and keep track of account balances.
 
 > **Note:** this is a beginner recipe intended for novice Substrate developers looking to explore ways to create tokens in Substrate. Although effective in some use cases, this technique is **not** **recommended best practice**. Use this recipe to learn how to improve upon your runtime logic's capabilities and code quality. See the **Examples** section for ways in which this technique could be useful.
 
@@ -47,13 +48,13 @@ pub trait Config: system::Config {
 - `Balances` will be a storage item which maps `AccountIds` `u64` to account balances.
 - `TotalSupply` will initialize the hard-coded supply and will be the storage item that keeps track of it.
 
-Define these storage items in `decl_storage!` which we will later use in the functions we create in `decl_module!`. 
+Define these storage items in `decl_storage!` which we will later use in the functions we create in `decl_module!`.
 
 ```rust
 // Declaring storage items
 /* --snip-- */
 type Supply = u64;
-TotalSupply: Supply = 21000000; 
+TotalSupply: Supply = 21000000;
 Balances: map hasher(blake2_128_concat) T::AccountId => u64;
 /* --snip-- */
 ```
@@ -62,7 +63,7 @@ Balances: map hasher(blake2_128_concat) T::AccountId => u64;
 
 Using the `config` extension to set a value in `GenesisConfig` from `chain_spec.rs`. See this [**Knowledgebase**](https://substrate.dev/docs/en/knowledgebase/runtime/storage#config) article as well as **this recipe (Recipe)** to learn about how this works.
 
-Defining it inside the runtime. Have a look at the guide on how to do that in this beginner recipe on **Instantiable Pallets (Recipe).** 
+Defining it inside the runtime. Have a look at the guide on how to do that in this beginner recipe on **Instantiable Pallets (Recipe).**
 
 Learn about how these each have their trade-offs in terms of storage costs **[(Knowledgebase)](https://substrate.dev/docs/en/knowledgebase/runtime/storage#storage-value)**.
 
@@ -72,7 +73,7 @@ We can now bring our attention to creating the intended capabilities of our pall
 
 Create these functions in `decl_module!`.
 
-(i) `init()`: to allow the origin to initialize a token supply to their account. 
+(i) `init()`: to allow the origin to initialize a token supply to their account.
 
 ```rust
 /* --snip-- */
@@ -115,7 +116,7 @@ Now calculate the new balances for both the sender and receiver before making a 
 4. [Deposit event](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/struct.Pallet.html#method.deposit_event) to the current block.
 
 ```rust
-/* --snip-- */			
+/* --snip-- */
 			// Calculate new balances
 			let updated_from_balance = sender_balance.checked_sub(value).ok_or(<Error<T>>::InsufficientFunds)?;
 			let updated_to_balance = receiver_balance.checked_add(value).expect("Entire supply fits in u64, qed");
@@ -123,7 +124,7 @@ Now calculate the new balances for both the sender and receiver before making a 
 			// Write new balances to storage
 			<Balances<T>>::insert(&sender, updated_from_balance);
 			<Balances<T>>::insert(&to, updated_to_balance);
-			
+
 			Self::deposit_event(RawEvent::Transfer(sender, to, value));
 			Ok(())
 		}
@@ -132,9 +133,9 @@ Now calculate the new balances for both the sender and receiver before making a 
 
 If `checked_sub()` returns `None`, the operation caused an overflow and throws an error. For a more elaborate guide on error handling, check out this **recipe on Error checking (Recipe)**.
 
-**A couple things to note:** 
+**A couple things to note:**
 
-- **Weights.** All the weights were set to 10_000 in the above code snippets. Learn more about weight configuration in this [beginner guide on weights](./basic-tx-weight-calculations). 
+- **Weights.** All the weights were set to 10_000 in the above code snippets. Learn more about weight configuration in this [beginner guide on weights](./basic-tx-weight-calculations).
 
 - **Origins.** One assumption this recipe makes is that the origin will always be the sudo user. Origins are are powerful in Substrate. Here’s [a recipe on using origins](./origins-beginner).
 
@@ -148,22 +149,22 @@ Refer to [this guide](./basic-pallet-integration) if you’re not yet familiar w
 
 For the purposes of the following examples, we'll refer to the pallet created in this guide as the `token_mint` pallet.
 
-1. **Use this recipe to give a fixed amount of tokens every time a user enters a valid coupon code.** 
-    - Create the `token_mint` pallet that contains the two functions from this guide, `init()` and `transfer()`
-    - In a custom pallet, let's call it `coupon_pallet`, create some logic which handles the verification of a special code
-    - This can be achieved by having its storage keep track of a `Vec<32>` of coupon codes that only a special type of origin can update as they become used
-    - All `coupon_pallet` does is provide a function, let's call it `fn verify_coupon()`, which gives the function caller the ability to insert their coupon with a deposit. The function checks for it in the `coupon_pallet` storage: if it exists, it calls the `token_mint::init()` function we saw in this guide, issuing the specified total supply and reimburses the deposit. If not, it keeps the deposit and the transaction is cancelled.
-    - To make the `AccountIds` handle the cumulation of points, we can remove the `checked_add` from the transfer function
-    - Querying `.balances` from the `token_mint`pallet's extrinsic will provide the user with their new tokens
+1. **Use this recipe to give a fixed amount of tokens every time a user enters a valid coupon code.**
+   - Create the `token_mint` pallet that contains the two functions from this guide, `init()` and `transfer()`
+   - In a custom pallet, let's call it `coupon_pallet`, create some logic which handles the verification of a special code
+   - This can be achieved by having its storage keep track of a `Vec<32>` of coupon codes that only a special type of origin can update as they become used
+   - All `coupon_pallet` does is provide a function, let's call it `fn verify_coupon()`, which gives the function caller the ability to insert their coupon with a deposit. The function checks for it in the `coupon_pallet` storage: if it exists, it calls the `token_mint::init()` function we saw in this guide, issuing the specified total supply and reimburses the deposit. If not, it keeps the deposit and the transaction is cancelled.
+   - To make the `AccountIds` handle the cumulation of points, we can remove the `checked_add` from the transfer function
+   - Querying `.balances` from the `token_mint`pallet's extrinsic will provide the user with their new tokens
 2. **Give any user the ability to create a token supply for a fee to be used as a means of payment in a game arena.**
-    - Create the `token_mint` pallet, including the `init()` and `transfer()` functions
-    - Create another pallet, called `arena_token_mint` with a function that:
-        - allows a user to request an amount of "arena tokens"
-        - calculates a fee according to the amount requested
-        - charges the user
-        - makes an `init()`call to `token_mint`
-    - Add error checking
-    - Assign the `arena_token_mint` pallet to the currency for your game arena set of pallets
+   - Create the `token_mint` pallet, including the `init()` and `transfer()` functions
+   - Create another pallet, called `arena_token_mint` with a function that:
+     - allows a user to request an amount of "arena tokens"
+     - calculates a fee according to the amount requested
+     - charges the user
+     - makes an `init()`call to `token_mint`
+   - Add error checking
+   - Assign the `arena_token_mint` pallet to the currency for your game arena set of pallets
 
 ## Related material
 

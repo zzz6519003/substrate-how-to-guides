@@ -3,6 +3,7 @@ sidebar_position: 1
 ---
 
 # Basic pallet integration
+
 _"I haven't quite yet internalized the basic process of integrating a pallet in my runtime...Ugh!" Totally get it, it's OK, you won't even need this way sooner than you know._
 
 ## Goal
@@ -20,6 +21,7 @@ As developers to new frameworks, we often get stuck on things like setting up de
 ## Steps
 
 ### 1. Import your pallet
+
 In `runtime/lib.rs`:
 
 ```rust
@@ -53,7 +55,8 @@ construct_runtime!(
 );
 ```
 
-### 4. Indicate your local dependency 
+### 4. Indicate your local dependency
+
 In `Cargo.toml`:
 
 ```rust
