@@ -17,14 +17,14 @@ Learn how to configure instantiable pallets.
 
 ## Overview
 
-The premise of instantiable pallets is to provide separate storage items for a runtime that contains more than one reference to the same pallet. Using **instantiable pallets (Knowledge base)** is useful in cases where you may need to reuse the logic provided by a single pallet. This recipe guides you through how to create two instances of the same pallet and how to configure their capabilities. The pallet this guide is using is a simple token minting pallet.
+The premise of instantiable pallets is to provide separate storage items for a runtime that contains more than one reference to the same pallet. Using instantiable pallets is useful in cases where you may need to reuse the logic provided by a single pallet. This recipe guides you through how to create two instances of the same pallet and how to configure their capabilities. The pallet this guide is using is a simple token minting pallet.
 
 ## Steps
 
 ### 1. Implement the `Instance` type
 Instantiable pallets must call the `decl_storage!` macro so that the `Instance` type is created.
 
-    Add a Generic Type for `Instance` in the Config trait, Event type, and Store trait. Learn more about how Generic Types work in Rust [here](https://doc.rust-lang.org/book/ch10-01-syntax.html). The code snippet below shows the modifications required for our pallet's Config and Store traits:
+Add a Generic Type for `Instance` in the Config trait, Event type, and Store trait. Learn more about how Generic Types work in Rust [here](https://doc.rust-lang.org/book/ch10-01-syntax.html). The code snippet below shows the modifications required for our pallet's Config and Store traits:
 
     ```rust
     pub trait Config<I: Instance>: frame_system::Config {
@@ -65,5 +65,5 @@ MintToken2: mint_token::<Instance2>::{Module, Call, Storage, Event<T>},
 
 ## Related material
 
-- Instantiable pallets (Knowledge base)
+- Instantiable pallets (Knowledgebase)
 - Implement bicameral system of governance (Recipe)

@@ -27,18 +27,13 @@ Give any user the ability to create a token supply in exchange for native token 
 
 This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that [StorageMap](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageMap.html) **(Rust docs)** gives us. To achieve this, this technique uses an `AccountId` to `u64` mapping provided by the [blake2_128_concat](https://substrate.dev/docs/en/knowledgebase/runtime/storage#hashing-algorithms)  `hasher`, similar to how the [Balances Pallet](https://substrate.dev/docs/en/knowledgebase/runtime/frame#balances) **(Rust docs)** makes use of it to store and keep track of account balances.
 
-⚠️**Note:** this is a beginner recipe intended for novice Substrate developers looking to explore ways to create tokens in Substrate. Although effective in some use cases, this technique is **not** **recommended best practice**. Use this recipe to learn how to improve upon your runtime logic's capabilities and code quality. See the **Examples** section for ways in which this technique could be useful.
+> **Note:** this is a beginner recipe intended for novice Substrate developers looking to explore ways to create tokens in Substrate. Although effective in some use cases, this technique is **not** **recommended best practice**. Use this recipe to learn how to improve upon your runtime logic's capabilities and code quality. See the **Examples** section for ways in which this technique could be useful.
 
 ## Steps
 
-> 1. Setup your Config trait
-> 2. Declare your pallets Traits
-> 3. Create your pallet’s functions
-> 4. Include your pallet in your runtime
-
 ### 1. Setup your Config trait
 
-Specify that this pallet will only emit `[Events](https://substrate.dev/docs/en/knowledgebase/runtime/events)` **[(Knowledge base)](https://substrate.dev/docs/en/knowledgebase/runtime/events)**:
+Specify that this pallet will only emit [`Events`](https://substrate.dev/docs/en/knowledgebase/runtime/events):
 
 ```rust
 // The configuration trait
@@ -63,13 +58,13 @@ Balances: map hasher(blake2_128_concat) T::AccountId => u64;
 /* --snip-- */
 ```
 
-**Note:** There's more than one way we could improve the declaration of `TotalSupply`. Instead of hard-coding it we could have the user specify the amount they wish to mint by writing a function that would write to storage each time it is called. Other ways to declare the value of `TotalSupply` in this context include:
+> **Note:** There's more than one way we could improve the declaration of `TotalSupply`. Instead of hard-coding it we could have the user specify the amount they wish to mint by writing a function that would write to storage each time it is called. Other ways to declare the value of `TotalSupply` in this context include:
 
-👉 Using the `config` extension to set a value in `GenesisConfig` from `chain_spec.rs`. See this [**Knowledge base**](https://substrate.dev/docs/en/knowledgebase/runtime/storage#config) article as well as **this recipe (Recipe)** to learn about how this works.
+Using the `config` extension to set a value in `GenesisConfig` from `chain_spec.rs`. See this [**Knowledgebase**](https://substrate.dev/docs/en/knowledgebase/runtime/storage#config) article as well as **this recipe (Recipe)** to learn about how this works.
 
-👉Defining it inside the runtime. Have a look at the guide on how to do that in this beginner recipe on **Instantiable Pallets (Recipe).** 
+Defining it inside the runtime. Have a look at the guide on how to do that in this beginner recipe on **Instantiable Pallets (Recipe).** 
 
-Learn about how these each have their trade-offs in terms of storage costs **[(Knowledge base)](https://substrate.dev/docs/en/knowledgebase/runtime/storage#storage-value)**.
+Learn about how these each have their trade-offs in terms of storage costs **[(Knowledgebase)](https://substrate.dev/docs/en/knowledgebase/runtime/storage#storage-value)**.
 
 ### 3. Create your pallet’s functions
 
@@ -98,8 +93,8 @@ fn init(origin) -> DispatchResult {
 
 Use the following methods to set values for `sender`, `sender_balance` and `receiver_balance`:
 
-- `[ensure_signed](https://substrate.dev/rustdocs/v3.0.0/frame_system/fn.ensure_signed.html)` to validate the origin signing this transaction.
-- `[get()](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageValue.html#tymethod.get)` to load the value from storage.
+- [`ensure_signed`](https://substrate.dev/rustdocs/v3.0.0/frame_system/fn.ensure_signed.html) to validate the origin signing this transaction.
+- [`get()`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageValue.html#tymethod.get) to load the value from storage.
 
 ```rust
 /* --snip-- */
@@ -114,7 +109,7 @@ Use the following methods to set values for `sender`, `sender_balance` and `rece
 
 Now calculate the new balances for both the sender and receiver before making a call to storage:
 
-1. Calculate the new balance using `[checked_sub](https://substrate.dev/rustdocs/v3.0.0/primitive_types/struct.U128.html#method.checked_sub)`() and `ok_or()` to make sure this operation won't result in overflow.
+1. Calculate the new balance using [`checked_sub`](https://substrate.dev/rustdocs/v3.0.0/primitive_types/struct.U128.html#method.checked_sub) and `ok_or()` to make sure this operation won't result in overflow.
 2. Update the new balance using `checked_add` and `expect()` to check that the receiving address can hold the new balance.
 3. Write the new balance values to storage.
 4. [Deposit event](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/struct.Pallet.html#method.deposit_event) to the current block.
@@ -139,15 +134,15 @@ If `checked_sub()` returns `None`, the operation caused an overflow and throws a
 
 **A couple things to note:** 
 
-**Weights.** All the weights were set to 10_000 in the above code snippets. Learn more about weight configuration in this **recipe on weights**. 
+- **Weights.** All the weights were set to 10_000 in the above code snippets. Learn more about weight configuration in this [beginner guide on weights](./basic-tx-weight-calculations). 
 
-**Origins.** One assumption this recipe makes is that the origin will always be the sudo user. Origins are are powerful in Substrate. Here’s **a recipe on using origins.**
+- **Origins.** One assumption this recipe makes is that the origin will always be the sudo user. Origins are are powerful in Substrate. Here’s [a recipe on using origins](./origins-beginner).
 
-👉**Overall capabilities.** In order to make use of this recipe, other functions would have to be added to handle things like errors, keeping track of storage and charging transaction fees. For example, `init()`just resets the balance every time it is called which is not very useful. In addition, the token supply is purely a `Vec<u64>` and provides no extensible capabilities. In other recipes, we'll see how to make use of FRAME's `pallet_assets` as well as other ways to mint new tokens and how to make use of them.
+- **Overall capabilities.** In order to make use of this recipe, other functions would have to be added to handle things like errors, keeping track of storage and charging transaction fees. For example, `init()`just resets the balance every time it is called which is not very useful. In addition, the token supply is purely a `Vec<u64>` and provides no extensible capabilities. In other recipes, we'll see how to make use of FRAME's `pallet_assets` as well as other ways to mint new tokens and how to make use of them.
 
 ### 4. Include your pallet in your runtime
 
-**Here’s a recipe** that covers these basics if you’re not yet familiar with this procedure.
+Refer to [this guide](./basic-pallet-integration) if you’re not yet familiar with this procedure.
 
 ## Examples
 

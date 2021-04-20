@@ -3,7 +3,7 @@ sidebar_position: 1
 ---
 
 # Basic pallet integration
-_"I haven't quite yet internalized the basic process of integrating a pallet in my runtime...Ugh!" Totally get it, it's OK, you won't even need this way sooner than you know. _
+_"I haven't quite yet internalized the basic process of integrating a pallet in my runtime...Ugh!" Totally get it, it's OK, you won't even need this way sooner than you know._
 
 ## Goal
 
@@ -11,7 +11,7 @@ Learn the steps needed to integrate a simple pallet to your runtime.
 
 ## Use cases
 
-- Including a pallet that only implements Event and Call into a runtime
+Including a pallet that implements Event and Call into a runtime.
 
 ## Overview
 
@@ -79,4 +79,4 @@ std = [
 ## Related material
 
 - Integrating the staking pallet in your runtime (**Recipe**)
-- Mock runtime (**[Knowledge base](https://substrate.dev/docs/en/knowledgebase/runtime/tests#mock-runtime-environment)**)
+- Mock runtime (**[Knowledgebase](https://substrate.dev/docs/en/knowledgebase/runtime/tests#mock-runtime-environment)**)

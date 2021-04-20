@@ -11,7 +11,7 @@ Learn how to customize a chain's genesis configuration for Balances.
 
 ## Use cases
 
-- Initialize balances for endowed accounts
+Initialize balances for endowed accounts
 
 ## Overview
 
@@ -59,7 +59,7 @@ pallet_balances: Some(BalancesConfig {
 
 ## Examples
 
-1. Configure a genesis state with a custom set of accounts
+1. Configure a genesis state with a custom set of accounts (see _)
 
 ## Related material
 

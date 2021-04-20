@@ -14,14 +14,14 @@ Calculate correct weight based on data within a function, required to calculate 
 
 ## Overview
 
-Traits
+Traits:
 
 - [WeighData](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.WeighData.html#impl-WeighData%3CT%3E-for-(Weight%2C%20DispatchClass%2C%20Pays)): weigh the data in a function
 - [PaysFee](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.PaysFee.html): designate whether the dispatch pays a fee or not
 - [ClassifyDispatch](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.ClassifyDispatch.html): a way to tell the runtime about the type of dispatch being made
 
 ## Steps
-### 1. Write the WeighData struct
+### 1. Write the `WeighData` struct
 
 Write a weighting struct that weighs transactions where the first parameter is a boolean value. 
 
@@ -54,7 +54,7 @@ impl<T> ClassifyDispatch<T> for Conditional {
     }
 }
 ```
-### 2. Implement PaysFee
+### 3. Implement `PaysFee`
 Last, specify how `PaysFee` is used for the custom `WeighData` struct.
 
 ```rust
@@ -72,6 +72,6 @@ Feeless transaction pallet (link to playground).
 ## Related material
 
 - Calculating weights in storage migrations (Recipe)
-- Transaction Weights ([Knowledge base](https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight))
-- Transaction Fees ([Knowledge base](https://substrate.dev/docs/en/knowledgebase/runtime/fees))
-- In Polkadot: [https://wiki.polkadot.network/docs/en/learn-transaction-fees](https://wiki.polkadot.network/docs/en/learn-transaction-fees)
+- Transaction Weights ([Knowledgebase](https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight))
+- Transaction Fees ([Knowledgebase](https://substrate.dev/docs/en/knowledgebase/runtime/fees))
+- Transaction fees in [Polkadot](https://wiki.polkadot.network/docs/en/learn-transaction-fees)
