@@ -23,8 +23,6 @@ module.exports = {
           position: 'left',
           label: 'How-to Guides',
         },
-        {to: '/t', label: 'Tutorials', position: 'left'},           // visual candy
-        {to: '/kb', label: 'Knowledgebase', position: 'left'},      // visual candy
         {to: '/blog', label: 'Seminar Archives', position: 'left'}, // visual candy
         {
           href: 'https://github.com/sacha-l/substrate-how-to-guides',
@@ -42,14 +40,6 @@ module.exports = {
             {
               label: 'How-to Guides',
               to: '/docs/intro',
-            },
-            {
-              label: 'Tutorials',          // visual candy
-              to: '/docs/t',
-            },
-            {
-              label: 'Knowledgebase',      // visual candy
-              to: '/docs/kb',
             },
             {
               label: 'Seminar Archives',   // visual candy

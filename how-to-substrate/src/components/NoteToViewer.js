@@ -8,9 +8,12 @@ export default function NoteToViewer() {
     <section className={styles.features}>
       <div className="container">
           <div className="text--center padding-horiz--md">
-          <h2> 🚧 Note: this is WIP and is by no means an official resource. 🚧</h2>
+          <br/> <br/> <br/>
+          <h2> 🚧 Note: this is WIP. All content is housed in <a href="https://github.com/sacha-l/substrate-how-to-guides)">this repo</a>.🚧</h2>
+          <h3>Contributions and feedback welcome.😃</h3>
+          
              <p>
-                 Substrate is all about combining <a href="https://substrate.dev/docs/en/knowledgebase/runtime/primitives"> bullet-proof 
+                 <strong>Prelude:</strong> Substrate is all about combining <a href="https://substrate.dev/docs/en/knowledgebase/runtime/primitives"> bullet-proof 
              primitives </a> and building on them in ways that offer powerful and robust programmable logic.
              </p>
              
