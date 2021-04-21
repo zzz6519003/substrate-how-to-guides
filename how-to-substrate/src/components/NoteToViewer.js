@@ -11,7 +11,7 @@ export default function NoteToViewer() {
           <h2>
             {" "}
             🚧 Note: this is WIP. All content is housed in{" "}
-            <a href="https://github.com/sacha-l/substrate-how-to-guides)">
+            <a href="https://github.com/sacha-l/substrate-how-to-guides">
               this repo
             </a>
             .🚧
