@@ -109,7 +109,7 @@ The construction of the [light client](https://www.parity.io/what-is-a-light-cli
 
 ## Examples
 
-Basic POW node (launch with Playground).
+Basic POW node [![Try on playground](https://img.shields.io/badge/Playground-Node_Template-brightgreen?logo=Parity%20Substrate)](https://playground.substrate.dev/?deploy=node-template)
 
 ## Resources
 
