@@ -3,7 +3,8 @@ sidebar_position: 5
 ---
 
 # Basic instantiable pallets
-_ There's gotta be a better way than re-writing the same pallet twice..._ 
+
+_ There's gotta be a better way than re-writing the same pallet twice..._
 
 ## Goal
 
@@ -22,6 +23,7 @@ The premise of instantiable pallets is to provide separate storage items for a r
 ## Steps
 
 ### 1. Implement the `Instance` type
+
 Instantiable pallets must call the `decl_storage!` macro so that the `Instance` type is created.
 
 Add a Generic Type for `Instance` in the Config trait, Event type, and Store trait. Learn more about how Generic Types work in Rust [here](https://doc.rust-lang.org/book/ch10-01-syntax.html). The code snippet below shows the modifications required for our pallet's Config and Store traits:
@@ -60,8 +62,8 @@ MintToken2: mint_token::<Instance2>::{Module, Call, Storage, Event<T>},
 
 ## Examples
 
-- A social network chain for membership groups that maintains 2 separate Treasuries: one to collect slashing and fees and another that collects membership fees to fund proposals for member activities (See __).
-- An on-chain governance system with two specialized chambers (See __)
+- A social network chain for membership groups that maintains 2 separate Treasuries: one to collect slashing and fees and another that collects membership fees to fund proposals for member activities (See \_\_).
+- An on-chain governance system with two specialized chambers (See \_\_)
 
 ## Related material
 

@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 ---
+
 # Configure chain to POW Consensus
 
 _When you want to experiment with different consensus engines out there and wanna learn how it works. Start with the classics._
@@ -22,15 +23,14 @@ The basic-pow node demonstrates how to wire up a custom consensus engine into th
 
 ### 1. Make a function that defines a full node using `sc_consensus_pow` and `sc_service`
 
-In `src/service.rs`, make a function called `new_full1` that defines [`PartialComponents`](https://crates.parity.io/sc_service/struct.PartialComponents.html) and 
+In `src/service.rs`, make a function called `new_full1` that defines [`PartialComponents`](https://crates.parity.io/sc_service/struct.PartialComponents.html) and
 [`PowBlockImport`](https://substrate.dev/rustdocs/v3.0.0/sc_consensus_pow/struct.PowBlockImport.html) :
-
 
 ```rust
 let pow_block_import = sc_consensus_pow::PowBlockImport::new(
     client.clone(),
     client.clone(),
-    sha3pow::MinimalSha3Algorithm, 
+    sha3pow::MinimalSha3Algorithm,
     0,                              // check inherents starting at block 0
     select_chain.clone(),
     inherent_data_providers.clone(),
@@ -46,7 +46,8 @@ let import_queue = sc_consensus_pow::import_queue(
     config.prometheus_registry(),
 )?;
 ```
-See [docs](https://crates.parity.io/sc_consensus_pow/struct.PowBlockImport.html#method.new) on to configure the `pow_block_import` function. 
+
+See [docs](https://crates.parity.io/sc_consensus_pow/struct.PowBlockImport.html#method.new) on to configure the `pow_block_import` function.
 
 ### 2. Create an actual import queue that the service will use for importing blocks into the client.
 
@@ -93,6 +94,7 @@ let (_worker, worker_task) = sc_consensus_pow::start_mining_worker(
     can_author_with,
 );
 ```
+
 Let the task manager spawn it:
 
 ```rust
@@ -101,18 +103,16 @@ task_manager
     .spawn_blocking("pow", worker_task);
 ```
 
-### 4. Construct the light client's service. 
+### 4. Construct the light client's service.
 
 The construction of the [light client](https://www.parity.io/what-is-a-light-client/) service is quite similar to the construction of a `new_full`.
 
 ## Examples
 
-Basic POW node (launch with Playground).
-
+Basic POW node [![Try on playground](https://img.shields.io/badge/Playground-Node_Template-brightgreen?logo=Parity%20Substrate)](https://playground.substrate.dev/?deploy=node-template)
 
 ## Resources
 
 - Rustdocs [`PowBlockimport`](https://crates.parity.io/sc_consensus_pow/struct.PowBlockImport.html)
 - Knowledgebase article on [inherents](https://substrate.dev/docs/en/knowledgebase/learn-substrate/extrinsics#inherents)
 - Rust docs [POW Algorithm](https://crates.parity.io/sc_consensus_pow/trait.PowAlgorithm.html) trait
-

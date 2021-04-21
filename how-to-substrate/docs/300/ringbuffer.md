@@ -3,6 +3,7 @@ sidebar_position: 1
 ---
 
 # Ringbuffer Queue
+
 _"They who dares, rings ...", Placeholder quote._
 
 ## Goal
@@ -10,20 +11,26 @@ _"They who dares, rings ...", Placeholder quote._
 Build a transient storage adapter for a FIFO (First-in-first-out) queue.
 
 ## Use cases
+
 Handling complex data structures stored in storage.
 
 ## Overview
-A [ringbuffer](https://en.wikipedia.org/wiki/Circular_buffer) that abstracts over storage can be a useful tool when handling storage migrations for more sophisticated pallets. This guide is intended to step you through how to build a storage adapter and use it for a [FIFO](<https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)>) queue. It will guide you through building a function to overwrite old storage values within pre-defined bounds. 
+
+A [ringbuffer](https://en.wikipedia.org/wiki/Circular_buffer) that abstracts over storage can be a useful tool when handling storage migrations for more sophisticated pallets. This guide is intended to step you through how to build a storage adapter and use it for a [FIFO](<https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)>) queue. It will guide you through building a function to overwrite old storage values within pre-defined bounds.
 
 ## Steps
+
 ### 1. Defining the RingBuffer trait
-The ``RingBuffer`` trait will serve as the interface to our queue. It must define: 
+
+The `RingBuffer` trait will serve as the interface to our queue. It must define:
+
 - `commit`: to sync the changes made to the underlying storage.
 - `push`: to push an item onto the end of the queue
 - `pop`: to pop an item from the start of a queue
 - `is_empty`: checks if queue is empty
 
 Define it as shown below:
+
 ```rust
 pub trait RingBufferTrait<Item> where Item: Codec + EncodeLike
 {
@@ -39,7 +46,9 @@ pub trait RingBufferTrait<Item> where Item: Codec + EncodeLike
 ```
 
 ### 2. Specifying the Ringbuffer transient
+
 #### Start and End bounds
+
 We will be storing the start and end of the
 ringbuffer separately from the actual items and will thus need to store these in our struct:
 
@@ -54,7 +63,8 @@ where
 ```
 
 #### Defining storage interface bounds
-In order to access the underlying storage we need to include the bounds in storage that can be accessed. 
+
+In order to access the underlying storage we need to include the bounds in storage that can be accessed.
 
 Let type `B` correspond to the specified bounds; `M` to the item storage; and `Item` to specify the constraints on `M`. Write this as follows:
 
@@ -66,7 +76,7 @@ where
 	B: StorageValue<(Index, Index), Query = (Index, Index)>,
 	// A StorageMap mapping from our Index type to the Item type
 	M: StorageMap<Index, Item, Query = Item>,
-	// 
+	//
 	Index: Codec + EncodeLike + Eq + Copy,
 {
 	start: Index,
@@ -74,17 +84,18 @@ where
 	_phantom: PhantomData<(Item, B, M)>,
 }
 ```
->**Note**: The `Query` type is specified to help with type inference (because the value returned can
-be different from the stored representation).
->The [`Codec`](https://docs.rs/parity-scale-codec/1.3.0/parity_scale_codec/trait.Codec.html) and
-[`EncodeLike`](https://docs.rs/parity-scale-codec/1.3.0/parity_scale_codec/trait.EncodeLike.html)
-type constraints make sure that both items and indices can be stored in storage.
->The [`PhantomData`](https://doc.rust-lang.org/std/marker/struct.PhantomData.html) is needed in order
-to "hold on to" the types during the lifetime of the transient object.
+
+> **Note**: The `Query` type is specified to help with type inference (because the value returned can
+> be different from the stored representation).
+> The [`Codec`](https://docs.rs/parity-scale-codec/1.3.0/parity_scale_codec/trait.Codec.html) and
+> [`EncodeLike`](https://docs.rs/parity-scale-codec/1.3.0/parity_scale_codec/trait.EncodeLike.html)
+> type constraints make sure that both items and indices can be stored in storage.
+> The [`PhantomData`](https://doc.rust-lang.org/std/marker/struct.PhantomData.html) is needed in order
+> to "hold on to" the types during the lifetime of the transient object.
 
 #### Specifying type constraints for `Index`
 
-Specify the default type for ``Index`` as `u16`. In addition, add ``WrappingsOps` and `From<u8>`.
+Specify the default type for `Index` as `u16`. In addition, add ``WrappingsOps` and `From<u8>`.
 
 ```rust
 type DefaultIdx = u16;
@@ -116,8 +127,8 @@ where // ... same where clause as the type, elided here
 	pub fn new() -> RingBufferTransient<Item, B, M, Index> {
 		let (start, end) = B::get();
 		RingBufferTransient {
-			start, 
-			end, 
+			start,
+			end,
 			_phantom: PhantomData,
 		}
 	}
@@ -128,16 +139,16 @@ where // ... same where clause as the type, elided here
 
 To implement `RingBufferTrait`, write the following functions:
 
-- ``commit()``: to put the potentially changed bounds in storage
-- ``is_empty()``: to check whether the queue is empty to avoid expensive accesses to storage
-- ``push()``: to uphold the corresponding invariants from ``is_empty()``. 
-- ``pop()``: if the queue is not empty
-we `take` the value at `self.start` from storage, then increment `self.start` to point to the new first item of the queue
+- `commit()`: to put the potentially changed bounds in storage
+- `is_empty()`: to check whether the queue is empty to avoid expensive accesses to storage
+- `push()`: to uphold the corresponding invariants from `is_empty()`.
+- `pop()`: if the queue is not empty
+  we `take` the value at `self.start` from storage, then increment `self.start` to point to the new first item of the queue
 - `wrapping_add`: allows our ringbuffer to wrap around when reaching `max_value` of the `Index` type. The next step covers writing the `WrappingOps` trait declaration.
 
 ```rust
 impl<Item, B, M, Index> RingBufferTrait<Item> for RingBufferTransient<Item, B, M, Index>
-where 
+where
 	Item: Codec + EncodeLike,
 	B: StorageValue<(Index, Index), Query = (Index, Index)>,
 	M: StorageMap<Index, Item, Query = Item>,
@@ -180,6 +191,7 @@ is empty, otherwise we would need to keep track of this state separately. Conseq
 oldest item in the queue (if a new item is pushed into a full queue) by incrementing the start index.
 
 #### The need for the `WrappingOps` trait
+
 Since `std` does not provide a trait that allows the ringbuffer to be agnostic to the concrete `Index` type used. Therefore, we need to create our own trait for the types we want to support (`u8`, `u16`, `u32` and `u64`):
 
 ```rust
@@ -237,21 +249,20 @@ file shows typical usage of the transient storage adapter while
 contains the implementation.
 
 ```rust
-// Pseudo code: use transient storage adapter 
+// Pseudo code: use transient storage adapter
 
 // First we define a constructor function, `queue_transient`, so we don't have to specify the types every time we want to access the transient. This function constructs a ringbuffer transient and returns it as a boxed trait object.
 
 // Create the `add_multiple` function shows the actual typical usage of our transient
 
-// In `add_multiple`, use the `queue_transient` function defined above to get a `queue` object. 
+// In `add_multiple`, use the `queue_transient` function defined above to get a `queue` object.
 
 // Then `push` into the queue repeatedly with `commit` happening at the end of the function, upon `drop` of the `queue` object. `pop` works analogously and could also be intermixed with `push`
 ```
 
 ## References
+
 - See the Rust book's section on
-[trait objects](https://doc.rust-lang.org/book/ch17-02-trait-objects.html#trait-objects-perform-dynamic-dispatch)
-for an explanation of why we need a boxed trait object (defined with the syntax `dyn TraitName`)
-when using dynamic dispatch.
-
-
+  [trait objects](https://doc.rust-lang.org/book/ch17-02-trait-objects.html#trait-objects-perform-dynamic-dispatch)
+  for an explanation of why we need a boxed trait object (defined with the syntax `dyn TraitName`)
+  when using dynamic dispatch.

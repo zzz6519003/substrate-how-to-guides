@@ -3,6 +3,7 @@ sidebar_position: 3
 ---
 
 # Configuring genesis for Balances
+
 _All the power to you now that you're getting the hang of things &mdash; by no means anything to show-off about, but may as well start somewhere !_
 
 ## Goal
@@ -19,7 +20,7 @@ Genesis configuration is a useful tool for testing chain behaviour by defining a
 
 ## Steps
 
-### 1. Modify accounts 
+### 1. Modify accounts
 
 In `chain_spec.rs`, modify the accounts-to-amount map to apply it to the set of all endowed accounts (this is how every node template is set up):
 
@@ -44,7 +45,9 @@ pallet_balances: Some(BalancesConfig {
 		],
 }),
 ```
+
 ### 2. Modify balances
+
 By changing the right-hand-side value of the `balances` tuple, we can customize the amount of each account. Take a look at the [Rust documentation](https://substrate.dev/rustdocs/v2.0.0/pallet_balances/struct.GenesisConfig.html) on how this is implemented. Let's modify things such that Alice is pre-seeded with 1<<10:
 
 ```rust
@@ -59,7 +62,7 @@ pallet_balances: Some(BalancesConfig {
 
 ## Examples
 
-1. Configure a genesis state with a custom set of accounts (see _)
+1. Configure a genesis state with a custom set of accounts (see \_)
 
 ## Related material
 
