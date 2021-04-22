@@ -16,7 +16,7 @@ Including a pallet that implements Event and Call into a runtime.
 
 ## Overview
 
-As developers to new frameworks, we often get stuck on things like setting up dependencies correctly. This guide is an extension to [the beginner tutorial](https://substrate.dev/docs/en/tutorials/add-a-pallet/configure-a-pallet), intended as a recipe for a more general approach for things to remember when integrating a pallet to runtime.
+As developers to new frameworks, we often get stuck on things like setting up dependencies correctly. This guide is an extension to [this tutorial](https://substrate.dev/docs/en/tutorials/add-a-pallet/configure-a-pallet), intended as a guide for a more general approach of things to remember when integrating a pallet to runtime.
 
 ## Steps
 
@@ -25,21 +25,23 @@ As developers to new frameworks, we often get stuck on things like setting up de
 In `runtime/lib.rs`:
 
 ```rust
-/// Import your pallet.
+// Import your pallet.
 pub use pallet_something;
 ```
 
-### 2. Configure its runtime implementation
+### 2. Include it in your runtime 
+
+Firrst, configure its runtime implementation:
 
 ```rust
-/// Configure your pallet.
+// Configure your pallet.
 impl pallet_something::Trait for Runtime {
 	type Event = Event;
 	type Call = Call;
 }
 ```
 
-### 3. Include it in your runtime
+Then, specify all items that your pallet exposes to the runtime: 
 
 ```rust
 construct_runtime!(
@@ -55,20 +57,15 @@ construct_runtime!(
 );
 ```
 
-### 4. Indicate your local dependency
+### 4. Update `Cargo.toml`
 
-In `Cargo.toml`:
+In `Cargo.toml`, include your pallet as a local dependency and include it in `std`:
 
 ```rust
 /* --snip-- */
 # local dependencies
 pallet-something = { path = '../pallets/pallet-something', default-features = false, version = '3.0.0' }
 /* --snip-- */
-```
-
-### 5. Include your pallet in `std`
-
-```rust
 std = [
 'pallet-something/std',
 /* --snip-- */
@@ -77,9 +74,11 @@ std = [
 
 ## Examples
 
-1. Add a Pallet to Your Runtime ([**tutorial**](https://substrate.dev/docs/en/tutorials/add-a-pallet/import-a-pallet))
+- [Reward token in FRAME governance node](Playground:folder:file:lines)
+
+[![Try on playground](https://img.shields.io/badge/Playground-Node_Template-brightgreen?logo=Parity%20Substrate)](https://playground.substrate.dev/?deploy=node-template)
 
 ## Related material
 
-- Integrating the staking pallet in your runtime (**Recipe**)
-- Mock runtime (**[Knowledgebase](https://substrate.dev/docs/en/knowledgebase/runtime/tests#mock-runtime-environment)**)
+- [Mock runtime](https://substrate.dev/docs/en/knowledgebase/runtime/tests#mock-runtime-environment) 
+- [Add a Pallet to Your Runtime](https://substrate.dev/docs/en/tutorials/add-a-pallet/import-a-pallet)
