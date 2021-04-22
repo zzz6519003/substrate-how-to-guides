@@ -135,9 +135,8 @@ pub fn local_testnet_config() -> Result<ChainSpec, String> {
 	))
 }
 
-
-	const ENDOWMENT: Balance = 10_000_000 * DOLLARS;
-	const STASH: Balance = ENDOWMENT / 1000;
+const ENDOWMENT: Balance = 10_000_000 * DOLLARS;
+const STASH: Balance = ENDOWMENT / 1000;
 
 /// Configure initial storage state for FRAME modules.
 fn testnet_genesis(
@@ -147,6 +146,9 @@ fn testnet_genesis(
 	endowed_accounts: Vec<AccountId>,
 	_enable_println: bool,
 ) -> GenesisConfig {
+	
+	let num_endowed_accounts = endowed_accounts.len();
+
 	GenesisConfig {
 		frame_system: Some(SystemConfig {
 			// Add Wasm runtime to storage.
@@ -168,12 +170,12 @@ fn testnet_genesis(
 			key: root_key.clone(),
 		}),
 
-		pallet_elections_phragmen: Some(ElectionsConfig {
+		pallet_elections_phragmen: Some(ElectionsConfig { 
 			members: endowed_accounts.iter()
-						.take(endowed_accounts.len())
-						.cloned()
-						.map(|member| (member, STASH))
-						.collect(),
+			.take((num_endowed_accounts) + 1/ 2)
+			.cloned()
+			.map(|member| (member, STASH))
+			.collect(),
 		}),
 
 		// Initialize StudentCouncil members (example)
