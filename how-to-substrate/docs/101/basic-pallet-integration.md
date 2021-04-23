@@ -1,5 +1,7 @@
 ---
 sidebar_position: 1
+theme: codeview
+code: 
 ---
 
 # Basic pallet integration
@@ -8,7 +10,7 @@ _"I haven't quite yet internalized the basic process of integrating a pallet in 
 
 ## Goal
 
-Learn the steps needed to integrate a simple pallet to your runtime.
+Learn the steps needed to integrate a pallet to your runtime.
 
 ## Use cases
 
@@ -35,7 +37,7 @@ Firrst, configure its runtime implementation:
 
 ```rust
 // Configure your pallet.
-impl pallet_something::Trait for Runtime {
+impl pallet_something::Config for Runtime {
 	type Event = Event;
 	type Call = Call;
 }

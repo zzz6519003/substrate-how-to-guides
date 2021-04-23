@@ -30,7 +30,7 @@ This guide makes use of:
 3. Use `add_value` to increase `SingleValue`.
 4. Supply the constant value to.
 
-### 1. Define the constants in your pallet.
+### 1. Define the constants in your pallet
 
 `MaxAddend` will be the value displayed in metadata and `ClearFrequency` keeps track of the block numbers and will be used to define how frequently `MaxAddend` gets reset:
 
@@ -48,7 +48,7 @@ This guide makes use of:
 	}
 ```
 
-### 2. Declare `MaxAddend` and `ClearFrequency` in Storage.
+### 2. Declare `MaxAddend` and `ClearFrequency` in Storage
 
 Using the storage attribute macro:
 
@@ -98,7 +98,7 @@ Using the storage attribute macro:
 
 The `add_value` method increases `SingleValue` so long as each call adds less than the `MaxAddend` value. In more complex patterns, the constant value may be used as a static base value that is scaled by a multiplier to incorporate stateful context for calculating some dynamic fee (i.e. floating transaction fees).
 
-For this function, make sure:
+For this function, make sure to:
 
 - include checks using `ensure!`
 - keep track of the previous value
@@ -152,7 +152,7 @@ impl constant_config::Config for Runtime {
 
 ## Examples
 
-The `constant_config` pallet in the `super-runtime` (Playground).
+- The `constant_config` pallet in the `super-runtime` (Playground).
 
 ## Resources
 
