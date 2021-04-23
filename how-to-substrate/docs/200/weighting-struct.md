@@ -74,11 +74,11 @@ impl PaysFee for Conditional {
 
 ## Examples
 
-Feeless transaction pallet (link to playground).
+- Feeless transaction pallet (link to playground).
 
 ## Related material
 
-- Calculating weights in storage migrations (Recipe)
-- Transaction Weights ([Knowledgebase](https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight))
-- Transaction Fees ([Knowledgebase](https://substrate.dev/docs/en/knowledgebase/runtime/fees))
-- Transaction fees in [Polkadot](https://wiki.polkadot.network/docs/en/learn-transaction-fees)
+- Calculating weights in storage migrations
+- [Transaction Weights](https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight)
+- [Transaction Fees](https://substrate.dev/docs/en/knowledgebase/runtime/fees)
+- [Transaction fees in Polkadot](https://wiki.polkadot.network/docs/en/learn-transaction-fees)

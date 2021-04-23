@@ -1,6 +1,6 @@
 ## A list of Recipes to port over to the new "how-to" structure
 
-- [ ] Configurable Constants ([https://substrate.dev/recipes/constants.html](https://substrate.dev/recipes/constants.html))
+- [x] Configurable Constants ([https://substrate.dev/recipes/constants.html](https://substrate.dev/recipes/constants.html))
 - [ ] Efficiently manage a crowdfund using child tries for managing data storage ([https://substrate.dev/recipes/crowdfund.html](https://substrate.dev/recipes/crowdfund.html))
 - [x] Instantiable pallets ([https://substrate.dev/recipes/instantiable.html](https://substrate.dev/recipes/instantiable.html))
 - [x] Computational ressources and weights ([https://substrate.dev/recipes/weights.html](https://substrate.dev/recipes/weights.html))
