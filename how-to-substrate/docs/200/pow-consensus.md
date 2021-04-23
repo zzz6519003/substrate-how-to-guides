@@ -49,7 +49,7 @@ let import_queue = sc_consensus_pow::import_queue(
 
 See [docs](https://crates.parity.io/sc_consensus_pow/struct.PowBlockImport.html#method.new) on to configure the `pow_block_import` function.
 
-### 2. Create an actual import queue that the service will use for importing blocks into the client.
+### 2. Create import queue 
 
 Define your node's [inherents](https://substrate.dev/docs/en/knowledgebase/learn-substrate/extrinsics#inherents) by using [`InherentDataProviders`](https://crates.parity.io/sp_inherents/struct.InherentDataProviders.html) in a function that defines the providers of your POW system:
 
@@ -109,7 +109,9 @@ The construction of the [light client](https://www.parity.io/what-is-a-light-cli
 
 ## Examples
 
-Basic POW node [![Try on playground](https://img.shields.io/badge/Playground-Node_Template-brightgreen?logo=Parity%20Substrate)](https://playground.substrate.dev/?deploy=node-template)
+- Basic POW node 
+
+[![Try on playground](https://img.shields.io/badge/Playground-Node_Template-brightgreen?logo=Parity%20Substrate)](https://playground.substrate.dev/?deploy=node-template)
 
 ## Resources
 

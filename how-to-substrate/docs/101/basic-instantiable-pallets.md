@@ -67,5 +67,5 @@ MintToken2: mint_token::<Instance2>::{Module, Call, Storage, Event<T>},
 
 ## Related material
 
-- Instantiable pallets (Knowledgebase)
-- Implement bicameral system of governance (Recipe)
+- Instantiable pallets 
+- Implement bicameral system of governance
