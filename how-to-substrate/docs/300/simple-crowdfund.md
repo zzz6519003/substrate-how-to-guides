@@ -105,13 +105,33 @@ pub fn id_from_index(index: FundIndex) -> child::ChildInfo {
 }
 ```
 
-### 5. Write dispatchables
+### 5. Write dispatchable functions
 
 - fn create(...) - Create a new fund.
+    - use `T::Currency::withdraw(...)` to create imbalance variable.
+    - update the `Funds` storage item
+    - deposit a `Created` event 
+    
 - fn contribute(...) - Contribute funds to an existing fund.
+    - perform preliminary safety checks using `ensure!(...)`
+    - add the contribution to the fund
+    - deposit a `Contributed` event
+
 - fn withdraw - (...) - Withdraw full balance of a contributor to a fund.
+    - perform preliminary safety checks using `ensure!(...)`
+    - use the `T::Currency::resolve_into_existing(...)` to return funds
+    - calculate new balances and update storage `T::Currency::resolve_into_existing(...)`
+    - deposit `Withdrew` event
+
 - fn dissolve(...) - Dissolve an entire crowdfund after its retirement period has expired.
+    - perform preliminary safety checks using `ensure!(...)`
+    - use `T::Currency::resolve_creating(...)` for dissolver to collect funds
+    - deposit `Dissolved` event
+
+
 - fn dispense(...) - Dispense a payment to the beneficiary of a successful crowdfund.
+    - use `T::Currency::resolve_creating(...)` for beneficiary and caller (separately) to collect funds
+    - remove the fund from storage using `<Funds<T>>::remove(index);` and `Self::crowdfund_kill(index);` to remove all contributors from storage in a single write
 
 ## Examples
 
