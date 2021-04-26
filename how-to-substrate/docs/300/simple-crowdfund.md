@@ -1,31 +1,121 @@
 ---
-sidebar_position: 1
+sidebar_position: 4
 ---
 
 # Simple Crowdfund
 
-_The guide's intentions should be clear by just reading the title._
-
+_How to get the core functionality of a crowdfunding application in a single pallet._
 ## Goal
 
-_What specific goal will this guide achieve?_
+Build a pallet that controls multiple token accounts, storing data in child storage.
+
 
 ## Use cases
 
-_What practical use cases can this guide be applied to? This can be general, e.g. "implementing a second currency for users to pay fees in" or specific, for e.g. "a runtime migration from a `Vec<u32>` to SomeStruct ". It is likely that the more advanced the guide, the more specific its use cases will be._
-
+A simple on-chain crowdfunding app for participants to pool funds towards a common goal.
 ## Overview
 
-_A brief overview of why this is a useful guide and what concepts it uses. This is a good place to link to other devhub ressources, including other guides, aiming to give the reader the learning background required to understand how this guide can be useful to them._
+Use one trie for each active crowdfund.
+
+Any user can start a crowdfund by specifying a goal amount for the crowdfund, an end time, and a beneficiary who will 
+receive the pooled funds if the goal is reached by the end time. If the fund is not successful, it enters into a 
+retirement period when contributors can reclaim their pledged funds. Finally, an unsuccessful fund can be dissolved, 
+sending any remaining tokens to the user who dissolves it.
+
 
 ## Steps
 
-_What are the steps that will be taken to achieve the goal? Each step should be action driven, without description and links to other docs if needed. Code snippets can help illustrate the steps but should not take over the focus &mdash; i.e "how do I do this", not "what do I do"._
+### 1. Declaring your pallet's configuration traits
+In addition to the ubiquitous `Event` type, this pallet requires a `Currency` trait as well as:
+- `SubmissionDeposit` - the amount to be held on deposit by the owner of a crowdfund
+- `MinContribution` - the minimum amount that may be contributed into a crowdfund.
+- `RetirementPeriod` - the period of time (in blocks) after an unsuccessful crowdfund ending during which contributors are able to withdraw their funds.
+
+```rust
+/// The pallet's configuration trait
+pub trait Config: frame_system::Config {
+    type Event: From<Event<Self>> + Into<<Self as frame_system::Config>::Event>;
+    type Currency: ReservableCurrency<Self::AccountId>;
+    type SubmissionDeposit: Get<BalanceOf<Self>>;
+    type MinContribution: Get<BalanceOf<Self>>;
+    type RetirementPeriod: Get<Self::BlockNumber>;
+}
+```
+### 2. Create a custom metadata struct
+
+Keep track of the constants in your pallet by creating a struct that stores metadata about each fund:
+
+```rust
+#[derive(Encode, Decode, Default, PartialEq, Eq)]
+#[cfg_attr(feature = "std", derive(Debug))]
+pub struct FundInfo<AccountId, Balance, BlockNumber> {
+    /// The account that will recieve the funds if the campaign is successful
+    beneficiary: AccountId,
+    /// The amount of deposit placed
+    deposit: Balance,
+    /// The total amount raised
+    raised: Balance,
+    /// Block number after which funding must have succeeded
+    end: BlockNumber,
+    /// Upper bound on `raised`
+    goal: Balance,
+}
+```
+### 3. Declare your storage items
+
+Create one storage item to track the number of funds and a second to map that index to `FundInfo`. This will also store data about
+which users have contributed and how many funds they contributed: 
+
+```rust
+#[pallet:storage]
+#[pallet::getter(fn funds)]
+pub(super) type Funds<T: Config> as ChildTrie = StorageMap<
+		_, 
+		Blake2_128Concat, 
+		T::AccountId, 
+		T::Balance,
+		ValueQuery
+		>;
+
+#[pallet:storgae]
+#[pallet::getter(fn fund_count)]
+pub type FundCount<T> as ChildTrie = StorageValue<_, u32>;
+```
+> Note: The use of the child trie provides two advantages over using standard storage. First, it allows for removing the entirety 
+of the trie is a single storage write when the fund is dispensed or dissolved. Second, it allows any contributor to prove that 
+they contributed using a Merkle Proof.
+
+### 4. Implement the Child Trie API
+
+Write the following helper functions in a `impl<T: Config> Module<T>` block:
+- pub fn contribution_put(...) - Record a contribution in the associated child trie.
+- pub fn contribution_get(...) - Lookup a contribution in the associated child trie.
+- pub fn contribution_kill(...) - Remove a contribution from an associated child trie.
+- pub fn crowdfund_kill(...) - Remove the entire record of contributions in the associated child trie in a single storage write.
+
+Generate unique ChildInfo IDs:
+
+```rust
+pub fn id_from_index(index: FundIndex) -> child::ChildInfo {
+    let mut buf = Vec::new();
+    buf.extend_from_slice(b"crowdfnd");
+    buf.extend_from_slice(&index.to_le_bytes()[..]);
+
+    child::ChildInfo::new_default(T::Hashing::hash(&buf[..]).as_ref())
+}
+```
+
+### 5. Write dispatchables
+
+- fn create(...) - Create a new fund.
+- fn contribute(...) - Contribute funds to an existing fund.
+- fn withdraw - (...) - Withdraw full balance of a contributor to a fund.
+- fn dissolve(...) - Dissolve an entire crowdfund after its retirement period has expired.
+- fn dispense(...) - Dispense a payment to the beneficiary of a successful crowdfund.
 
 ## Examples
 
-_Code-based examples that make use of this guide. This shows at least one example of what this guide covers with a working example. These will live in a separate directory and link to Playground_
-
+- `pallet_simple_crowdfund` 
 ## Resources
 
-_A bulleted list of links to similar guides; other devhub ressources; and related material._
+- Currency [Imbalance trait](https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.Imbalance.html) 
