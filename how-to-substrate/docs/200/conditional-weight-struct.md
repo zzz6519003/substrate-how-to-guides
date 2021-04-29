@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Weighting Struct
+# Conditional Weighting Struct
 
 _There's always more than one way &mdash; we can't wait for you to find out._
 

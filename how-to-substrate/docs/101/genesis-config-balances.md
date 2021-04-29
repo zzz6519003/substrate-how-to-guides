@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Configuring genesis for Balances
 
-_All the power to you now that you're getting the hang of things &mdash; by no means anything to show-off about, but may as well start somewhere !_
+_All the power to you now that you're getting the hang of things&mdash;by no means anything to show-off about, but may as well start somewhere !_
 
 ## Goal
 

@@ -1,10 +1,10 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 # Ringbuffer Queue
 
-_"They who dares, rings ...", Placeholder quote._
+_For those dealing with a little out of the ordinary data structures._
 
 ## Goal
 

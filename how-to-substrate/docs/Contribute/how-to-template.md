@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # How-to Template
 
-**Note:** This is the template for writing a Substrate how-to guide. Please refer to the README of this repo to understand the general approach for writing these guides.
+This is the template for writing a Substrate how-to guide. 
 
 # Title
 
@@ -16,7 +16,7 @@ _What specific goal will this guide achieve?_
 
 ## Use cases
 
-_What practical use cases can this guide be applied to? This can be general, e.g. "implementing a second currency for users to pay fees in" or specific, for e.g. "a runtime migration from a `Vec<u32>` to SomeStruct ". It is likely that the more advanced the guide, the more specific its use cases will be._
+_What practical use cases can this guide be applied to? This can be general, e.g. "implementing a second currency for users to pay fees in" or specific, for e.g. "a runtime migration from a `Vec<u32>` to SomeStruct ". It is likely that the more advanced the guide, the more specific its use cases will be. If more than one, bullet list. Otherwise, one phrase._
 
 ## Overview
 
@@ -24,11 +24,12 @@ _A brief overview of why this is a useful guide and what concepts it uses. This 
 
 ## Steps
 
-_What are the steps that will be taken to achieve the goal? Each step should be action driven, without description and links to other docs if needed. Code snippets can help illustrate the steps but should not take over the focus &mdash; i.e "how do I do this", not "what do I do"._
+_What are the steps that will be taken to achieve the goal? Each step should be action driven, with little description, minimal fluff,
+linking to other docs if needed. Code snippets can help illustrate the steps but should not take over the focus&mdash;i.e "how do I do this", not "what do I do"._
 
 ## Examples
 
-_Code-based examples that make use of this guide. This shows at least one example of what this guide covers with a working example. These will live in a separate directory and link to Playground_
+_Code-based examples that make use of this guide. This shows at least one reference of what this guide covers with a working example.This could be a reference to a Playground codebase instance, existing Substrate code or custom code that lives in the how-to guide repo._
 
 ## Resources
 
