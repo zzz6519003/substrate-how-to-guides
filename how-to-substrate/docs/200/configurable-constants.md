@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Configure a custom constant
 
-_The basics for defining a constant in your runtime, with a little extra s'mthing._
+_The basics for defining a constant in your runtime._
 
 ## Goal
 

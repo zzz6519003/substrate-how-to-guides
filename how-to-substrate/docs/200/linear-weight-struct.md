@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Conditional Weighting Struct
+# Linear Weighting Struct
 
 _Get the simple things down first._
 
@@ -49,7 +49,7 @@ Since this implementation of `WeighData` requires a `DispatchClass`, use [`defau
 // Implement ClassifyDispatch
 impl<T> ClassifyDispatch<T> for Linear {
 	fn classify_dispatch(&self, _: T) -> DispatchClass {
-		// Classify all calls as Normal (which is the default)
+		// Classify all calls as Normal (which is the default).
 		Default::default()
 	}
 }
