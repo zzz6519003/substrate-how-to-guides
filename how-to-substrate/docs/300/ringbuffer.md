@@ -1,5 +1,7 @@
 ---
 sidebar_position: 3
+theme: codeview
+code: ringbuffer.rs
 ---
 
 # Ringbuffer Queue
@@ -16,7 +18,7 @@ Handling complex data structures stored in storage.
 
 ## Overview
 
-A [ringbuffer](https://en.wikipedia.org/wiki/Circular_buffer) that abstracts over storage can be a useful tool when handling storage migrations for more sophisticated pallets. This guide is intended to step you through how to build a storage adapter and use it for a [FIFO](<https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)>) queue. It will guide you through building a function to overwrite old storage values within pre-defined bounds.
+A [ringbuffer][ringbuffer-wikipedia] that abstracts over storage can be a useful tool when handling storage migrations for more sophisticated pallets. This guide is intended to step you through how to build a storage adapter and use it for a [FIFO][fifo-wikipedia] queue. It will guide you through building a function to overwrite old storage values within pre-defined bounds.
 
 ## Steps
 
@@ -87,10 +89,10 @@ where
 
 > **Note**: The `Query` type is specified to help with type inference (because the value returned can
 > be different from the stored representation).
-> The [`Codec`](https://docs.rs/parity-scale-codec/1.3.0/parity_scale_codec/trait.Codec.html) and
-> [`EncodeLike`](https://docs.rs/parity-scale-codec/1.3.0/parity_scale_codec/trait.EncodeLike.html)
+> The [`Codec`][codec-rustdocs] and
+> [`EncodeLike`][encodelike-rustdocs]
 > type constraints make sure that both items and indices can be stored in storage.
-> The [`PhantomData`](https://doc.rust-lang.org/std/marker/struct.PhantomData.html) is needed in order
+> The [`PhantomData`][phantomdata-rustdocs] is needed in order
 > to "hold on to" the types during the lifetime of the transient object.
 
 #### Specifying type constraints for `Index`
@@ -224,7 +226,7 @@ impl_wrapping_ops!(u64);
 
 In order to make the usage more ergonomic and to avoid synchronization errors (where the storage map
 diverges from the bounds) we also implement the
-[`Drop` trait](https://doc.rust-lang.org/std/ops/trait.Drop.html):
+[`Drop` trait][drop-rustdocs]:
 
 ```rust
 impl<Item, B, M, Index> Drop for RingBufferTransient<Item, B, M, Index>
@@ -242,27 +244,22 @@ call to the using pallet.
 
 ## Examples
 
-The
-[`ringbuffer-queue/src/lib.rs`](https://github.com/substrate-developer-hub/recipes/tree/master/pallets/ringbuffer-queue/src/lib.rs)
-file shows typical usage of the transient storage adapter while
-[`ringbuffer-queue/src/ringbuffer.rs`](https://github.com/substrate-developer-hub/recipes/tree/master/pallets/ringbuffer-queue/src/ringbuffer.rs)
-contains the implementation.
-
-```rust
-// Pseudo code: use transient storage adapter
-
-// First we define a constructor function, `queue_transient`, so we don't have to specify the types every time we want to access the transient. This function constructs a ringbuffer transient and returns it as a boxed trait object.
-
-// Create the `add_multiple` function shows the actual typical usage of our transient
-
-// In `add_multiple`, use the `queue_transient` function defined above to get a `queue` object.
-
-// Then `push` into the queue repeatedly with `commit` happening at the end of the function, upon `drop` of the `queue` object. `pop` works analogously and could also be intermixed with `push`
-```
+- [`ringbuffer-queue/src/lib.rs`](https://github.com/substrate-developer-hub/recipes/tree/master/pallets/ringbuffer-queue/src/lib.rs): Shows a typical usage of the transient storage adapter.
+- [`ringbuffer-queue/src/ringbuffer.rs`](https://github.com/substrate-developer-hub/recipes/tree/master/pallets/ringbuffer-queue/src/ringbuffer.rs): Contains an implementation of a transient storage adapter.
 
 ## References
 
+#### How-to guides
+- [nicks-migration](../400/nicks-migration)
+#### Rust docs
 - See the Rust book's section on
   [trait objects](https://doc.rust-lang.org/book/ch17-02-trait-objects.html#trait-objects-perform-dynamic-dispatch)
   for an explanation of why we need a boxed trait object (defined with the syntax `dyn TraitName`)
   when using dynamic dispatch.
+
+[ringbuffer-wikipedia]: https://en.wikipedia.org/wiki/Circular_buffer
+[fifo-wikipedia]: https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics
+[codec-rustdocs]: https://docs.rs/parity-scale-codec/1.3.0/parity_scale_codec/trait.Codec.html
+[encodelike-rustdocs]: https://docs.rs/parity-scale-codec/1.3.0/parity_scale_codec/trait.EncodeLike.html
+[phantomdata-rustdocs]: https://doc.rust-lang.org/std/marker/struct.PhantomData.html
+[drop-rustdocs]: https://doc.rust-lang.org/std/ops/trait.Drop.html

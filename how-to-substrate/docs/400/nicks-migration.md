@@ -99,9 +99,23 @@ Here's an overview of what this function needs to do:
 - Update the storage version
 - Return the weight consumed by the migration
 
+#### Check the storage version
+
+Construct the `migrate_to_v2` logic around the check. If the storage migration doesn't need to happen, return 0:
+
+```rust
+if PalletVersion::get() == StorageVersion::V1Bytes {
+
+    // migrate to v2 
+
+} else {
+    frame_support::debug::info!(" >>> Unused migration!");
+    0
+}
+```
 #### Transform storage values
 
-Using the [`translate storage method`](https://crates.parity.io/frame_support/storage/types/struct.StorageMap.html#method.translate),
+Using the [`translate storage method`][translate-storage-rustdocs],
 transform the storage values to the new format. Since the existing `nick` value in storage can be made of a string separated by a 
 space, split it at the `' '` and place anything after that into the new `last` storage item. If it isn't, `last` takes the `None` value:
 
@@ -129,11 +143,10 @@ To do this, count the number of storage reads and writes and return the correspo
 let count = NameOf::<T>::iter().count();
 T::DbWeight::get().reads_writes(count as Weight + 1, count as Weight + 1)
 ```
-If the storage migration didn't happen, return 0.
 
 #### Use `migrate_to_v2` in `on_runtime_upgrade`
 
-Go back to the pallet's functions and specify the `migrate_to_v2` function in `on_runtime_update`:
+Go back to the pallet's functions and specify the `migrate_to_v2` function in `on_runtime_upgrade`:
 
 ```rust 
 fn on_runtime_upgrade() -> frame_support::weights::Weight {
@@ -163,12 +176,15 @@ Put the new storage types in a `types.json` which you will need to trigger the m
 
 ## Examples
 
-- [Migrating the Nicks pallet](https://github.com/substrate-developer-hub/migration-example/pull/2/files)
+- [Migrating the Nicks pallet][nicks-migration-htg-diff]
 
 ## Resources
-Guides
+#### How-to guides
 - [Trigger Migration using Polkadot JS](./migration-steps.md): learn how to trigger the migration on a live chain
 
-Docs
+#### Rust docs
 - Rust docs for the [`Option` enum](https://doc.rust-lang.org/std/option/)
 - [`frame_support::storage::migration`](https://crates.parity.io/frame_support/storage/migration/index.html) utility docs
+
+[translate-storage-rustdocs]: https://crates.parity.io/frame_support/storage/types/struct.StorageMap.html#method.translate
+[nicks-migration-htg-diff]: https://github.com/substrate-developer-hub/migration-example/pull/2/files

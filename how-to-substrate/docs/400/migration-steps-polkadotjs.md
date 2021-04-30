@@ -31,7 +31,7 @@ Hit _"Submit Sudo Unchecked"_ and sign the transaction to trigger the call.
 
 ## Examples
 
-- Migrating the Nicks pallet
+- Migrating the Nicks pallet.
 
 ## Resources
 
