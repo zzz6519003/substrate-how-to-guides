@@ -2,7 +2,8 @@
 sidebar_position: 4
 ---
 
-# Simple Crowdfund
+# Simple crowdfund
+_WIP_
 
 _How to get the core functionality of a crowdfunding application in a single pallet._
 ## Goal

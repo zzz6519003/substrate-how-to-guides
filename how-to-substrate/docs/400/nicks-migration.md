@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Basic Storage Migration
+# Basic storage migration
 _A simple migration guide using the Nicks pallet as a reference._
 ## Goal
 

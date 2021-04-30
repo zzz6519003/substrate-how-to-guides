@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Trigger a Storage Migration
+# Trigger a storage migration
 _Ready, steady ... migrate!_
 
 ## Goal

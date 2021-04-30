@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 
-# Linear Weighting Struct
+# Linear weighting struct
 
 _Get the simple things down first._
 

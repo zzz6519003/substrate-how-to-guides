@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# Conditional Weighting Struct
+# Conditional weighting struct
 
 _There's always more than one way&mdash;but those can wait._
 

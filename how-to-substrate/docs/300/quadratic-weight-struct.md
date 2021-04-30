@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Quadratic Weighting Struct
+# Quadratic weighting struct
 
 _A tool for weighting more complex transactions._
 
