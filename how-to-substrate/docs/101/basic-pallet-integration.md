@@ -1,16 +1,16 @@
 ---
 sidebar_position: 1
-theme: codeview
-code: 
 ---
 
 # Basic pallet integration
 
 _"I haven't quite yet internalized the basic process of integrating a pallet in my runtime...Ugh!" Totally get it, it's OK, you won't even need this way sooner than you know._
 
+[![Try on playground](https://img.shields.io/badge/Playground-Node_Template-brightgreen?logo=Parity%20Substrate)](https://playground.substrate.dev/?deploy=node-template)
+
 ## Goal
 
-Learn the steps needed to integrate a pallet to your runtime.
+Learn the steps for integrating a pallet to your runtime.
 
 ## Use cases
 
@@ -18,7 +18,7 @@ Including a pallet that implements Event and Call into a runtime.
 
 ## Overview
 
-As developers to new frameworks, we often get stuck on things like setting up dependencies correctly. This guide is an extension to [this tutorial](https://substrate.dev/docs/en/tutorials/add-a-pallet/configure-a-pallet), intended as a guide for a more general approach of things to remember when integrating a pallet to runtime.
+As developers to new frameworks, we often get stuck on things like setting up dependencies correctly. This guide is an extension to the [Add a Pallet to Your Runtime tutorial][add-a-pallet-tutorial], intended for new developers looking to quickly integrate a pallet to their runtime.
 
 ## Steps
 
@@ -33,7 +33,7 @@ pub use pallet_something;
 
 ### 2. Include it in your runtime 
 
-Firrst, configure its runtime implementation:
+First, configure its runtime implementation:
 
 ```rust
 // Configure your pallet.
@@ -76,11 +76,12 @@ std = [
 
 ## Examples
 
-- [Reward token in FRAME governance node](Playground:folder:file:lines)
-
-[![Try on playground](https://img.shields.io/badge/Playground-Node_Template-brightgreen?logo=Parity%20Substrate)](https://playground.substrate.dev/?deploy=node-template)
+- [Reward token in FRAME governance node][playground-gov].
 
 ## Related material
 
-- [Mock runtime](https://substrate.dev/docs/en/knowledgebase/runtime/tests#mock-runtime-environment) 
-- [Add a Pallet to Your Runtime](https://substrate.dev/docs/en/tutorials/add-a-pallet/import-a-pallet)
+- [Mock runtime][mock-runtime] 
+
+[add-a-pallet-tutorial]: https://substrate.dev/docs/en/tutorials/add-a-pallet/import-a-pallet
+[playground-gov]: playground.substrate.dev
+[mock-runtime]: https://substrate.dev/docs/en/knowledgebase/runtime/tests#mock-runtime-environment

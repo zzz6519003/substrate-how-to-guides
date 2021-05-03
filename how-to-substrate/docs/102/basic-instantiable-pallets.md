@@ -12,9 +12,9 @@ Learn how to configure instantiable pallets.
 
 ## Use cases
 
-1. Token chain hosts two independent cryptocurrencies
-2. Governance has two (or more) houses which act similarly internally
-3. A social network chain that maintains different treasuries
+- Token chain hosts two independent cryptocurrencies.
+- Governance has two (or more) houses which act similarly internally.
+- A social network chain that maintains different treasuries.
 
 ## Overview
 
@@ -26,7 +26,7 @@ The premise of instantiable pallets is to provide separate storage items for a r
 
 Instantiable pallets must call the `decl_storage!` macro so that the `Instance` type is created.
 
-Add a Generic Type for `Instance` in the Config trait, Event type, and Store trait. Learn more about how Generic Types work in Rust [here](https://doc.rust-lang.org/book/ch10-01-syntax.html). The code snippet below shows the modifications required for our pallet's Config and Store traits:
+Add a Generic Type for `Instance` in the Config trait, Event type, and Store trait. Learn more about how Generic Types work in Rust [here] [generics-rust-book]. The code snippet below shows the modifications required for our pallet's Config and Store traits:
 
     ```rust
     pub trait Config<I: Instance>: frame_system::Config {
@@ -62,10 +62,10 @@ MintToken2: mint_token::<Instance2>::{Module, Call, Storage, Event<T>},
 
 ## Examples
 
-- A social network chain for membership groups that maintains 2 separate Treasuries: one to collect slashing and fees and another that collects membership fees to fund proposals for member activities (See \_\_).
-- An on-chain governance system with two specialized chambers (See \_\_)
-
+- [reward-coin pallet](/../examples/template-node/pallets/reward-coin/src/lib.rs) 
+- [Polkadot's runtime](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/src/lib.rs#L968)
 ## Related material
-
-- Instantiable pallets 
-- Implement bicameral system of governance
+- todo
+#### Knowledgebase
+- 
+- [generics-rust-book]: https://doc.rust-lang.org/book/ch10-01-syntax.html

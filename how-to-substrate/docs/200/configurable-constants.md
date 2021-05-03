@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 ---
 
 # Configure a custom constant
@@ -20,8 +20,8 @@ Declaring a constant value in a runtime is a useful tool to either define fixed 
 
 This guide makes use of:
 
-- [`Get`](https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.Get.html)
-- [`#[pallet::extra_constants]`](https://crates.parity.io/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional)
+- [`Get`][get-trait-rustdocs]
+- [`#[pallet::extra_constants]`][extra-constants-rustdocs]
 
 ## Steps
 
@@ -155,5 +155,9 @@ impl constant_config::Config for Runtime {
 - The `constant_config` pallet in the `super-runtime` (Playground).
 
 ## Resources
-
+#### Tutorials
 - Nick's [forkless upgrade tutorial](https://substrate.dev/docs/en/tutorials/forkless-upgrade/)
+
+
+[get-trait-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.Get.html
+[extra-constants-rustdocs]: https://crates.parity.io/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional

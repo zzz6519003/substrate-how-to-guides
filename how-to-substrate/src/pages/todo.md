@@ -4,7 +4,6 @@
   - [ ] Create a pallet that absorbs imbalances ([https://substrate.dev/recipes/currency-imbalances.html](https://substrate.dev/recipes/currency-imbalances.html))
   - [ ] Create a piggy bank
 - [ ] OCW ([https://substrate.dev/recipes/off-chain-workers/index.html](https://substrate.dev/recipes/off-chain-workers/index.html) x3)
-- [ ] Schedule locking and unlocking with the currency trait ([https://substrate.dev/recipes/currency.html](https://substrate.dev/recipes/currency.html))
 - [ ] Collective coin flipping ([https://substrate.dev/recipes/randomness.html](https://substrate.dev/recipes/randomness.html))
 - [ ] Create a Custom Runtime API for RPC Calls ([https://substrate.dev/recipes/runtime-api.html](https://substrate.dev/recipes/runtime-api.html))
 - [ ] How to use the Kitchen Node ([https://substrate.dev/recipes/kitchen-node.html](https://substrate.dev/recipes/kitchen-node.html))
@@ -18,6 +17,7 @@
 - [x] Configurable Constants ([https://substrate.dev/recipes/constants.html](https://substrate.dev/recipes/constants.html))
 - [x] Basic instantiable pallets ([https://substrate.dev/recipes/instantiable.html](https://substrate.dev/recipes/instantiable.html))
 - [x] Computational ressources and weights ([https://substrate.dev/recipes/weights.html](https://substrate.dev/recipes/weights.html))
+- [x] Schedule locking and unlocking with the currency trait ([https://substrate.dev/recipes/currency.html](https://substrate.dev/recipes/currency.html))
 
 
 ## Other

@@ -1,10 +1,10 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# Conditional Weighting Struct
+# Conditional weighting struct
 
-_There's always more than one way &mdash; we can't wait for you to find out._
+_There's always more than one way&mdash;but those can wait._
 
 ## Goal
 
@@ -12,15 +12,15 @@ Understand how to calculate transaction weights using a custom weighting struct.
 
 ## Use cases
 
-Calculate correct weight based on data within a function, required to calculate transaction fees.
+Calculate transaction fees by computing correct weights based on the data within a function.
 
 ## Overview
 
-Traits:
+Here are the different traits we'll be implementing:
 
-- [WeighData](<https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.WeighData.html#impl-WeighData%3CT%3E-for-(Weight%2C%20DispatchClass%2C%20Pays)>): weigh the data in a function
-- [PaysFee](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.PaysFee.html): designate whether the dispatch pays a fee or not
-- [ClassifyDispatch](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.ClassifyDispatch.html): a way to tell the runtime about the type of dispatch being made
+- [`WeighData`][impl-weighdata-rustdocs]: Weigh the data in a function.
+- [`PaysFee`][paysfee-rustdocs]: Designate whether the dispatch pays a fee or not.
+- [`ClassifyDispatch`][classifydispatch-rustdocs]: A way to tell the runtime about the type of dispatch being made.
 
 ## Steps
 
@@ -48,7 +48,7 @@ impl WeighData<(&bool, &u32)> for Conditional {
 
 ### 2. Classify dispatch calls
 
-Since this implementation of `WeighData` requires a `DispatchClass`, use [`default`](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/enum.DispatchClass.html) to classify all calls as normal.
+Since this implementation of `WeighData` requires a `DispatchClass`, use [`default`][dispatchclass-rustdocs] to classify all calls as normal.
 
 ```rust
 // Implement ClassifyDispatch
@@ -71,14 +71,22 @@ impl PaysFee for Conditional {
     }
 }
 ```
-
 ## Examples
 
-- Feeless transaction pallet (link to playground).
+- Feeless transaction pallet.
 
 ## Related material
-
+#### How-to guides
 - Calculating weights in storage migrations
+- [Linear weighting struct](./linear-weight-struct)
+- [Quadratic weighting struct](../300/quadratic-weight-struct)
+#### Knowledgebase
 - [Transaction Weights](https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight)
 - [Transaction Fees](https://substrate.dev/docs/en/knowledgebase/runtime/fees)
+#### Other
 - [Transaction fees in Polkadot](https://wiki.polkadot.network/docs/en/learn-transaction-fees)
+
+[impl-weighdata-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.WeighData.html#impl-WeighData%3CT%3E-for-(Weight%2C%20DispatchClass%2C%20Pays
+[paysfee-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.PaysFee.html 
+[classifydispatch-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.ClassifyDispatch.html 
+[dispatchclass-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/enum.DispatchClass.html

@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Trigger a Storage Migration
+# Trigger a storage migration
 _Ready, steady ... migrate!_
 
 ## Goal
@@ -31,7 +31,7 @@ Hit _"Submit Sudo Unchecked"_ and sign the transaction to trigger the call.
 
 ## Examples
 
-- Migrating the Nicks pallet
+- Migrating the Nicks pallet.
 
 ## Resources
 

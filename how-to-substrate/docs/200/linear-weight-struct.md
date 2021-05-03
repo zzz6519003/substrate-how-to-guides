@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 
-# Linear Weighting Struct
+# Linear weighting struct
 
 _Get the simple things down first._
 
@@ -17,11 +17,12 @@ Calculate correct weight for a transaction involving a `u32`.
 ## Overview
 This guide goes over the components of a simple weighting struct designed for a single argument dispatch of type `u32`. 
 The ultimate weight of the transaction is the product of the transaction parameter and the field of this struct.
+
 Traits:
 
-- [WeighData](<https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.WeighData.html#impl-WeighData%3CT%3E-for-(Weight%2C%20DispatchClass%2C%20Pays)>): weigh the data in a function
-- [PaysFee](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.PaysFee.html): designate whether the dispatch pays a fee or not
-- [ClassifyDispatch](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.ClassifyDispatch.html): a way to tell the runtime about the type of dispatch being made
+- [`WeighData`][impl-weighdata-rustdocs]: Weigh the data in a function.
+- [`PaysFee`][paysfee-rustdocs]: Designate whether the dispatch pays a fee or not.
+- [`ClassifyDispatch`][classifydispatch-rustdocs]: A way to tell the runtime about the type of dispatch being made.
 
 ## Steps
 
@@ -43,7 +44,7 @@ impl WeighData<(&u32,)> for Linear {
 
 ### 2. Classify dispatch calls
 
-Since this implementation of `WeighData` requires a `DispatchClass`, use [`default`](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/enum.DispatchClass.html) to classify all calls as normal &mdash; as opposed to operational.
+Since this implementation of `WeighData` requires a `DispatchClass`, use [`default`][dispatchclass-rustdocs] to classify all calls as normal&mdash;as opposed to operational.
 
 ```rust
 // Implement ClassifyDispatch
@@ -73,8 +74,18 @@ impl<T> PaysFee<T> for Linear {
 - Feeless transaction pallet (link to playground).
 
 ## Related material
-
+#### How-to guides
 - Calculating weights in storage migrations
+- [Linear weighting struct](./linear-weight-struct)
+- [Quadratic weighting struct](../300/quadratic-weight-struct)
+
+#### Knowledgebase
 - [Transaction Weights](https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight)
 - [Transaction Fees](https://substrate.dev/docs/en/knowledgebase/runtime/fees)
+
+#### Other
 - [Transaction fees in Polkadot](https://wiki.polkadot.network/docs/en/learn-transaction-fees)
+
+[impl-weighdata-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.WeighData.html#impl-WeighData%3CT%3E-for-(Weight%2C%20DispatchClass%2C%20Pays
+[paysfee-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.PaysFee.html 
+[classifydispatch-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.ClassifyDispatch.html 

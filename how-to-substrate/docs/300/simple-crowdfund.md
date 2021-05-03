@@ -2,7 +2,8 @@
 sidebar_position: 4
 ---
 
-# Simple Crowdfund
+# Simple crowdfund
+_WIP_
 
 _How to get the core functionality of a crowdfunding application in a single pallet._
 ## Goal
@@ -134,7 +135,6 @@ pub fn id_from_index(index: FundIndex) -> child::ChildInfo {
     - remove the fund from storage using `<Funds<T>>::remove(index);` and `Self::crowdfund_kill(index);` to remove all contributors from storage in a single write
 
 ## Examples
-
 - `pallet_simple_crowdfund` 
 ## Resources
 

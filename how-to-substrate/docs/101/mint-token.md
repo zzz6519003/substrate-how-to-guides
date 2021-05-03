@@ -8,7 +8,7 @@ code:
 
 _ Get started with the simple things as a basis to learn more. _
 
-> **Note:** this is a beginner recipe intended for novice Substrate developers looking to explore ways to create tokens in Substrate. This approach is not recommended best practice. Use this guide to learn how to improve upon your runtime logic's capabilities and code quality. See the **[Examples](#examples)** section for a practical implementations of this guide.
+> **Note: 📣 ** this is a beginner recipe intended for novice Substrate developers looking to explore ways to create tokens in Substrate. This approach is not recommended best practice. Use this guide to learn how to improve upon your runtime logic's capabilities and code quality. See the [Examples](#examples) section for a practical implementations of this guide.
 
 ## Goal
 
@@ -20,13 +20,13 @@ Give any account the ability to create a token supply in exchange for native tok
 
 ## Overview
 
-This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that [StorageMap](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageMap.html) gives us. To achieve this, this "primitive" approach uses the [blake2_128_concat](https://substrate.dev/docs/en/knowledgebase/runtime/storage#hashing-algorithms) `hasher` to map balances to account IDs, similar to how the [Balances pallet](https://substrate.dev/docs/en/knowledgebase/runtime/frame#balances) makes use of it to store and keep track of account balances.
+This guide will step you through an effective way to mint a token by leveraging the primitive capabilities that [StorageMap][storagemap-rustdocs] gives us. To achieve this, this "primitive" approach uses the [blake2_128_concat][blake2-128-concat-rustdocs] `hasher` to map balances to account IDs, similar to how the [Balances][balances-frame] pallet makes use of it to store and keep track of account balances.
 
 ## Steps
 
 ### 1. Setup your `Config` trait
 
-Using the Node Template as a starting point, specify the types your pallet depends on and the [`Events`](https://substrate.dev/docs/en/knowledgebase/runtime/events) it emits:
+Using the Node Template as a starting point, specify the types your pallet depends on and the [`Events`][events-kb] it emits:
 
 ```rust
 // The configuration trait
@@ -34,7 +34,7 @@ pub trait Config: system::Config {
 	type Event: From<Event<Self>> + Into<<Self as frame_system::Config>::Event>;
 	type Balance: Member + Parameter + AtLeast32BitUnsigned + Default + Copy;
 }
-//--snip
+/* --snip-- */
 pub enum Event<T: Config> {
 	MintedNewSupply(T::AccountId),
 	Transferred(T::AccountId, T::AccountId, T::Balance),
@@ -100,19 +100,20 @@ pub(super) fn transfer(
 /* --snip-- */
 ```
 #### Verify and add error handling
-To calculate the new balances, use [`checked_sub`](https://substrate.dev/rustdocs/v3.0.0/primitive_types/struct.U128.html#method) (TODO: error handling).
-
-#### Write to storage
- Once the new balances are calculated, write their values to storage and [deposit event](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/struct.Pallet.html#method.deposit_event) to the current block.
-
+To calculate the new balances, use `checked_sub` and `checked_add`:
 
 ```rust
 /* --snip-- */
-			// Calculate new balances
+			// Calculate new balances.
 			let updated_from_balance = sender_balance.checked_sub(value).ok_or(<Error<T>>::InsufficientFunds)?;
 			let updated_to_balance = receiver_balance.checked_add(value).expect("Entire supply fits in u64, qed");
+/* --snip-- */
+```
+#### Write to storage
+ Once the new balances are calculated, write their values to storage and deposit the event to the current block:
 
-			// Write new balances to storage
+```rust
+			// Write new balances to storage.
 			<Balances<T>>::insert(&sender, updated_from_balance);
 			<Balances<T>>::insert(&to, updated_to_balance);
 
@@ -127,7 +128,7 @@ If `checked_sub()` returns `None`, the operation caused an overflow and throws a
 
 Refer to [this guide](./basic-pallet-integration) if you’re not yet familiar with this procedure.
 
->**Further learning: ** 
+>**Further learning 💡 ** 
 > - **Safety.** The `mint` function takes in an amount to mint which is *not good practice* because it implies that users have unlimited access to writing to storage. Safer approaches include: using configuring `GenesisConfig` or fixing a predetermined maximum value in runtime. 
 > - **Weights.** All the weights were set to 10_000 in the above code snippets. Learn more about weight configuration in this [beginner guide on weights](./basic-tx-weight-calculations).
 > - **Origins.** One assumption this recipe makes is that the origin will always be the sudo user. Origins are are powerful in Substrate. Here’s [a recipe on using origins](./origins-beginner).
@@ -137,7 +138,11 @@ Refer to [this guide](./basic-pallet-integration) if you’re not yet familiar w
 - [mint-token pallet](/../examples/template-node/pallets/mint-token/src/lib.rs)
 - [reward-coin pallet](/../examples/template-node/pallets/reward-coin/src/lib.rs) 
 ## Related material
+#### Rust docs
+- [Deposit event method][deposit-event-rustdocs]
 
-- Basic error checking 
-- Basic weight configuration
-- Using instantiable pallets
+[storagemap-rutdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageMap.html
+[blake2-128-concat-rustdocs]: https://substrate.dev/docs/en/knowledgebase/runtime/storage#hashing-algorithms
+[balances-frame]: https://substrate.dev/docs/en/knowledgebase/runtime/frame#balances
+[events-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/events
+[deposit-event-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/struct.Pallet.html#method.deposit_event
