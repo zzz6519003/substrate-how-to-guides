@@ -271,7 +271,7 @@ impl pallet_template::Config for Runtime {
 	type Event = Event;
 }
 
-/// Configure mint_token
+/// Configure mint_token.
 impl mint_token::Config for Runtime {
 	type Event = Event;	
 }
