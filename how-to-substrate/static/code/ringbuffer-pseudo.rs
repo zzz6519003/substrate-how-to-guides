@@ -1,5 +1,3 @@
-
-```rust
 // Pseudo code: use transient storage adapter
 
 // First we define a constructor function, `queue_transient`, 
@@ -19,4 +17,3 @@
 // upon `drop` of the `queue` object. 
 // `pop` works analogously and could also be intermixed 
 // with `push`
-```

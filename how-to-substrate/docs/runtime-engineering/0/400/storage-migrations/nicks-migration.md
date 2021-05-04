@@ -14,9 +14,8 @@ A pallet that adds a single storage item and needs to be included in a runtime u
 
 ## Overview
 
-This guide will step through a storage migration on FRAME's Nick's pallet. It shows how to add a storage item that 
-provides an optional field to include a last name, and write the migration ready for a runtime upgrade. This guide
-can equally be used in other contexts requiring a simple storage migration that adds a new storage item to the runtime.
+This guide will step through a storage migration on FRAME's Nick's pallet. It shows how to modify a storage map to 
+provide an optional field that includes a last name, and how to write the migration function ready to be triggered upon a runtime upgrade. This guide can equally be used in other contexts which require a simple storage migration that modifies a storage map in a runtime.
 
 ## Steps
 
@@ -76,8 +75,8 @@ In addition, update all storage writes with the `Nickname` struct:
 ### 4. Declare a migration module
 
 The migration module should contain two parts: 
-1. A module indicating the deprecated storage to migrate from
-2. The migration function which returns a weight
+1. A module indicating the deprecated storage to migrate from.
+2. The migration function which returns a weight.
 
 The scaffolding of this module looks like this:
 
@@ -85,7 +84,7 @@ The scaffolding of this module looks like this:
 pub mod migration {
     use super::*;
 
-    pub mod deprecated {...} // only contains V1 storage format
+    pub mod v1 {...} // only contains V1 storage format
 
     pub fn migrate_to_v2<T: Config>() -> frame_support::weights::Weight {...} // contains checks and transforms storage to V2 format
 }
@@ -121,15 +120,15 @@ space, split it at the `' '` and place anything after that into the new `last` s
 
 ```rust
 NameOf::<T>::translate::<(Vec<u8>, BalanceOf<T>), _>(
-    |k: T::AccountId, (nick, deposit): (Vec<u8>, BalanceOf<T>)| {
-        // We split the nick at ' ' (<space>).
-		match nick.iter().rposition(|&x| x == b" "[0]) {
-			Some(ndx) => Some((Nickname {
-				first: nick[0..ndx].to_vec(),
-				last: Some(nick[ndx + 1..].to_vec())
-				}, deposit)),
-				None => Some((Nickname { first: nick, last: None }, deposit))
-			}
+  |k: T::AccountId, (nick, deposit): (Vec<u8>, BalanceOf<T>)| {
+    // We split the nick at ' ' (<space>).
+    match nick.iter().rposition(|&x| x == b" "[0]) {
+        Some(ndx) => Some((Nickname {
+          first: nick[0..ndx].to_vec(),
+				  last: Some(nick[ndx + 1..].to_vec())
+          }, deposit)),
+          None => Some((Nickname { first: nick, last: None }, deposit))
+      }
 		}
 	);
 ```

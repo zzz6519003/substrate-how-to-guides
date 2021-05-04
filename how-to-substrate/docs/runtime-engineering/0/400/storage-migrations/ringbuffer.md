@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 theme: codeview
-code: ringbuffer.rs
+code: code/ringbuffer-pseudo.rs
 ---
 
 # Ringbuffer Queue

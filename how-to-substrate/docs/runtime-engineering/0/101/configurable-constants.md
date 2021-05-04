@@ -25,11 +25,6 @@ This guide makes use of:
 
 ## Steps
 
-1. Define two constants: `MaxAddend` and another called `ClearFrequency` to keep track of how frequently `MaxAddend` gets reset.
-2. Declare `MaxAddend` and `ClearFrequency` in Storage.
-3. Use `add_value` to increase `SingleValue`.
-4. Supply the constant value to.
-
 ### 1. Define the constants in your pallet
 
 `MaxAddend` will be the value displayed in metadata and `ClearFrequency` keeps track of the block numbers and will be used to define how frequently `MaxAddend` gets reset:
@@ -84,14 +79,11 @@ Using the storage attribute macro:
 
         fn on_finalize(n: T::BlockNumber) {
             if (n % T::ClearFrequency::get()).is_zero() {
-            let c_val = <SingleValue>::get();
-            <SingleValue>::put(0u32);
-            Self::deposit_event(Event::Cleared(c_val));
-    }
-}
-
-	}
-
+                let c_val = <SingleValue>::get();
+                <SingleValue>::put(0u32);
+                Self::deposit_event(Event::Cleared(c_val));
+            }
+        }
 ```
 
 ### 4. Create a runtime method that allows users to manipulate the value
@@ -152,7 +144,7 @@ impl constant_config::Config for Runtime {
 
 ## Examples
 
-- The `constant_config` pallet in the `super-runtime` (Playground).
+- `constant-config`
 
 ## Resources
 #### Tutorials

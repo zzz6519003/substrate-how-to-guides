@@ -1,10 +1,32 @@
 ---
-sidebar_position: 1
+sidebar_position: 0
 ---
 
 # Welcome
 
 _This is work in progress and is not an official ressource. The purpose of this is to get feedback on the structure of this guidebook and to create new content to replace Recipes. Read the Guidelines below to better understand the general approach._
+
+## Content structure
+
+The structure aims to group HTGs into categories. This can help with "tagging" each one, for instance: 
+
+> **Simple crowdfund.** 
+> tags: runtime engineering, intermediate, pallet design
+
+Here's the current idea (wip):
+
+- Runtime engineering
+    - General
+        - Beginner
+        - Intermediate
+            - Pallet design
+            - Weights
+            - Testing
+        - Advanced
+            - Storage migrations
+    - Off-chain workers
+    - Parachains
+- Client engineering
 
 ## Guidelines
 

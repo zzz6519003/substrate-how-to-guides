@@ -59,7 +59,7 @@ construct_runtime!(
 );
 ```
 
-### 4. Update `Cargo.toml`
+### 3. Update `Cargo.toml`
 
 In `Cargo.toml`, include your pallet as a local dependency and include it in `std`:
 
