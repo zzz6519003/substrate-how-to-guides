@@ -106,7 +106,7 @@ fn on_initialize(_n: T::BlockNumber) -> Weight {
 			Accounts::<T>::mutate(&meta.minter, |bal| {
 				*bal = bal.saturating_add(value);
 			});
-			0
+			
 		}
 ```
 

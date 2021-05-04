@@ -50,15 +50,15 @@ Keep track of the constants in your pallet by creating a struct that stores meta
 #[derive(Encode, Decode, Default, PartialEq, Eq)]
 #[cfg_attr(feature = "std", derive(Debug))]
 pub struct FundInfo<AccountId, Balance, BlockNumber> {
-    /// The account that will recieve the funds if the campaign is successful
+    /// The account that will recieve the funds if the campaign is successful.
     beneficiary: AccountId,
-    /// The amount of deposit placed
+    /// The amount of deposit placed.
     deposit: Balance,
-    /// The total amount raised
+    /// The total amount raised.
     raised: Balance,
-    /// Block number after which funding must have succeeded
+    /// Block number after which funding must have succeeded.
     end: BlockNumber,
-    /// Upper bound on `raised`
+    /// Upper bound on `raised`.
     goal: Balance,
 }
 ```
