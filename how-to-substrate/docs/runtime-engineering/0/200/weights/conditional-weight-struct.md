@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 # Conditional weighting struct
@@ -8,13 +8,33 @@ _There's always more than one way&mdash;but those can wait._
 
 ## Goal
 
-Understand how to calculate transaction weights using a custom weighting struct.
+Create and use a custom weighting struct.
 
 ## Use cases
 
 Calculate transaction fees by computing correct weights based on the data within a function.
 
 ## Overview
+Substrate provides a mechanism known as [transaction weighting][weights-kb] to quantify the 
+resources consumed while executing a transaction. This approach to a custom weight function
+establishes a weight value based on some condition. It can be written directly in your pallet 
+and used as such:
+
+```rust
+        #[weight = Conditional(200)]
+		fn add_or_set(_origin, add_flag: bool, val: u32) -> DispatchResult {
+			if add_flag {
+				for _i in 1..=val {
+					StoredValue::put(StoredValue::get());
+				}
+			}
+			else {
+				StoredValue::put(&val);
+			}
+
+			Ok(())
+		}
+```
 
 Here are the different traits we'll be implementing:
 
@@ -26,7 +46,7 @@ Here are the different traits we'll be implementing:
 
 ### 1. Write the `WeighData` struct
 
-Write a weighting struct that weighs transactions where the first parameter is a boolean value.
+Write an implementation of `WeighData` for `Conditional`, where the first parameter is a boolean value:
 
 ```rust
 pub struct Conditional(u32);
@@ -48,7 +68,7 @@ impl WeighData<(&bool, &u32)> for Conditional {
 
 ### 2. Classify dispatch calls
 
-Since this implementation of `WeighData` requires a `DispatchClass`, use [`default`][dispatchclass-rustdocs] to classify all calls as normal.
+Since this implementation of `WeighData` requires a `DispatchClass`, use [`default`][dispatchclass-rustdocs] to classify all calls as normal:
 
 ```rust
 // Implement ClassifyDispatch
@@ -61,7 +81,7 @@ impl<T> ClassifyDispatch<T> for Conditional {
 
 ### 3. Implement `PaysFee`
 
-Last, specify how `PaysFee` is used for the custom `WeighData` struct.
+Last, specify how `PaysFee` is used for the custom `WeighData` struct:
 
 ```rust
 // Implement PaysFee
@@ -73,7 +93,8 @@ impl PaysFee for Conditional {
 ```
 ## Examples
 
-- Feeless transaction pallet.
+- pallet-weights 
+- pallet-feeless 
 
 ## Related material
 #### How-to guides
@@ -86,6 +107,7 @@ impl PaysFee for Conditional {
 #### Other
 - [Transaction fees in Polkadot](https://wiki.polkadot.network/docs/en/learn-transaction-fees)
 
+[weights-kb]: https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight
 [impl-weighdata-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.WeighData.html#impl-WeighData%3CT%3E-for-(Weight%2C%20DispatchClass%2C%20Pays
 [paysfee-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.PaysFee.html 
 [classifydispatch-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.ClassifyDispatch.html 

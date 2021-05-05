@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 # Quadratic weighting struct
@@ -19,7 +19,8 @@ This is a more complex way scale to weight transactions. It computes weight acco
 
 _a*x^2 + b*y + c_
 
-Where a, b, and c are fields in the struct, and x and y are transaction parameters.
+Where a, b, and c are fields in the struct, and x and y are transaction parameters. Have a look at the [examples][#Examples]
+section to see it implemented and used in context.
 
 ## Steps
 
@@ -70,7 +71,8 @@ impl<T> PaysFee<T> for Quadratic {
 
 ## Examples
 
-- Feeless transaction pallet (link to playground).
+- Feeless transaction pallet
+- pallet-weights
 
 ## Related material
 #### How-to guides

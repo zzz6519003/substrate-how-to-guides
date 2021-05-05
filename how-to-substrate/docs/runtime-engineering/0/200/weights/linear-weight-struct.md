@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 # Linear weighting struct
@@ -16,27 +16,20 @@ Calculate correct weight for a transaction involving a `u32`.
 
 ## Overview
 This guide goes over the components of a simple weighting struct designed for a single argument dispatch of type `u32`. 
-The ultimate weight of the transaction is the product of the transaction parameter and the field of this struct.
-
-Traits:
-
-- [`WeighData`][impl-weighdata-rustdocs]: Weigh the data in a function.
-- [`PaysFee`][paysfee-rustdocs]: Designate whether the dispatch pays a fee or not.
-- [`ClassifyDispatch`][classifydispatch-rustdocs]: A way to tell the runtime about the type of dispatch being made.
-
+The ultimate weight of the transaction is the product of the transaction parameter and the field of this struct. 
 ## Steps
 
 ### 1. Write the `WeighData` struct
 
-Write a weighting struct that takes a single `u32` parameter.
+Using [`WeighData`][impl-weighdata-rustdocs], write a weighting struct that takes a single `u32` parameter:
 
 ```rust
 pub struct Linear(u32);
 
 impl WeighData<(&u32,)> for Linear {
 	fn weigh_data(&self, (x,): (&u32,)) -> Weight {
-		// Use saturation so that an extremely large parameter value
-		// Does not cause overflow.
+		// Use saturation so that an extremely large 
+		// parameter value does not cause overflow
 		x.saturating_mul(self.0).into()
 	}
 }
@@ -44,7 +37,7 @@ impl WeighData<(&u32,)> for Linear {
 
 ### 2. Classify dispatch calls
 
-Since this implementation of `WeighData` requires a `DispatchClass`, use [`default`][dispatchclass-rustdocs] to classify all calls as normal&mdash;as opposed to operational.
+Since this implementation of `WeighData` requires a `Dispatch`, use [`default`][dispatchclass-rustdocs] to classify all calls as normal&mdash;as opposed to operational.
 
 ```rust
 // Implement ClassifyDispatch
@@ -58,7 +51,7 @@ impl<T> ClassifyDispatch<T> for Linear {
 
 ### 3. Implement `PaysFee`
 
-Implement the `PaysFee` trait to indicate whether fees should actually be charged from the caller. If not, the weights are still applied toward the block maximums.
+Implement the [`PaysFee`][paysfee-rustdocs] trait to indicate whether fees should actually be charged from the caller. If not, the weights are still applied toward the block maximums.
 
 ```rust
 // Implement PaysFee
@@ -71,11 +64,11 @@ impl<T> PaysFee<T> for Linear {
 
 ## Examples
 
-- Feeless transaction pallet (link to playground).
+- Feeless transaction pallet
+- pallet-weights
 
 ## Related material
 #### How-to guides
-- Calculating weights in storage migrations
 - [Linear weighting struct](./linear-weight-struct)
 - [Quadratic weighting struct](../300/quadratic-weight-struct)
 
