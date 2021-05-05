@@ -53,7 +53,7 @@ where
 }
 ```
 
-### Configure `pallet_transaction_payment` in your runtime
+### 2. Configure `pallet_transaction_payment` in your runtime
 
 Convert the dispatch weight
 `type WeightToFee` to the chargeable fee `LinearWeightToFee` (replacing `IdentityFee<Balance>;`):
@@ -84,9 +84,9 @@ impl pallet_transaction_payment::Config for Runtime {
 
 ## Related material
 #### How-to guides
-- [Conditional weighting struct][./conditional-weight-struct]
-- [Linear weighting struct][./linear-weight-struct]
-- [Quadratic weighting struct][./quadratic-weight-struct]
+- [Conditional weighting struct](./conditional-weight-struct)
+- [Linear weighting struct](./linear-weight-struct)
+- [Quadratic weighting struct](./quadratic-weight-struct)
 
 #### Knowledgebase
 
