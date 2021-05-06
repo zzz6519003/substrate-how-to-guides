@@ -84,6 +84,6 @@ module.exports = {
       // 1 indexes the direct parent category in the sidebar of a doc page
       // 2 indexes up to two nested parent categories of a doc page
       indexDocSidebarParentCategories: 0
-    }]
-  ],
+    }],
+  ]
 };

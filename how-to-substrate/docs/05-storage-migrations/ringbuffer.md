@@ -2,6 +2,9 @@
 sidebar_position: 3
 theme: codeview
 code: code/ringbuffer-pseudo.rs
+keywords: 
+    - storage migration
+    - runtime engineering
 ---
 
 # Ringbuffer Queue

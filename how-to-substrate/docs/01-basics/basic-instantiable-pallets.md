@@ -1,5 +1,9 @@
 ---
 sidebar_position: 5
+keywords: 
+	- basics
+	- intermediate
+	- runtime engineering
 ---
 
 # Basic instantiable pallets

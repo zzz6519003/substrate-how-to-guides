@@ -1,5 +1,10 @@
 ---
 sidebar_position: 4
+keywords: 
+    - node
+    - client engineering
+    - consensus
+    - proof-of-work
 ---
 
 # Configure a chain to POW consensus

@@ -1,5 +1,9 @@
 ---
 sidebar_position: 4
+keywords: 
+	- basics
+	- weights
+	- runtime engineering
 ---
 
 # Calculating transaction weights

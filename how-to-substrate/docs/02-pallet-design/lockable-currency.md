@@ -1,5 +1,10 @@
 ---
 sidebar_position: 5
+keywords: 
+	- pallet design
+	- currency
+	- intermediate
+	- runtime engineering
 ---
 
 # Basic staking pallet

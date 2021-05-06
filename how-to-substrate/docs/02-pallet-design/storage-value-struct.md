@@ -1,5 +1,9 @@
 ---
 sidebar_position: 1
+keywords: 
+    - pallet design
+    - intermediate
+    - runtime engineering
 ---
 
 # Create and use a struct in storage
