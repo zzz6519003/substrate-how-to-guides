@@ -182,7 +182,7 @@ Put the new storage types in a `types.json` which you will need to trigger the m
 
 ## Resources
 #### How-to guides
-- [Trigger Migration using Polkadot JS](./migration-steps.md): learn how to trigger the migration on a live chain
+- [Trigger Migration using Polkadot JS](./migration-steps): learn how to trigger the migration on a live chain
 
 #### Rust docs
 - Rust docs for the [`Option` enum](https://doc.rust-lang.org/std/option/)

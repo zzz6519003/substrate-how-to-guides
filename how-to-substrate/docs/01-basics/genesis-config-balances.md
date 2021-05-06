@@ -1,9 +1,6 @@
 ---
 sidebar_position: 3
-keywords: 
-	- basics
-	- beginner
-	- runtime engineering
+keywords: basics, beginner, runtime engineering
 ---
 
 # Configuring genesis for Balances

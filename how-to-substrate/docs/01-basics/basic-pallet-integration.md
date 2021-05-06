@@ -1,9 +1,6 @@
 ---
 sidebar_position: 1
-keywords: 
-	- basics
-	- beginner
-	- runtime engineering
+keywords: basics, beginner, runtime engineering
 ---
 
 # Basic pallet integration

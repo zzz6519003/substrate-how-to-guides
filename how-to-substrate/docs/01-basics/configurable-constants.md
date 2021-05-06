@@ -1,8 +1,6 @@
 ---
 sidebar_position: 1
-keywords: 
-	- basics
-	- runtime engineering
+keywords: basics, runtime engineering
 ---
 
 # Configure a custom constant

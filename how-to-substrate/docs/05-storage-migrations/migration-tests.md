@@ -1,9 +1,6 @@
 ---
 sidebar_position: 2
-keywords: 
-    - storage migration
-	- testing
-    - runtime engineering
+keywords: storage migration, testing, runtime engineering
 ---
 
 # Migration tests
