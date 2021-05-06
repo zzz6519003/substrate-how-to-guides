@@ -11,3 +11,8 @@ cd how-to-substrate/
 yarn install
 yarn start
 ```
+
+## Plugins
+
+- Docusaurus search local: https://github.com/cmfcmf/docusaurus-search-local
+- Codeview: https://github.com/shawntabrizi/substrate-by-example/tree/master/plugins

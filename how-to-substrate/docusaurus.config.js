@@ -73,4 +73,17 @@ module.exports = {
       },
     ],
   ],
+  plugins: [
+    [require.resolve('@cmfcmf/docusaurus-search-local'), {
+
+      // whether to index docs pages
+      indexDocs: true,  
+      docsRouteBasePath: '/docs',
+      // Whether to also index the titles of the parent categories in the sidebar of a doc page.
+      // 0 disables this feature.
+      // 1 indexes the direct parent category in the sidebar of a doc page
+      // 2 indexes up to two nested parent categories of a doc page
+      indexDocSidebarParentCategories: 0
+    }]
+  ],
 };
