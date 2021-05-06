@@ -8,26 +8,22 @@ _This is work in progress and is not an official ressource. The purpose of this 
 
 ## Content structure
 
-The structure aims to group HTGs into categories. This can help with "tagging" each one, for instance: 
+The structure aims to group HTGs into categories by tagging each guide. For example:
 
 > **Simple crowdfund.** 
 > tags: runtime engineering, intermediate, pallet design
 
-Here's the current idea (wip):
 
-- Runtime engineering
-    - General
-        - Beginner
-        - Intermediate
-            - Pallet design
-            - Weights
-            - Testing
-        - Advanced
-            - Storage migrations
-    - Off-chain workers
-    - Parachains
-- Client engineering
+The current groupings are to help organize the repository of HTG content. They reflect the different
+areas of development with Substrate:
 
+- Basics - where the really simple guides live, those that can be referenced by more complex ones.
+- Pallet design - everything to do with building custom pallets with or without FRAME.
+- Weights - any content that covers configuring weights for specific use cases.
+- Testing - a collection of guides for testing.
+- Storage migrations - anything to do with storage migrations.
+- Consensus - client stuff, bridging, node configurations.
+- Parachains (todo)
 ## Guidelines
 
 Each guide contains various links to [Knowledgebase](https://substrate.dev/docs/en/) key terms and other [Developer hub](https://substrate.dev/en/) ressources. Most beginner guides link to other intermediate or advanced guides that use the foundations from the more basic guides they build on. In this way, this book aims to become a modular and extensible framework that:
