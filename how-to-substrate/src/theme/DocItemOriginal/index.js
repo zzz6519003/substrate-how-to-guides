@@ -100,7 +100,7 @@ function DocItem(props) {
                 <div className="markdown">
                   <DocContent />
                 </div>
-              </article>
+              </article>              
               {(editUrl || lastUpdatedAt || lastUpdatedBy) && (
                 <div className="margin-vert--xl">
                   <div className="row">
@@ -126,7 +126,8 @@ function DocItem(props) {
                           </svg>
                           Edit this page
                         </a>
-                      )}
+                      )} 
+                      <RatingSmileys />                     
                     </div>
                     {(lastUpdatedAt || lastUpdatedBy) && (
                       <div className="col text--right">
@@ -162,7 +163,7 @@ function DocItem(props) {
                               </div>
                             )}
                           </small>
-                        </em>
+                        </em>            
                       </div>
                     )}
                   </div>
@@ -174,7 +175,7 @@ function DocItem(props) {
             </div>
           </div>
           {!hideTableOfContents && DocContent.rightToc && (
-            <div className="col col--3">
+            <div className="col col--3">              
               <TOC headings={DocContent.rightToc} />
             </div>
           )}

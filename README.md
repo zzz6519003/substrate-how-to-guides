@@ -16,3 +16,6 @@ yarn start
 
 - Docusaurus search local: https://github.com/cmfcmf/docusaurus-search-local
 - Codeview: https://github.com/shawntabrizi/substrate-by-example/tree/master/plugins
+
+## Components
+- Material UI Feedback component: https://material-ui.com/components/rating/ 
