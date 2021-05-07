@@ -91,7 +91,7 @@ Use `#[transactional]` to generate a wrapper around both checks:
 /*--snip--*/
 ```
 
-### 4. Handle dust accounts 
+### 5. Handle dust accounts 
 
 Make sure that sending and receiving accounts aren't dust accounts. Use `T::MinBalance::get()`: 
 
