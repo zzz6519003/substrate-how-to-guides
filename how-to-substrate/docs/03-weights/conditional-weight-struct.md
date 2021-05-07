@@ -17,24 +17,10 @@ Calculate transaction fees by computing correct weights based on the data within
 ## Overview
 Substrate provides a mechanism known as [transaction weighting][weights-kb] to quantify the 
 resources consumed while executing a transaction. This approach to a custom weight function
-establishes a weight value based on some condition. It can be written directly in your pallet 
-and used as such:
+establishes a weight value based on some condition. Once defined, it can be used directly 
+in your pallet, written as such:
 
-```rust
-        #[weight = Conditional(200)]
-		fn add_or_set(_origin, add_flag: bool, val: u32) -> DispatchResult {
-			if add_flag {
-				for _i in 1..=val {
-					StoredValue::put(StoredValue::get());
-				}
-			}
-			else {
-				StoredValue::put(&val);
-			}
-
-			Ok(())
-		}
-```
+ `#[weight = Conditional(200)]`
 
 Here are the different traits we'll be implementing:
 
@@ -98,7 +84,6 @@ impl PaysFee for Conditional {
 
 ## Related material
 #### How-to guides
-- Calculating weights in storage migrations
 - [Linear weighting struct](./linear-weight-struct)
 - [Quadratic weighting struct](../300/quadratic-weight-struct)
 #### Knowledgebase

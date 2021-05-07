@@ -7,19 +7,24 @@ keywords: basics, intermediate, runtime engineering
 
 _ There's gotta be a better way than re-writing the same pallet twice..._
 
+> **Note**: this is based on FRAME v1 macros.
+
 ## Goal
 
 Learn how to configure instantiable pallets.
 
 ## Use cases
 
-- Token chain hosts two independent cryptocurrencies.
+- A token chain hosts two independent cryptocurrencies.
 - Governance has two (or more) houses which act similarly internally.
 - A social network chain that maintains different treasuries.
 
 ## Overview
 
-The premise of instantiable pallets is to provide separate storage items for a runtime that contains more than one reference to the same pallet. Using instantiable pallets is useful in cases where you may need to reuse the logic provided by a single pallet. This recipe guides you through how to create two instances of the same pallet and how to configure their capabilities. The pallet this guide is using is a simple token minting pallet.
+The premise of instantiable pallets is to provide separate storage items for a runtime that contains more than one 
+reference to the same pallet. This can be useful in cases where you may need to reuse the logic provided by a single 
+pallet. This recipe guides you through how to create two instances of the same pallet and how to configure their 
+capabilities. 
 
 ## Steps
 
@@ -27,7 +32,7 @@ The premise of instantiable pallets is to provide separate storage items for a r
 
 Instantiable pallets must call the `decl_storage!` macro so that the `Instance` type is created.
 
-Add a Generic Type for `Instance` in the Config trait, Event type, and Store trait. Learn more about how Generic Types work in Rust [here] [generics-rust-book]. The code snippet below shows the modifications required for our pallet's Config and Store traits:
+Add a generic type for `Instance` in the Config trait, Event type, and Store trait. Learn more about how generic types work in Rust [here] [generics-rust-book]. The code snippet below shows the modifications required for our pallet's `Config` and `Store` traits:
 
     ```rust
     pub trait Config<I: Instance>: frame_system::Config {
@@ -66,7 +71,5 @@ MintToken2: mint_token::<Instance2>::{Module, Call, Storage, Event<T>},
 - [reward-coin pallet](/../examples/template-node/pallets/reward-coin/src/lib.rs) 
 - [Polkadot's runtime](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/src/lib.rs#L968)
 ## Related material
-- todo
-#### Knowledgebase
-- 
+
 - [generics-rust-book]: https://doc.rust-lang.org/book/ch10-01-syntax.html

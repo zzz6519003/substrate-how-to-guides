@@ -3,7 +3,7 @@ sidebar_position: 5
 keywords: pallet design, currency, intermediate, runtime engineering
 ---
 
-# Basic staking pallet
+# Simple staking pallet
 _Build a composable staking pallet for your runtime._
 
 ## Goal
@@ -15,7 +15,8 @@ Write a pallet that allows users to lock funds.
 
 ## Overview
 The [`LockableCurrency`][lockable-rustdocs] trait can be very useful in the context of economic systems that enforce accountability by collateralizing fungible resources.
-Substrate's [staking pallet][staking-frame] makes use of the same trait to handle locked funds in time-based increments. 
+Substrate's [staking pallet][staking-frame] makes use of the same trait to handle locked funds in time-based increments. In
+this guide, we will make use of it in our own custom pallet.
 
 ## Steps
 
@@ -52,7 +53,9 @@ methods in`Currency`.
 
 ### 4. Write out the required functions
 
-Our pallet must contain the following key functions:
+Our pallet must contain the following key functions to ensure it handles the basic logical components for locking and
+unlocking a curency for a period of time. These are:
+
 - `fn lock_capital`: Locks the specified amount of tokens from the caller.
 - `fn extend_lock`: Extends the lock period.
 - `fn unlock_all`: Releases all locked tokens.
@@ -124,6 +127,8 @@ Call the `remove_lock()` method from `Currency`:
 ## Related material
 #### Rust docs
 - [Currency trait](https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.Currency.html)
+- [LockableCurrency][lockable-rustdocs]
+- [LockIdentifier][lockidentifier-rustdocs]
 
 todo
 

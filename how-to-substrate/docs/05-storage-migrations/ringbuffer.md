@@ -7,7 +7,7 @@ keywords:
     - runtime engineering
 ---
 
-# Ringbuffer Queue
+# Ringbuffer queue
 
 _For those dealing with a little out of the ordinary data structures._
 
@@ -255,10 +255,7 @@ call to the using pallet.
 #### How-to guides
 - [nicks-migration](../400/nicks-migration)
 #### Rust docs
-- See the Rust book's section on
-  [trait objects](https://doc.rust-lang.org/book/ch17-02-trait-objects.html#trait-objects-perform-dynamic-dispatch)
-  for an explanation of why we need a boxed trait object (defined with the syntax `dyn TraitName`)
-  when using dynamic dispatch.
+- [trait objects](https://doc.rust-lang.org/book/ch17-02-trait-objects.html#trait-objects-perform-dynamic-dispatch)
 
 [ringbuffer-wikipedia]: https://en.wikipedia.org/wiki/Circular_buffer
 [fifo-wikipedia]: https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics

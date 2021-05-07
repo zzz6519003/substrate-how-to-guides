@@ -9,7 +9,7 @@ _Learn how to write a struct to manage your storage values._
 
 ## Goal
 
-Create and use a struct in `StorageValue`.
+Create a struct in [`StorageValue`][storagevalue-rustdocs] and use it on `on_initialize`.
 
 ## Use cases
 
@@ -17,14 +17,14 @@ Keep track of different accounts and balances for testing a pallet.
 
 ## Overview
 
-Creating a struct of similarly grouped storage items is a neater way to keep track of those items. Such items can be
-easier to reference than keeping individual `StorageValue` items separate when writing a pallet's logic. 
+Creating a struct of similarly grouped storage items is a neat way to keep track of them. 
+They can be easier to reference than keeping individual `StorageValue` items separate this way. 
 In addition, they can be used to ease testing and genesis configuration. 
 
 This guide steps through the procedure of creating a struct in storage which:
-- keeps track of an initial amount (`issuance`);
-- keeps track of the account that receives that amount (`minter`);
-- keeps track of an account that can burn some amount (`burner`);
+- keeps track of an initial amount (`issuance`)
+- keeps track of the account that receives that amount (`minter`)
+- keeps track of an account that can burn some amount (`burner`)
 - is (partially) used in `on_initialize`
 
 ## Steps
@@ -116,5 +116,10 @@ fn on_initialize(_n: T::BlockNumber) -> Weight {
 - `reward-coin`
 
 ## Resources
+#### How-to guides
+- [Configure a runtime constant](../basics/configurable-constants)
 
-- Rust docs [`Default::default()`](https://substrate.dev/rustdocs/v3.0.0/sp_std/default/trait.Default.html)
+#### Rust docs
+- [`Default::default()`](https://substrate.dev/rustdocs/v3.0.0/sp_std/default/trait.Default.html)
+
+[storagevalue-rustdocs]: https://crates.parity.io/frame_support/storage/trait.StorageValue.html

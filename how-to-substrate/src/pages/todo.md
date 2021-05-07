@@ -10,8 +10,6 @@
 - [ ] Add 3 Custom RPCs to Interact with the Polkadot JS API ([https://substrate.dev/recipes/custom-rpc.html](https://substrate.dev/recipes/custom-rpc.html))
 - [ ] Create Hybrid Consensus for a Substrate Chain ([https://substrate.dev/recipes/hybrid-consensus.html](https://substrate.dev/recipes/hybrid-consensus.html))
 
-- [ ] Using Quadratic Conversion to Calculate Fees in the Democracy Pallet ([https://substrate.dev/recipes/fees.html](https://substrate.dev/recipes/fees.html))
-- [ ] Collecting Fees to An Instantiable Treasury Pallet ([https://substrate.dev/recipes/fees.html](https://substrate.dev/recipes/fees.html))
 - [ ] Efficiently manage a crowdfund using child tries for managing data storage ([https://substrate.dev/recipes/crowdfund.html](https://substrate.dev/recipes/crowdfund.html))
 - [x] Require Nodes to Follow A Custom Mining Algorithm ([https://substrate.dev/recipes/basic-pow.html](https://substrate.dev/recipes/basic-pow.html))
 - [x] Configurable Constants ([https://substrate.dev/recipes/constants.html](https://substrate.dev/recipes/constants.html))
@@ -19,6 +17,11 @@
 - [x] Computational ressources and weights ([https://substrate.dev/recipes/weights.html](https://substrate.dev/recipes/weights.html))
 - [x] Schedule locking and unlocking with the currency trait ([https://substrate.dev/recipes/currency.html](https://substrate.dev/recipes/currency.html))
 
+## Advanced (based off now existing HTGs)
+
+- [ ] Using Quadratic Conversion to Calculate Fees in the Democracy Pallet
+- [ ] Collecting Fees to An Instantiable Treasury Pallet 
+- [ ] Use configurable constant to use as static base value for dynamic fee calculation
 
 ## Other
 

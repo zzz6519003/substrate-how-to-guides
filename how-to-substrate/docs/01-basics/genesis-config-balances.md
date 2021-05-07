@@ -32,7 +32,7 @@ In `chain_spec.rs`, modify the accounts-to-amount map to apply it to the set of 
 }),
 ```
 
-Alternatively, write out each account you would like to pre-seed, as shown below.
+Alternatively, write out each account you would like to pre-seed, as shown below:
 
 ```rust
 pallet_balances: Some(BalancesConfig {
@@ -69,6 +69,9 @@ pallet_balances: Some(BalancesConfig {
 ## Related material
 #### Tutorials
 - [`ContractsConfig`][genesis-contracts-tutorial] from the Add the Contracts Pallet tutorial.
+
+#### Rust docs
+- [`BalancesConfig`][balances-config-rustdocs]
 
 [balances-frame]: https://substrate.dev/docs/en/knowledgebase/runtime/frame#balances
 [balances-config-rustdocs]: https://substrate.dev/rustdocs/v2.0.0/node_template_runtime/type.BalancesConfig.html

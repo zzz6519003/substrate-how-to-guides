@@ -17,7 +17,7 @@ A pallet that adds a single storage item and needs to be included in a runtime u
 
 ## Overview
 
-This guide will step through a storage migration on FRAME's Nick's pallet. It shows how to modify a storage map to 
+This guide will step through a storage migration on [FRAME's Nick's pallet][nicks-frame]. It shows how to modify a storage map to 
 provide an optional field that includes a last name, and how to write the migration function ready to be triggered upon a runtime upgrade. This guide can equally be used in other contexts which require a simple storage migration that modifies a storage map in a runtime.
 
 ## Steps
@@ -188,5 +188,6 @@ Put the new storage types in a `types.json` which you will need to trigger the m
 - Rust docs for the [`Option` enum](https://doc.rust-lang.org/std/option/)
 - [`frame_support::storage::migration`](https://crates.parity.io/frame_support/storage/migration/index.html) utility docs
 
+[nicks-frame]: https://github.com/paritytech/substrate/tree/master/frame/nicks
 [translate-storage-rustdocs]: https://crates.parity.io/frame_support/storage/types/struct.StorageMap.html#method.translate
 [nicks-migration-htg-diff]: https://github.com/substrate-developer-hub/migration-example/pull/2/files

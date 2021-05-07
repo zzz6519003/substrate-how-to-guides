@@ -5,10 +5,10 @@ sidebar_position: 1
 # Testing a transfer function
 
 _A basic overview to help you write out your checks and balances._
-
+_WIP_
 ## Goal
 
-Learn how to write tests and improve the correctness of your transfer function.
+Learn how to write tests and improve the correctness of a `transfer` function.
 
 ## Use cases
 
@@ -66,7 +66,8 @@ fn transfer_works() {
 
 #### Configure error handling
 
-Replacing `mutate` with `try_mutate` to use `ensure!`. This will check that _bal >= amount_ and throw an error message if not:
+To implement some error check, replace `mutate` with `try_mutate` to use `ensure!`. 
+This will check that _bal >= amount_ and throw an error message if not:
 
 ```rust
 Accounts::<T>::mutate(&sender, |bal| {

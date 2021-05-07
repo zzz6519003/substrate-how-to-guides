@@ -3,7 +3,7 @@ sidebar_position: 1
 keywords: basics, runtime engineering
 ---
 
-# Configure a custom constant
+# Configure a runtime constant
 
 _The basics for defining a constant in your runtime._
 
@@ -13,22 +13,24 @@ Define a runtime constant value that becomes reset on `on_finalize`.
 
 ## Use cases
 
-Use a constant to keep track of the amount of times a function is called.
+Use a constant to keep track of the amount of times a function is called during a single block cycle.
 
 ## Overview
 
-Declaring a constant value in a runtime is a useful tool to either define fixed values or define values that change dynamically according to some factor(s). This guide steps through the process of defining a value for a runtime using a pallet that has functions to do manipulate the value over time.
+Declaring a constant value in a runtime is a useful tool to either define fixed values or define values that change dynamically
+according to some factor. This guide steps through the process of creating pallet constants that are used to reset a `u32`
+value in storage. This value, we'll call `SingleValue`, can also be modified using a method called `add_value`.
 
-This guide makes use of:
-
-- [`Get`][get-trait-rustdocs]
-- [`#[pallet::extra_constants]`][extra-constants-rustdocs]
+The purpose of this guide is to demonstrate the utiltiy of configuring constants by hardcoding them as well as making them more
+dynamic.
 
 ## Steps
 
 ### 1. Define the constants in your pallet
 
-`MaxAddend` will be the value displayed in metadata and `ClearFrequency` keeps track of the block numbers and will be used to define how frequently `MaxAddend` gets reset:
+- `MaxAddend` will be the value displayed in metadata. 
+- `ClearFrequency` keeps track of the block numbers and will 
+be used to reset `SingleValue`:
 
 ```rust
 #[pallet::config]
@@ -44,35 +46,31 @@ This guide makes use of:
 	}
 ```
 
-### 2. Declare `MaxAddend` and `ClearFrequency` in Storage
+### 2. Declare your storage items and events
 
-Using the storage attribute macro:
+Using the storage attribute macro, declare `SingleValue` which will be the value that gets modified every block cycle.
 
 ```rust
 
 #[pallet::storage]
-	pub(super) type MaxAddend<T> = StorageValue<_, u32>;
-
-#[pallet::storage]
-	pub(super) type ClearFrequency<T> = StorageValue<_, T::BlockNumber>;
-
+#[pallet::getter(fn single_value)]
+pub(super) type SingleValue<T> = StorageValue<_, u32>;
 ```
+In addition, define your pallet's events:
 
 ```rust
-// Extrinsics callable from outside the runtime.
-	#[pallet::call]
-	impl<T: Config> Pallet<T> {
-		#[pallet::weight(1_000)]
-		pub(super) fn mint(
-			origin: OriginFor<T>,
-			beneficiary: T::AccountId,
-			#[pallet::compact] amount: T::Balance,
-		) -> DispatchResultWithPostInfo {
+#[pallet::event]
+#[pallet::generate_deposit(pub(super) fn deposit_event)]
+/// The value has ben added to. The parameters are
+/// ( initial amount, amount added, final amount).
+Added(u32, u32, u32),
+/// The value has been cleared. The parameter is the value before clearing.
+Cleared(u32)
 ```
-
 ### 3. Configure `on_finalize`
 
-`SingleValue` is set to 0 every `ClearFrequency` number of blocks in the `on_finalize` function that runs at the end of blocks execution.
+`SingleValue` is set to 0 every `ClearFrequency` number of blocks in the `on_finalize` function that 
+runs at the end of blocks execution. Specify this logic under the `#[pallet::hooks]` attribute:
 
 ```rust
 #[pallet::hooks]
@@ -80,26 +78,26 @@ Using the storage attribute macro:
 
         fn on_finalize(n: T::BlockNumber) {
             if (n % T::ClearFrequency::get()).is_zero() {
-                let c_val = <SingleValue>::get();
+                let current_value = <SingleValue>::get();
                 <SingleValue>::put(0u32);
-                Self::deposit_event(Event::Cleared(c_val));
+                Self::deposit_event(Event::Cleared(current_value));
             }
         }
 ```
 
-### 4. Create a runtime method that allows users to manipulate the value
+### 4. Create a method that allows users to specify the value
 
-The `add_value` method increases `SingleValue` so long as each call adds less than the `MaxAddend` value. In more complex patterns, the constant value may be used as a static base value that is scaled by a multiplier to incorporate stateful context for calculating some dynamic fee (i.e. floating transaction fees).
+The `add_value` method increases `SingleValue` so long as each call adds less than the `MaxAddend` value.
 
-For this function, make sure to:
+For this method, make sure to:
 
-- include checks using `ensure!`
+- include checks
 - keep track of the previous value
 - check for overflow
 - update `SingleValue`
 
 ```rust
-// Extrinsics callable from outside the runtime.
+    // Extrinsics callable from outside the runtime.
 	#[pallet::call]
 	impl<T: Config> Pallet<T> {
     #[pallet::weight(1_000)]
@@ -126,9 +124,9 @@ For this function, make sure to:
         }
 ```
 
-### 5. Supply the constant value
+### 5. Supply the constant value for runtime
 
-In `runtime/lib.rs`, declare the values for your pallet's implementation:
+In `runtime/lib.rs`, declare the values for your pallet's runtime implementation of `MaxAddend` and `ClearFrequency`:
 
 ```rust
 parameter_types! {
@@ -149,7 +147,11 @@ impl constant_config::Config for Runtime {
 
 ## Resources
 #### Tutorials
-- Nick's [forkless upgrade tutorial](https://substrate.dev/docs/en/tutorials/forkless-upgrade/)
+- [Nick's forkless upgrade tutorial](https://substrate.dev/docs/en/tutorials/forkless-upgrade/)
+
+#### Rust docs
+- [`Get`][get-trait-rustdocs]
+- [`#[pallet::extra_constants]`][extra-constants-rustdocs]
 
 
 [get-trait-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.Get.html

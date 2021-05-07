@@ -15,17 +15,18 @@ Learn the steps for integrating a pallet to your runtime.
 
 ## Use cases
 
-Including a pallet that implements Event and Call into a runtime.
+Including a pallet that implements an event and a call for runtime.
 
 ## Overview
 
-As developers to new frameworks, we often get stuck on things like setting up dependencies correctly. This guide is an extension to the [Add a Pallet to Your Runtime tutorial][add-a-pallet-tutorial], intended for new developers looking to quickly integrate a pallet to their runtime.
+This guide is an extension to the ["Add a Pallet to Your Runtime" tutorial][add-a-pallet-tutorial], intended as a ressource 
+for developers new to Substrate looking to quickly integrate a pallet to their runtime.
 
 ## Steps
 
 ### 1. Import your pallet
 
-In `runtime/lib.rs`:
+Assuming a pallet called `pallet_something` is created, the first step is to import it in `runtime/lib.rs`:
 
 ```rust
 // Import your pallet.
@@ -34,7 +35,7 @@ pub use pallet_something;
 
 ### 2. Include it in your runtime 
 
-First, configure its runtime implementation:
+Now, configure its runtime implementation. Our pallet only has `Event` and `Call` types exposed to the runtime:
 
 ```rust
 // Configure your pallet.
@@ -44,7 +45,8 @@ impl pallet_something::Config for Runtime {
 }
 ```
 
-Then, specify all items that your pallet exposes to the runtime: 
+Then, declare your pallet and the items it exposes in `construct_runtime!`, including the additional `Module` and `Storage` 
+types for the runtime macro: 
 
 ```rust
 construct_runtime!(
@@ -54,7 +56,7 @@ construct_runtime!(
 		UncheckedExtrinsic = UncheckedExtrinsic
 	{
 /* --snip-- */
-		Something: pallet_something::{Module, Call, Storage, Event<T>},
+		Something: pallet_something::{Module, Call, Storage, Event<T>}, 
 /* --snip-- */
 	}
 );
@@ -77,7 +79,7 @@ std = [
 
 ## Examples
 
-- [Reward token in FRAME governance node][playground-gov].
+- [Substrate node template][playground-gov]
 
 ## Related material
 

@@ -1,4 +1,4 @@
-# Substrate How-to-Guides
+# Substrate how-to guides
 
 Creating new content for the Subsrate developer hub and taking the best of Substrate Recipes and applying them to a new framework for structuring a collection of "how-to guides".
 

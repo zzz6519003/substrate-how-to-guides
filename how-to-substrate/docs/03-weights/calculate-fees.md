@@ -12,7 +12,7 @@ Customize `WeightToFee` to modify how fees are calculated for your runtime.
 
 ## Use cases
 
-- Modify the way fees are calculated, instead of using [`IdentityFee`][identityfee-rustdocs] which maps one unit of fee to one unit of weight
+Modify the way fees are calculated, instead of using [`IdentityFee`][identityfee-rustdocs] which maps one unit of fee to one unit of weight.
 
 ## Overview
 
@@ -22,7 +22,7 @@ Fees are broken down into three components:
 - **Weight fee** - A fee calculated from the transaction's weight. Weights quantify the time spent executing the transaction. Learn more in the recipe on weights. The conversion doesn't need to be linear, although it often is. The same conversion function is applied across all transactions from all pallets in the runtime.
 - **Fee Multiplier** - A multiplier for the computed fee, that can change as the chain progresses.
 
-FRAME provides the [transaction_payment pallet][transaction-frame] for calculating and collecting fees for executing transactions. It 
+FRAME provides the [transaction payment pallet][transaction-frame] for calculating and collecting fees for executing transactions. It 
 can be useful to modify the way fees are calculated to charge fees with more accuracy to your users. This guides steps through the process of customizing `WeightToFee` for your runtime's implementation of `pallet_transaction_payment`. 
 
 ## Steps
@@ -91,9 +91,10 @@ impl pallet_transaction_payment::Config for Runtime {
 #### Knowledgebase
 
 #### Rust docs
-- [`frame_support::weights::WeightToFeeCoefficients`][https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/type.WeightToFeeCoefficients.html]
-- [`frame_support::weights::WeightToFeeCoefficient`][https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/type.WeightToFeeCoefficient.html]
-- [`frame_support::weights::WeightToFeePolynomial`][https://crates.parity.io/frame_support/weights/trait.WeightToFeePolynomial.html]
+- [`WeightToFeeCoefficients`](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/type.WeightToFeeCoefficients.html)
+
+- [`WeightToFeeCoefficient`](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/type.WeightToFeeCoefficient.html)
+- [`WeightToFeePolynomial`](https://crates.parity.io/frame_support/weights/trait.WeightToFeePolynomial.html)
 
 [transaction-frame]: https://github.com/paritytech/substrate/tree/master/frame/transaction-payment
 [identityfee-rustdocs]: https://crates.parity.io/frame_support/weights/struct.IdentityFee.html
