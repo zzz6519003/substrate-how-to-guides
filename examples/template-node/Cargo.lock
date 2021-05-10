@@ -1051,21 +1051,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "crowdfund-pallet"
-version = "3.0.0"
-dependencies = [
- "frame-benchmarking",
- "frame-support",
- "frame-system",
- "parity-scale-codec",
- "serde",
- "sp-core",
- "sp-io",
- "sp-runtime",
- "sp-std",
-]
-
-[[package]]
 name = "crunchy"
 version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3620,6 +3605,7 @@ dependencies = [
  "pallet-transaction-payment",
  "pallet-transaction-payment-rpc-runtime-api",
  "parity-scale-codec",
+ "proof-of-existence",
  "serde",
  "sp-api",
  "sp-block-builder",
@@ -4510,6 +4496,21 @@ dependencies = [
  "parking_lot 0.11.1",
  "regex",
  "thiserror",
+]
+
+[[package]]
+name = "proof-of-existence"
+version = "3.0.0"
+dependencies = [
+ "frame-benchmarking",
+ "frame-support",
+ "frame-system",
+ "parity-scale-codec",
+ "serde",
+ "sp-core",
+ "sp-io",
+ "sp-runtime",
+ "sp-std",
 ]
 
 [[package]]

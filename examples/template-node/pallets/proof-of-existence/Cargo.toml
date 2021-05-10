@@ -1,10 +1,10 @@
 [package]
 authors = ['Substrate DevHub <https://github.com/substrate-developer-hub>']
-description = 'FRAME pallet template for defining custom runtime logic.'
+description = 'PoE pallet from the Substrate.dev tutorial'
 edition = '2018'
 homepage = 'https://substrate.dev'
 license = 'Unlicense'
-name = 'crowdfund-pallet'
+name = 'proof-of-existence'
 readme = 'README.md'
 repository = 'https://github.com/substrate-developer-hub/substrate-node-template/'
 version = '3.0.0'
@@ -39,4 +39,6 @@ runtime-benchmarks = [
 	'frame-support/runtime-benchmarks',
 	'frame-system/runtime-benchmarks',
 ]
-
+# Note: frame-support `try-runtime` feature is released after v3.
+#   Uncomment the following line when `frame-support` version > `3.0.0`.
+# try-runtime = ['frame-support/try-runtime']
