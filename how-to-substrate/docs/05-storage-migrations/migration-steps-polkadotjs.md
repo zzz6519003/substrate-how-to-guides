@@ -36,9 +36,10 @@ Hit _"Submit Sudo Unchecked"_ and sign the transaction to trigger the call.
 
 ## Examples
 
-- Migrating the Nicks pallet.
+- [Migrating the Nicks pallet](https://github.com/substrate-developer-hub/migration-example/pull/2/files).
 
 ## Resources
 
+#### Other
 - [Polkadot-JS Apps](https://polkadot.js.org/apps/)
 - [Polkadot JS documentation](https://polkadot.js.org/docs/)

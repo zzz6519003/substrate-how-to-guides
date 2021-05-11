@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+keywords: testing, runtime, beginner
 ---
 
 # Testing a transfer function
@@ -17,13 +18,14 @@ Testing a custom transfer function.
 ## Overview
 
 Testing each function is an imporant part of developing pallets for production. This guide
-steps you through best practices for writing a `transfer` function that passes all test cases.
+steps you through best practices for writing test cases for a basic `transfer` function.
 
 ## Steps
 
 ### 1. Outline the `transfer` function
 
 A transfer function has two key elements: subtracting a balance from an account and adding that balance to another account. 
+Here, we'll start by outlining this function:
 
 ```rust
 #[pallet::weight(10_000)]
@@ -47,7 +49,8 @@ pub (super) fn transfer(
 
 ### 2. Check that the sender has enough balance
 
-In a separate `tests.rs` file, write out the first test case:
+The first thing to verify, is whether the sender has enough balance.
+In a separate `tests.rs` file, write out this first test case:
 
 ```rust
 #[test]
@@ -67,10 +70,10 @@ fn transfer_works() {
 #### Configure error handling
 
 To implement some error check, replace `mutate` with `try_mutate` to use `ensure!`. 
-This will check that _bal >= amount_ and throw an error message if not:
+This will check whether _bal is greater or equal to amount_ and throw an error message if not:
 
 ```rust
-Accounts::<T>::mutate(&sender, |bal| {
+Accounts::<T>::try_mutate(&sender, |bal| {
     ensure!(bal >= amount, Error::<T>::InsufficientBalance);
     *bal = bal.saturating_sub(amount);
     Ok(())
@@ -105,10 +108,12 @@ Make sure that sending and receiving accounts aren't dust accounts. Use `T::MinB
 
 ## Examples
 
-- `reward-coin`
+- [`reward-coin` tests](https://github.com/sacha-l/substrate-how-to-guides/blob/main/how-to-substrate/example-code/template-node/pallets/reward-coin/src/tests.rs#L20-L38)
 
 ## Resources
 
-- Rust docs `try_mutate`
-- Rust docs `saturating_sub`
-- Rust docs `assert_noop!`
+#### Rust docs
+- [`assert_ok!`](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.assert_ok.html)
+- [`assert_noop!`](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.assert_noop.html)
+- [`ensure!`](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.ensure.html)
+- [`try_mutate`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageMap.html#tymethod.try_mutate)

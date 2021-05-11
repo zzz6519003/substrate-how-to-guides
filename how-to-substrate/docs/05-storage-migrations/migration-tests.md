@@ -64,6 +64,9 @@ Using `asset_noop!(...)`, `assert_ok!(...)` and `assert_eq!(...)`, constructing 
 - Migrating the Nicks pallet
 
 ## Resources
-
+#### How-to guides
+- [Migration steps](/migration-steps-polkadotjs)
+- [Nicks migration](/nicks-migration)
+#### Other
 - [Fork-off Substrate tool](https://github.com/maxsam4/fork-off-substrate)
 
