@@ -118,7 +118,7 @@ Call the `remove_lock()` method from `Currency`:
 ```
 
 ## Examples
-- [lockable-currency-pallet](../template-node/pallets/lockable-currency)
+- [lockable-currency-pallet](https://github.com/sacha-l/substrate-how-to-guides/blob/main/how-to-substrate/example-code/template-node/pallets/lockable-currency/src/lib.rs#L1-L118)
 
 >**Further learning 💡 ** 
 > - **Using `LockIdentifier`.** Use this to define logic within the runtime that schedules locking, unlocking, or extends existing locks.

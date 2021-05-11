@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-keywords: basics, weights, runtime engineering
+keywords: basics, weights, runtime engineering, FRAME V1 
 ---
 
 # Calculating transaction weights
@@ -78,7 +78,7 @@ Ok(Pays::Yes.into())
 ```
 ## Examples
 
-- Feeless transaction pallet
+- [Feeless transaction use case](https://github.com/shawntabrizi/substrate-feeless-token-factory#user-story)
 
 ## Related material
 

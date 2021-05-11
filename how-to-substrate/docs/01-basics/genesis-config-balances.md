@@ -76,5 +76,5 @@ pallet_balances: Some(BalancesConfig {
 [balances-frame]: https://substrate.dev/docs/en/knowledgebase/runtime/frame#balances
 [balances-config-rustdocs]: https://substrate.dev/rustdocs/v2.0.0/node_template_runtime/type.BalancesConfig.html
 [genesis-config-rustdocs]: https://substrate.dev/rustdocs/v2.0.0/pallet_balances/struct.GenesisConfig.html
-[node-template-chainspec]: https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs
+[node-template-chainspec]: https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs#L142-L144
 [genesis-contracts-tutorial]: https://substrate.dev/docs/en/tutorials/add-contracts-pallet#genesis-configuration

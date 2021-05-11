@@ -141,8 +141,8 @@ configuration in this [basic guide on weights](./basic-tx-weight-calculations).
 Origins are a powerful capability in Substrate. Learn more on how to customize an origin in [this guide](./origins-beginner).
 
 ## Examples
-- [mint-token pallet](/../examples/template-node/pallets/mint-token/src/lib.rs)
-- [reward-coin pallet](/../examples/template-node/pallets/reward-coin/src/lib.rs) 
+- [mint-token pallet](https://github.com/sacha-l/substrate-how-to-guides/blob/main/how-to-substrate/example-code/template-node/pallets/mint-token/src/lib.rs#L1-L130)
+- [reward-coin pallet](https://github.com/sacha-l/substrate-how-to-guides/blob/main/how-to-substrate/example-code/template-node/pallets/reward-coin/src/lib.rs#L1-L249) 
 ## Related material
 #### How-to guides
 - [Configure a runtime constant](./configurable-constants)

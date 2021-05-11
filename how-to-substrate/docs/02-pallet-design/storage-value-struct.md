@@ -113,7 +113,7 @@ fn on_initialize(_n: T::BlockNumber) -> Weight {
 
 ## Examples
 
-- `reward-coin`
+- [`reward-coin`](https://github.com/sacha-l/substrate-how-to-guides/blob/dc3e1d6c79198558f465fbbdbbda03a4237eacf3/how-to-substrate/example-code/template-node/pallets/reward-coin/src/lib.rs#L24-L28)
 
 ## Resources
 #### How-to guides

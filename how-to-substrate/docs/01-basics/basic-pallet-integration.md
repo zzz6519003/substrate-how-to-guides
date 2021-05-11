@@ -79,6 +79,7 @@ std = [
 
 ## Examples
 
+- [Template pallet](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/pallets/template/src/lib.rs#L1-L107)
 - [Substrate node template][playground-gov]
 
 ## Related material

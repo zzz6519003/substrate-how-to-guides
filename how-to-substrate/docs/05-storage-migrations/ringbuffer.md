@@ -253,7 +253,7 @@ call to the using pallet.
 ## References
 
 #### How-to guides
-- [nicks-migration](../400/nicks-migration)
+- [Basic storage migration](nicks-migration)
 #### Rust docs
 - [trait objects](https://doc.rust-lang.org/book/ch17-02-trait-objects.html#trait-objects-perform-dynamic-dispatch)
 

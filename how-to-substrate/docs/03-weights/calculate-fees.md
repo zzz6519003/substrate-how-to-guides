@@ -1,5 +1,6 @@
 ---
 sidebar_position: 4
+keywords: weights, fees, runtime, FRAME v1
 ---
 
 # Calculating fees

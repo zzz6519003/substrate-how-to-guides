@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+keywords: weights, runtime, FRAME v1
 ---
 
 # Linear weighting struct

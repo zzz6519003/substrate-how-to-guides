@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+keywords: weights, runtime, FRAME v1
 ---
 
 # Quadratic weighting struct
@@ -76,7 +77,7 @@ impl<T> PaysFee<T> for Quadratic {
 
 ## Related material
 #### How-to guides
-- Calculating weights in storage migrations
+
 - [Linear weighting struct](./linear-weight-struct)
 - [Quadratic weighting struct](../300/quadratic-weight-struct)
 #### Knowledgebase
