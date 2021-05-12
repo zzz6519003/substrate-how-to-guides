@@ -276,6 +276,18 @@ impl mint_token::Config for Runtime {
 	type Event = Event;	
 }
 
+/// Configurable constants pallet.
+parameter_types! {
+    pub const MaxAddend: u32 = 1738;
+    pub const ClearFrequency: u32 = 10;
+}
+
+impl configurable_constants::Config for Runtime {
+	type Event = Event;
+    type MaxAddend = MaxAddend;
+    type ClearFrequency = ClearFrequency;
+}
+
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
 	pub enum Runtime where
@@ -293,7 +305,8 @@ construct_runtime!(
 		Sudo: pallet_sudo::{Module, Call, Config<T>, Storage, Event<T>},
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template::{Module, Call, Storage, Event<T>},
-		MintSupply: mint_token::{Module, Call, Storage, Event<T>}
+		MintSupply: mint_token::{Module, Call, Storage, Event<T>},
+		ConfigConstants: configurable_constants::{Module, Call, Storage, Event<T>},
 	}
 );
 
