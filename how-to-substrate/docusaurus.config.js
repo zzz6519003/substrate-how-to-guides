@@ -2,13 +2,13 @@
 module.exports = {
   title: "Substrate How-to Guides",
   tagline: "A modular approach to learning Substrate for all levels",
-  url: "https://your-docusaurus-test-site.com",
+  url: "https://github.com/substrate-developer-hub/substrate-how-to-guides/", // FIXME - hosted site url github pages? howto.substrate.dev ?
   baseUrl: "/",
   onBrokenLinks: "ignore",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
-  organizationName: "paritytech", // Usually your GitHub org/user name.
-  projectName: "substrate", // Usually your repo name.
+  organizationName: "substrate-developer-hub", // Usually your GitHub org/user name.
+  projectName: "substrate-how-to-guides", // Usually your repo name.
   themeConfig: {
     navbar: {
       title: "Welcome",
@@ -24,7 +24,7 @@ module.exports = {
           label: "How-to Guides",
         },
         {
-          href: "https://github.com/sacha-l/substrate-how-to-guides",
+          href: "https://github.com/substrate-developer-hub/substrate-how-to-guides/",
           label: "GitHub",
           position: "right",
         },
@@ -54,13 +54,7 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           editUrl:
-            "https://github.com/facebook/docusaurus/edit/master/website/",
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            "https://github.com/facebook/docusaurus/edit/master/website/blog/",
+            "https://github.com/substrate-developer-hub/substrate-how-to-guides/edit/main/how-to-substrate/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
