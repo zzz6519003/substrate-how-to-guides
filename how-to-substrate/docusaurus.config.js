@@ -23,7 +23,6 @@ module.exports = {
           position: "left",
           label: "How-to Guides",
         },
-        { to: "/blog", label: "Seminar Archives", position: "left" }, // visual candy
         {
           href: "https://github.com/sacha-l/substrate-how-to-guides",
           label: "GitHub",
@@ -41,14 +40,10 @@ module.exports = {
               label: "How-to Guides",
               to: "/docs/intro",
             },
-            {
-              label: "Seminar Archives", // visual candy
-              to: "/docs/blog",
-            },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `The Substrate How-to Guides are GPL 3.0 Licensed, open source and open for contributions.`,
     },
   },
   presets: [
@@ -85,5 +80,11 @@ module.exports = {
       // 2 indexes up to two nested parent categories of a doc page
       indexDocSidebarParentCategories: 0
     }],
-  ]
+    
+  ],
+
+  themes: [
+      '@saucelabs/theme-github-codeblock'
+      ],
+
 };

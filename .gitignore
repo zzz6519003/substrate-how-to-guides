@@ -1,1 +1,9 @@
 book
+
+node_modules/
+
+yarn.lock
+
+package.json
+
+how-to-substrate/package-lock.json
