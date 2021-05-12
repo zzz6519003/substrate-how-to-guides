@@ -2,7 +2,7 @@
 
 Creating new content for the Subsrate developer hub and taking the best of Substrate Recipes and applying them to a new framework for structuring a collection of "how-to guides".
 
-The latest website can be found here: https://substrate-how-to-staging.netlify.app/
+The latest website can be found here (wip to move to Github pages): https://609b51aa80b9736d8e3df18d--substrate-htg.netlify.app/docs/intro
 
 ## Generate the site locally
 
