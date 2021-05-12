@@ -7,3 +7,5 @@ yarn.lock
 package.json
 
 how-to-substrate/package-lock.json
+
+how-to-substrate/example-code/template-node/Cargo.lock
