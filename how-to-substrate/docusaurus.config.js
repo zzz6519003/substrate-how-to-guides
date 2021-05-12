@@ -2,13 +2,13 @@
 module.exports = {
   title: "Substrate How-to Guides",
   tagline: "A modular approach to learning Substrate for all levels",
-  url: "https://github.com/substrate-developer-hub/substrate-how-to-guides/", // FIXME - hosted site url github pages? howto.substrate.dev ?
-  baseUrl: "/",
-  onBrokenLinks: "ignore",
+  url: "https://substrate-developer-hub.github.io",
+  baseUrl: "/substrate-how-to-guides/",
+  onBrokenLinks: "ignore", // Change back to `throw` eventually 
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
-  organizationName: "substrate-developer-hub", // Usually your GitHub org/user name.
-  projectName: "substrate-how-to-guides", // Usually your repo name.
+  organizationName: "substrate-developer-hub", 
+  projectName: "substrate-how-to-guides", 
   themeConfig: {
     navbar: {
       title: "Welcome",
