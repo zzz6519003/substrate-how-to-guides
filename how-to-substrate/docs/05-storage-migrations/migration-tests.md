@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-keywords: storage migration, testing, runtime engineering
+keywords: storage migration, testing, runtime
 ---
 
 # Migration tests
@@ -22,13 +22,13 @@ migration from the [Basic Storage Migration](./nicks-migration) guide as a refer
 
 ## Steps
 
-### 1. Write a test module
-
-Refer to [this guide](./) on how to set up basic testing scaffolding. 
+### 1. Write mock runtime 
+Refer to [this guide](../testing/basic-pallet-testing) to learn how to set up the dependencies for your test environment.
 
 ### 2. Specify unit tests
-Once the key components of `mod tests{}` are laid down, derive the different tests that need 
-to be included based on your pallet's functions. For the Nicks pallet migration we need:
+Derive the different tests that need to be included based on your pallet's functions. 
+
+For the Nicks pallet migration we need:
 
 - `fn kill_name_should_work()` 
 - `fn force_name_should_work()`
@@ -57,7 +57,6 @@ Using `asset_noop!(...)`, `assert_ok!(...)` and `assert_eq!(...)`, constructing 
 		});
 	}
 ```
-
 
 ## Examples
 

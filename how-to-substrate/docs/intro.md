@@ -11,26 +11,32 @@ _This is work in progress and is not an official ressource. The purpose of this 
 The structure aims to group HTGs into categories by tagging each guide. For example:
 
 > **Simple crowdfund.** 
-> tags: runtime engineering, intermediate, pallet design
+> tags: runtime, intermediate, pallet design
 
 
 The current groupings are to help organize the repository of HTG content. They reflect the different
-areas of development with Substrate:
+areas of development within Substrate:
 
-- Basics - where the really simple guides live, those that can be referenced by more complex ones.
-- Pallet design - everything to do with building custom pallets with or without FRAME.
-- Weights - any content that covers configuring weights for specific use cases.
-- Testing - a collection of guides for testing.
-- Storage migrations - anything to do with storage migrations.
-- Consensus - client stuff, bridging, node configurations.
-- Parachains (todo)
+- **Basics**. Where the really simple guides live, those that can be referenced by more complex ones.
+- **Pallet design**. Everything to do with building custom pallets with or without FRAME.
+- **Weights**. Any content that covers configuring weights for specific use cases.
+- **Testing**. A collection of guides for testing.
+- **Storage migrations**. Anything to do with storage migrations.
+- **Consensus**. Client stuff, bridging, node configurations.
+- **Parachains.** _WIP_
+
+### Tags
+
+_basics, beginner, intermediate, advanced, FRAME v1, runtime, pallet design, weights, fees, currency, testing, 
+storage migration, node, client, consensus, proof-of-work_ 
+
 ## Guidelines
 
 Each guide contains various links to [Knowledgebase](https://substrate.dev/docs/en/) key terms and other [Developer hub](https://substrate.dev/en/) ressources. Most beginner guides link to other intermediate or advanced guides that use the foundations from the more basic guides they build on. In this way, this book aims to become a modular and extensible framework that:
 
-- can expand overtime, by virtue of the ease for contributors to integrate new content that follows these linking guidelines and structure;
-- provides an indispensible collection of guides for developers of all levels building with Substrate;
-- connects related resources from the developer hub, including documentation and knowledgebase article.
+- Can expand overtime, by virtue of the ease for contributors to integrate new content that follows these linking guidelines and structure.
+- Provides an indispensible collection of guides for developers of all levels building with Substrate.
+- Connects related resources from the developer hub, including documentation and knowledgebase article.
 
 The following points touch on the approach for building content for the Substrate How-to Guides ressource.
 
@@ -39,8 +45,6 @@ The following points touch on the approach for building content for the Substrat
 - ⏯️ **Examples**. Here's the part for "examples on how to actually put this guide to use". Each example links to the "Substrate How-to Guide" codebase hosted in Playground, which contains a collection of pallets and runtimes showing eacg guides' implemention in practise.
 - :satellite: **References.** At the end of each recipe, developers can see a list of related ressources. Here is where all related Knowledgebase links go; Rust docs; as well as links to any other related guides.
 - ⏹️ **Avoid repetition.** If there's something that needs to be included in one guide and can be abstracted to a completely separate guide, abstract it and link to it instead of repeating that content. This ties into the modularity aspect too.
-
-**Note for future:** _It would be nice to have a way to capture feedback on each guide by having an easy way for readers to rate their usefulness._
 
 ## FAQ
 

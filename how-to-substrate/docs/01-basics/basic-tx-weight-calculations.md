@@ -1,6 +1,6 @@
 ---
-sidebar_position: 4
-keywords: basics, weights, runtime engineering, FRAME V1 
+sidebar_position: 5
+keywords: basics, weights, runtime, FRAME V1 
 ---
 
 # Calculating transaction weights

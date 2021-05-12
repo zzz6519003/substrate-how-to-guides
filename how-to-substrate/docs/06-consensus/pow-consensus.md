@@ -2,7 +2,7 @@
 sidebar_position: 4
 keywords: 
     - node
-    - client engineering
+    - client
     - consensus
     - proof-of-work
 ---
@@ -10,6 +10,7 @@ keywords:
 # Configure a chain to POW consensus
 
 _When you want to experiment with different consensus engines out there and wanna learn how it works. Start with the classics._
+_WIP_
 
 [![Try on playground](https://img.shields.io/badge/Playground-Node_Template-brightgreen?logo=Parity%20Substrate)][pow-playground]
 ## Goal

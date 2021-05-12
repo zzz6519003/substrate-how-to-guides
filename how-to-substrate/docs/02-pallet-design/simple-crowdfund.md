@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-keywords: pallet design, intermediate, runtime engineering
+keywords: pallet design, intermediate, runtime
 ---
 
 # Simple crowdfund

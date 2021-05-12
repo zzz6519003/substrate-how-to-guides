@@ -1,6 +1,6 @@
 ---
-sidebar_position: 1
-keywords: basics, beginner, runtime engineering
+sidebar_position: 2
+keywords: basics, beginner, runtime
 ---
 
 # Primitive token mint

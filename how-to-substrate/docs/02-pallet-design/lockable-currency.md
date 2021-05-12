@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-keywords: pallet design, currency, intermediate, runtime engineering
+keywords: pallet design, currency, intermediate, runtime
 ---
 
 # Simple staking pallet
@@ -10,8 +10,8 @@ _Build a composable staking pallet for your runtime._
 Write a pallet that allows users to lock funds.
 
 ## Use cases
-- Staking
-- Conviction voting 
+- Staking.
+- Conviction voting. 
 
 ## Overview
 The [`LockableCurrency`][lockable-rustdocs] trait can be very useful in the context of economic systems that enforce accountability by collateralizing fungible resources.
@@ -130,7 +130,6 @@ Call the `remove_lock()` method from `Currency`:
 - [LockableCurrency][lockable-rustdocs]
 - [LockIdentifier][lockidentifier-rustdocs]
 
-todo
 
 [staking-frame]: https://substrate.dev/rustdocs/v3.0.0/pallet_staking/index.html
 [lockable-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.LockableCurrency.html

@@ -16,7 +16,7 @@ export default function NoteToViewer() {
             </a>
             .🚧
           </h2>
-          <h3>Contributions and feedback welcome.😃</h3>
+          <h3>Contributions and feedback welcome. Please submit an Issue or PR. 😃</h3>
           <p>
             <strong>Prelude:</strong> Substrate is all about combining{" "}
             <a href="https://substrate.dev/docs/en/knowledgebase/runtime/primitives">
@@ -29,8 +29,8 @@ export default function NoteToViewer() {
           <p>
             The <strong> Substrate how-to guide book</strong> intends to help
             new and experienced Substrate developers to do just that. By
-            building things up from simple components, the purpose of this book
-            is to serve as a "how-to" guide for developers looking to understand
+            building things up from simple components, the purpose of this ressource
+            is to serve as a collection of "how-to" guides for developers looking to understand
             integration techniques of both simple and more complex capabilities
             that Substrate and FRAME offers.
           </p>

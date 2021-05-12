@@ -6,7 +6,6 @@ keywords: testing, runtime, beginner
 # Testing a transfer function
 
 _A basic overview to help you write out your checks and balances._
-_WIP_
 ## Goal
 
 Learn how to write tests and improve the correctness of a `transfer` function.

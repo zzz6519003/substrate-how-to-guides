@@ -1,6 +1,6 @@
 ---
-sidebar_position: 1
-keywords: basics, runtime engineering
+sidebar_position: 4
+keywords: basics, runtime
 ---
 
 # Configure a runtime constant
@@ -38,10 +38,10 @@ be used to reset `SingleValue`:
         type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
 
 		#[pallet::constant] // put the constant in metadata
-        /// Maximum amount added per invocation
+        /// Maximum amount added per invocation.
         type MaxAddend: Get<u32>;
 
-        /// Frequency with which the stored value is deleted
+        /// Frequency with which the stored value is deleted.
         type ClearFrequency: Get<Self::BlockNumber>;
 	}
 ```
@@ -56,13 +56,13 @@ Using the storage attribute macro, declare `SingleValue` which will be the value
 #[pallet::getter(fn single_value)]
 pub(super) type SingleValue<T> = StorageValue<_, u32>;
 ```
-In addition, define your pallet's events:
+Define your pallet's events:
 
 ```rust
 #[pallet::event]
 #[pallet::generate_deposit(pub(super) fn deposit_event)]
 /// The value has ben added to. The parameters are
-/// ( initial amount, amount added, final amount).
+/// (initial amount, amount added, final amount).
 Added(u32, u32, u32),
 /// The value has been cleared. The parameter is the value before clearing.
 Cleared(u32)
@@ -70,7 +70,7 @@ Cleared(u32)
 ### 3. Configure `on_finalize`
 
 `SingleValue` is set to 0 every `ClearFrequency` number of blocks in the `on_finalize` function that 
-runs at the end of blocks execution. Specify this logic under the `#[pallet::hooks]` attribute:
+runs at the end of block execution. Specify this logic under the `#[pallet::hooks]` attribute:
 
 ```rust
 #[pallet::hooks]
@@ -87,14 +87,14 @@ runs at the end of blocks execution. Specify this logic under the `#[pallet::hoo
 
 ### 4. Create a method that allows users to specify the value
 
-The `add_value` method increases `SingleValue` so long as each call adds less than the `MaxAddend` value.
+The `add_value` method increases `SingleValue` so long as each call adds to less than the `MaxAddend` value.
 
 For this method, make sure to:
 
-- include checks
-- keep track of the previous value
-- check for overflow
-- update `SingleValue`
+- Include checks.
+- Keep track of the previous value.
+- Check for overflow.
+- Update `SingleValue`.
 
 ```rust
     // Extrinsics callable from outside the runtime.
