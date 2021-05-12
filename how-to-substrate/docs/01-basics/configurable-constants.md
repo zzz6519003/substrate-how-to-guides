@@ -51,21 +51,32 @@ be used to reset `SingleValue`:
 Using the storage attribute macro, declare `SingleValue` which will be the value that gets modified every block cycle.
 
 ```rust
-
 #[pallet::storage]
 #[pallet::getter(fn single_value)]
-pub(super) type SingleValue<T> = StorageValue<_, u32>;
+pub(super) type SingleValue<T: Config> = StorageValue<_, u32, ValueQuery>;
 ```
 Define your pallet's events:
 
 ```rust
 #[pallet::event]
 #[pallet::generate_deposit(pub(super) fn deposit_event)]
-/// The value has ben added to. The parameters are
-/// (initial amount, amount added, final amount).
-Added(u32, u32, u32),
-/// The value has been cleared. The parameter is the value before clearing.
-Cleared(u32)
+pub enum Event<T: Config> {
+    /// The value has ben added to. The parameters are
+    /// (initial amount, amount added, final amount).
+    Added(u32, u32, u32),
+    /// The value has been cleared. The parameter is the value before clearing.
+    Cleared(u32)
+}
+```
+
+Add an error that handles operation overflow:
+
+```rust
+#[pallet::error]
+pub enum Error<T> {
+	/// An operation would lead to an overflow.
+	Overflow
+}
 ```
 ### 3. Configure `on_finalize`
 
@@ -74,15 +85,15 @@ runs at the end of block execution. Specify this logic under the `#[pallet::hook
 
 ```rust
 #[pallet::hooks]
-	impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
-
+    impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
         fn on_finalize(n: T::BlockNumber) {
             if (n % T::ClearFrequency::get()).is_zero() {
-                let current_value = <SingleValue>::get();
-                <SingleValue>::put(0u32);
+                let current_value = <SingleValue<T>>::get();
+            	<SingleValue<T>>::put(0u32);
                 Self::deposit_event(Event::Cleared(current_value));
             }
         }
+	}
 ```
 
 ### 4. Create a method that allows users to specify the value
@@ -98,8 +109,8 @@ For this method, make sure to:
 
 ```rust
     // Extrinsics callable from outside the runtime.
-	#[pallet::call]
-	impl<T: Config> Pallet<T> {
+	 #[pallet::call]
+    impl<T: Config> Pallet<T> {
     #[pallet::weight(1_000)]
 
     fn add_value(
@@ -111,17 +122,16 @@ For this method, make sure to:
             ensure!(val_to_add <= T::MaxAddend::get(), "value must be <= maximum add amount constant");
 
             // previous value got
-            let c_val = <SingleValue>::get();
+           	let c_val = SingleValue::<T>::get();
 
             // checks for overflow when new value added
-            let result = match c_val.checked_add(val_to_add) {
-                Some(r) => r,
-                None => return Err(DispatchError::Other("Addition overflowed")),
-            };
-            <SingleValue>::put(result);
+            let result = c_val.checked_add(val_to_add).ok_or(Error::<T>::Overflow)?;
+
+            <SingleValue<T>>::put(result);
             Self::deposit_event(Event::Added(c_val, val_to_add, result));
-            Ok(())
+            Ok(().into())
         }
+	}
 ```
 
 ### 5. Supply the constant value for runtime
@@ -143,7 +153,7 @@ impl constant_config::Config for Runtime {
 
 ## Examples
 
-- `constant-config`
+- [`constant-config`](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/how-to-substrate/example-code/template-node/pallets/configurable-constant/src/lib.rs#L1)
 
 ## Resources
 #### Tutorials
