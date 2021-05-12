@@ -131,10 +131,10 @@ fn test_should_fail() {
 
 ### 4. Run your tests
 
-Execute the following command from the directory of your pallet:
+Execute the following command from your pallet's directory:
 
 ```bash
-cargo test -p
+cargo test
 ```
 
 ## Examples
