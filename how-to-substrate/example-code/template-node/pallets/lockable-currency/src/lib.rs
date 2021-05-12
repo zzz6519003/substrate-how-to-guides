@@ -85,7 +85,6 @@ pub mod pallet {
 		#[pallet::weight(1_000)]
 		pub(super) fn extend_lock(
 			origin: OriginFor<T>,
-			to: T::AccountId,
 			#[pallet::compact] amount: BalanceOf<T>,
 		) -> DispatchResultWithPostInfo {
 			let user = ensure_signed(origin)?;
@@ -104,8 +103,6 @@ pub mod pallet {
 		#[pallet::weight(1_000)]
 		pub(super) fn unlock_all(
 			origin: OriginFor<T>,
-			to: T::AccountId,
-			#[pallet::compact] amount: BalanceOf<T>,
 		) -> DispatchResultWithPostInfo {
 			let user = ensure_signed(origin)?;
 
