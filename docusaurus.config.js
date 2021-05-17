@@ -45,6 +45,9 @@ module.exports = {
       ],
       copyright: `The Substrate How-to Guides are GPL 3.0 Licensed, open source and open for contributions.`,
     },
+    prism: { 
+      additionalLanguages: ['rust'],
+    },
   },
   presets: [
     [
