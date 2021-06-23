@@ -23,7 +23,7 @@ Other times, dispatchable functions get increasingly difficult to read as the am
 to perform various checks within the dispatchable. In both instances, using helper functions that cannot 
 be accessed from outside the pallet are a useful tool to optimize for code readability and reusability.
 
-In this guide, we'll step through how to create an adder helper that checks for arthimetic overflow
+In this guide, we'll step through how to create an adder helper that checks for arithmetic overflow
 and  can be reused in any dispatchable.
 
 ## Steps
@@ -84,4 +84,5 @@ a dispatchable that allows a signed extrinsic to add a value to the existing sto
 ## Resources
 #### Rust docs
 - [checked_add](https://docs.rs/num/0.2.0/num/trait.CheckedAdd.html#required-methods) 
+
 - [ok_or](https://doc.rust-lang.org/std/option/enum.Option.html#method.ok_or)
