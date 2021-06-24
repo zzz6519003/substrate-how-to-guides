@@ -16,7 +16,6 @@ Use helper functions inside a pallet to improve code readability and reusability
 Re-use helper functions to perform common "verify" checks across multiple pallets.
 
 ## Overview
-
 Sometimes a disptachable function inside a pallet reuse logic that's common to other dispatchables.
 In this case, it's useful to refactor this logic into its own separate function, private to the pallet.
 Other times, dispatchable functions get increasingly difficult to read as the amount of code increases 
@@ -84,5 +83,5 @@ a dispatchable that allows a signed extrinsic to add a value to the existing sto
 ## Resources
 #### Rust docs
 - [checked_add](https://docs.rs/num/0.2.0/num/trait.CheckedAdd.html#required-methods) 
-
 - [ok_or](https://doc.rust-lang.org/std/option/enum.Option.html#method.ok_or)
+
