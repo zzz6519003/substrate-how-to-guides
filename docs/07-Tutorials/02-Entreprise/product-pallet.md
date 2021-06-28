@@ -1,11 +1,10 @@
 ---
 sidebar_position: 2
 keywords: pallet design, intermediate, runtime
-code: code/kitties-tutorial/01-basic-setup.rs
+code: 
 ---
 
-# Part I: Basic set-up
-
+# Part II: Registrar pallet 
 :::note
 This tutorial assumes that you have already installed the prerequisites for building with Substrate on your machine.
 If you haven't already, head over to our [installation guide][installation].
@@ -13,15 +12,15 @@ If you haven't already, head over to our [installation guide][installation].
 
 ## Learning outcomes
 
-:arrow_right: Common basic patterns for Substrate runtime development.
+:arrow_right: 
 
-:arrow_right: How to repurpose the Substrate Node Template.
+:arrow_right: 
 
-:arrow_right: How to create a storage item to keep track of a single `u64` value.
+:arrow_right:
 
 ## Overview
 
-Before we can start making Kitties, we first need to do a little groundwork. This part covers the basic patterns involved with using the Substrate Node Template to set up a custom pallet and include a simple storage item.
+The Registrar pallet inherits decentralized identifier (DID) capabilities from the DID pallet and uses these capabilities to implement an organization registry. This pallet maintains a list of organizations and maps each organization to a list of members. Organizations are identified by the ID of the account that created and owns it, which means that an account may create and own at most one organization. Organizations are associated with a name, which is designated by the value of the Org attribute on the DID of the organization owner. Organization owners are the only accounts that may add members to their organizations. When an account is added to an organization as a member, the organization owner creates an OrgMember delegate for the member's DID - this is a way for the organization owner to certify an account's membership in the organization. The registrar pallet exposes a custom origin, EnsureOrg, that validates whether or not an account owns or is a member of at least one organization. The EnsureOrg origin is used to control access to many of the chain's capabilities, including the ability to create roles with the RBAC pallet.
 
 ## Steps
 
@@ -37,14 +36,15 @@ our runtime logic. Start by cloning the node template:
 git clone git@github.com:substrate-developer-hub/substrate-node-template.git
 ```
 
-Using your IDE, go ahead and rename the template node by modifying the details in the **`/node/Cargo.toml`** file:
+Using your IDE, go ahead and rename the template node by modifying the details in the **`/node/Cargo.toml`** file.
+For our purposes, what's important is to:
 
-- Rename `node-template` to `substratekitties`.
-- Rename `node-template-runtime` to `kitties-runtime`.
+- rename `node-template` to `substratekitties`
+- rename `node-template-runtime` to `kitties-runtime`
 
-And update your **`runtime/Cargo.toml`** file accordingly:
+And update your **`runtime/src/Cargo.toml`** file accordingly:
 
-- Rename `node-template-runtime` to `kitties-runtime`.
+- rename `node-template-runtime` to `kitties-runtime`
 
 :::tip Use the side panel as a scratch pad! [**coming soon**]
 Each part will have incomplete code with comments to guide you on completing it. Make sure to only use it as a scratch-pad
@@ -78,19 +78,15 @@ substratekitties
 |           +-- tests.rs   <-- *Remove* contents
 ```
 
-Go ahead and remove all the contents of `lib.rs` as well as `mock.rs` and `tests.rs`. **We won't be learning about 
-using `mock.rs` and `tests.rs` in this tutorial. Have a look at [this how-to guide](/docs/testing/test-transfer) if
-you're curious to learn how testing works.** All of our pallet's logic will live inside `lib.rs`.
+Go ahead and remove all the contents of `lib.rs` as well as `mock.rs` and `tests.rs`.
 
-:::tip Use the side panel as a scratch pad! [**coming soon**]
-Each part will have incomplete code with comments to guide you on completing it. Make sure to only use it as a scratch-pad
-and copy it to your IDE &mdash; it doesn't save your work!
-:::
+All of our pallet's logic will live inside `lib.rs`. **We'll
+be using `mock.rs` and `tests.rs` towards to end of this tutorial when we write unit tests for our dApp.**
 
 At this point, we're in a good place to lay out the basic structure of our pallet, after which we can check if our node builds without error. By structure, we're talking about outlining the parts inside the `lib.rs` file of our newly created `pallet_kitties`.
 
 :::info
-Refer to [this guide](/docs/basics/basic-pallet-integration) to learn the basic pattern for integrating a new pallet to your runtime and
+Refer to [this guide](./01-basics/basic-pallet-integration) to learn the basic pattern for integrating a new pallet to your runtime and
 read more about pallets in this [knowledgebase article][pallets-kb].  
 :::
 

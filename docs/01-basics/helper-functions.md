@@ -51,7 +51,6 @@ Identify the places where you've needed to verify for overflow when performing a
 Use the helper function instead of rewriting the same code. Below is a simple example of 
 a dispatchable that allows a signed extrinsic to add a value to the existing storage value:
 
-
 ```rust
     // Extrinsics callable from outside the runtime.
 	 #[pallet::call]
@@ -85,4 +84,3 @@ a dispatchable that allows a signed extrinsic to add a value to the existing sto
 #### Rust docs
 - [checked_add](https://docs.rs/num/0.2.0/num/trait.CheckedAdd.html#required-methods) 
 - [ok_or](https://doc.rust-lang.org/std/option/enum.Option.html#method.ok_or)
-

@@ -3,6 +3,7 @@
 /// Edit this file to define custom logic or remove it if it is not needed.
 /// Learn more about FRAME and the core library of Substrate FRAME pallets:
 /// <https://substrate.dev/docs/en/knowledgebase/runtime/frame>
+
 pub use pallet::*;
 
 #[frame_support::pallet]
@@ -223,7 +224,7 @@ pub mod pallet {
 
             Ok(().into())
         }
-
+      
         /// Transfer a Kitty.
         ///
         /// Any account that holds a Kitty can send it to another Account.
@@ -364,6 +365,7 @@ pub mod pallet {
 
             Ok(().into())
         }
+      
     }
 
     //** These are all our **//
@@ -394,7 +396,6 @@ pub mod pallet {
         fn random_hash(sender: &T::AccountId) -> T::Hash {
             let nonce = <Nonce<T>>::get();
             let seed = T::KittyRandomness::random_seed();
-
             T::Hashing::hash_of(&(seed, &sender, nonce))
         }
 
@@ -439,12 +440,14 @@ pub mod pallet {
 
             Ok(())
         }
+      
         // Helper to handle transferring a Kitty from one account to another.
         fn transfer_from(
             from: T::AccountId,
             to: T::AccountId,
             kitty_id: T::Hash,
         ) -> DispatchResult {
+
             // Verify that the owner is the rightful owner of this Kitty.
             let owner = Self::owner_of(kitty_id).ok_or("No owner for this kitty")?;
             ensure!(owner == from, "'from' account does not own this kitty");
