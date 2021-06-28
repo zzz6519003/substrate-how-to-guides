@@ -33,6 +33,12 @@ In this tutorial, we'll intentionally keep things simple so that you can decide 
 
 :pouting_cat: Be transferred from one owner to another.
 
+> **What we won't cover:**
+> - Writing tests for our pallet.
+> - Declaring a configuration for the genesis of our chain.
+>
+> These fall outside the scope of this tutorial. You can refer to the [how-to guides](/docs/intro) on how to do this once you've completed this tutorial series.
+
 ---
 Bringing things down to a more granular level, this translates to the following application design:
 1. [**Basic setup**](basic-setup). We'll need to spin up a Substrate node and create a custom pallet
