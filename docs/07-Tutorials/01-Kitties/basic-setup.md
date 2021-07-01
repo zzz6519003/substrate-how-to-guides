@@ -81,7 +81,7 @@ my-substratekitties
 |           |
 |           +-- tests.rs   <-- *Remove* file
 |
-+-- Caro.toml              <-- 4. *Rename* 'pallets/template' to 'pallets/kitties'
++-- Cargo.toml              <-- 4. *Rename* 'pallets/template' to 'pallets/kitties'
 ```
 
 > You can go ahead and remove `mock.rs` and `tests.rs`. **We won't be learning about
