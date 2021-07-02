@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 7
 keywords: parachains
 ---
 
@@ -8,10 +8,11 @@ _ ... _
 
 ## Goal
 
-
 ## Use cases
+Launching a parachain.
 
 ## Overview
+
 
 ## Steps
 

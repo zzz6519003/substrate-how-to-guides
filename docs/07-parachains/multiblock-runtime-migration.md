@@ -10,6 +10,7 @@ _ ... _
 
 
 ## Use cases
+Launching a parachain.
 
 ## Overview
 

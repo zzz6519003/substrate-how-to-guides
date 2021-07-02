@@ -10,12 +10,13 @@ _ ... _
 
 
 ## Use cases
+Launching a parachain.
 
 ## Overview
 
 ## Steps
 
-### 1. Make a function that defines a full node using `sc_consensus_pow` and `sc_service`
+### 1. 
 
 
 ## Examples
