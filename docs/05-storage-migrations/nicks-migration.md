@@ -1,8 +1,6 @@
 ---
 sidebar_position: 1
-keywords: 
-    - storage migration
-    - runtime 
+keywords: storage migration, runtime 
 ---
 
 # Basic storage migration
