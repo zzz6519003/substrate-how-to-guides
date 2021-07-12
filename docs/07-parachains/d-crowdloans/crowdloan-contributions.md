@@ -13,6 +13,8 @@ _ ... _
 Launching a parachain.
 
 ## Overview
+[How to create a crowdloan for a ParaID](https://wiki.polkadot.network/docs/learn-crowdloans)
+
 
 ## Steps
 

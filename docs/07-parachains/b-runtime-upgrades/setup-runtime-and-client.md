@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 keywords: parachains
 ---
 
@@ -14,8 +14,7 @@ _A series of steps you're going to want to take before deploying your runtime as
 Launching a parachain.
 
 ## Overview
-When launching a parachain, it is important to make sure a chain's runtime is properly setup. This includes performing 
-storage migrations, checking that weights are correctly implemented and making sure the ProtocolID IS unique.
+When launching a parachain, it is important to make sure a chain's runtime is properly setup. This includes benchmarking prior to storage migrations, checking that weights are correctly implemented and making sure the ProtocolID IS unique.
 ## Steps
 
 ### 1. Set a unique ProtocolID
@@ -55,6 +54,7 @@ benchmarking for additional information.
 :::
 #### Customize weights
 Make sure that each pallet in your runtime employs the correct weighting system. Default Substrate weight **are not** to be used in production, as a general rule.
+
 #### Set block weight limit 
 
 It is recommended to have a block weight limit (block production time) of 0,5 seconds in the beginning due to uncertainties in block execution time. As the execution time of the network stabilizes the weight limit can be increased to 2 seconds. 

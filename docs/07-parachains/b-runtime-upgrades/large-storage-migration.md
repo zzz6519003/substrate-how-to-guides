@@ -4,7 +4,7 @@ keywords: parachains
 ---
 
 # How to use versioned storage for a large runtime migration
-_ ... _
+_WIP..._
 
 ## Goal
 
@@ -12,6 +12,9 @@ _ ... _
 ## Use cases
 Launching a parachain.
 ## Overview
+Injecting WASM via extrinsics.
+Block all extrinsics.
+
 
 ## Steps
 
