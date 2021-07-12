@@ -14,16 +14,16 @@ looking to take their Substrate chains to becoming a parachain**.
 - [How to start a collator node and add more collators](/docs/parachains/a-collators/start-collator-node)
 
 ## 2. Parachain runtime upgrades
-- [Overview](/docs/parachains/runtime-upgrades)
-- [How to set-up your runtime and client](/docs/parachains/b-runtime-upgrades/setup-runtime-and-client)
-- [How to use the schedular pallet for a small multi-block runtime migration](/docs/parachains/b-runtime-upgrades/multiblock-runtime-migration)
-- [How to use versioned storage for a large runtime migration](/docs/parachains/b-runtime-upgrades/large-storage-migration)
+- [Preparing for On-Chain Upgrades](/docs/parachains/b-runtime-upgrades/runtime-upgrades)
+- [Set-up your runtime and client](/docs/parachains/b-runtime-upgrades/setup-runtime-and-client)
+- [Use the schedular pallet for a small multi-block runtime migration](/docs/parachains/b-runtime-upgrades/multiblock-runtime-migration)
+- [Use versioned storage for a large runtime migration](/docs/parachains/b-runtime-upgrades/large-storage-migration)
 
 
-## 4. Parachain registration
+## 3. Parachain registration
 - [How to register as a parathread and reserve a ParaID](/docs/parachains/registration/register-parathread)
 - [How to register your parachain](/docs/parachains/registration/register-parachain)
 
-## 5. Crowdloans
+## 4. Crowdloans
 
 - [How to receive crowdloan contributions](/docs/parachains/crowdloans/crowdloan-contributions)
