@@ -122,7 +122,7 @@ own to this `Cargo.toml` file.
 
 ### 3. Add your pallet to your node
 
-Refer to [this guide](/basic-pallet-integration) on how to complete this step.
+Refer to [this guide](/docs/basics/basic-pallet-integration) on how to complete this step.
 
 ### 4. Run your node
 At this point you have the pallet packaged up in its own crate and included in your node's runtime.
