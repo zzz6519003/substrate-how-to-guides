@@ -47,6 +47,5 @@ your compressed WASM validation logic.
 
 ## Examples
 
-[register-paraid]:
-  https://substrate.dev/substrate-how-to-guides/docs/parachains/c-registration/register-paraid
+[register-paraid]: https://substrate.dev/substrate-how-to-guides/docs/parachains/c-registration/register-paraid
 [crowdloan-paraid]: https://wiki.polkadot.network/docs/learn-crowdloans

@@ -9,24 +9,26 @@ _Make your pallet available for others to use!_
 
 ## Goal
 
-- Learn the patterns to write a Substrate pallet that lives in its own crate 
+- Learn the patterns to write a Substrate pallet that lives in its own crate
 - Publish a pallet to Github and Crates.io
 - Include your pallet in a Substrate Node from Github and Crates.io
 
 ## Use cases
-Make your pallet available for other developers to use remotely. 
+
+Make your pallet available for other developers to use remotely.
 
 ## Overview
 
 Writing a Substrate pallet in its own Rust crate, and publishing it allows other
 blockchain developers to easily use your pallet in their runtime by simply including those same
-four lines of code in their runtime's `Cargo.toml` files and updating their runtime's `lib.rs` file. 
+four lines of code in their runtime's `Cargo.toml` files and updating their runtime's `lib.rs` file.
 
 This guide is not going to go through writing a pallet directly as part of the node template, but rather as a separate
 Rust crate. This approach allows us to publish our pallet separately from our node and also allows
 others to easily import this pallet into their own Substrate runtime.
 
 ## Steps
+
 ### 1. Renaming your crate
 
 In the `Cargo.toml` file, you must update the crate's name. Update the value
@@ -73,6 +75,7 @@ tells our pallet's dependencies to only use their `std` feature when this pallet
 ### 2. Ensure consistent dependencies
 
 #### FRAME dependencies
+
 All Substrate pallets will depend on some low-level FRAME libraries such as `frame-system` and
 `frame-support`. These libraries are pulled from crates.io. When people build their own FRAME-based
 runtimes, they will also have dependencies on these low-level libraries. You will need to ensure
@@ -90,11 +93,11 @@ frame-support = { default-features = false, version = '3.0.0' }
 From the above snippet, we see that this pallet template depends on version `3.0.0` of the low-level
 libraries. Thus it can be used in runtimes that also depend on `3.0.0`.
 
-:::note 
- Note that substrate adheres to the [semver](https://semver.org/) standards - thus each release is 
+:::note
+Note that substrate adheres to the [semver](https://semver.org/) standards - thus each release is
 on the form `major.minor.patch`. In general it is _not_ expected that major releases are compatible!
 Thus if you are developing a pallet, or integrating ones, be sure to match versions to keep things
-all working correctly. 
+all working correctly.
 :::
 
 #### Dev dependencies
@@ -125,6 +128,7 @@ own to this `Cargo.toml` file.
 Refer to [this guide](/docs/basics/basic-pallet-integration) on how to complete this step.
 
 ### 4. Run your node
+
 At this point you have the pallet packaged up in its own crate and included in your node's runtime.
 
 Make sure you're back in the node template's root directory, then compile the node and start in
@@ -139,7 +143,7 @@ Now, start the
 [Polkadot-JS Apps connecting to your local node](https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:9944)
 to confirm that the pallet is working as expected.
 
-:::note 
+:::note
 You can also manually set the node URL in Polkadot-JS Apps by navigating to the **Settings** tab, and have the **remote node/endpoint to connect to** set to **Local Node**.
 :::
 
@@ -191,7 +195,6 @@ version = 'some-compatible-version'
 
 Compile one more time and notice that Cargo now grabs your pallet from GitHub or crates.io instead of using the local files.
 
-
 ## Examples
 
 - [Example pallet](https://github.com/paritytech/substrate/tree/master/frame/example)
@@ -199,5 +202,6 @@ Compile one more time and notice that Cargo now grabs your pallet from GitHub or
 ## Resources
 
 #### Other
+
 - [The Cargo book](https://doc.rust-lang.org/stable/cargo/)
 - More about [Rust and WebAssembly](https://rustwasm.github.io/)
