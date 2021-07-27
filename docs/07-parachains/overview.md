@@ -21,5 +21,5 @@ looking to take their Substrate chains to becoming a parachain**.
 
 ## 3. Parachain registration
 
-- [How to register as a parathread and reserve a ParaID](/docs/parachains/c-registration/register-parathread)
+- [How to register as a parathread and reserve a ParaID](/docs/parachains/c-registration/register-paraid)
 - [How to register your parachain](/docs/parachains/c-registration/register-parachain)
