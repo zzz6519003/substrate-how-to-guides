@@ -173,13 +173,13 @@ And add the contracts RPC API extension using:
 
 #### Rust docs
 
-- [`pallet_contracts` crate](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/index.html)
-- [`pallet_contracts_rpc` crate](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts_rpc/index.html)
+- [`pallet_contracts` crate](https://substrate.dev/rustdocs/latest/pallet_contracts/index.html)
+- [`pallet_contracts_rpc` crate](https://substrate.dev/rustdocs/latest/pallet_contracts_rpc/index.html)
 
-[contracts-frame]: https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/
+[contracts-frame]: https://substrate.dev/rustdocs/latest/pallet_contracts/
 [create-first-chain-tutorial]: https://substrate.dev/docs/en/tutorials/create-your-first-substrate-chain/
-[contracts-config-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/trait.Config.html
+[contracts-config-rustdocs]: https://substrate.dev/rustdocs/latest/pallet_contracts/trait.Config.html
 [contracts-frame]: https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs#L144
 [bin-runtime-contracts-frame]: https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs#L786
-[contracts-api-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/pallet_contracts_rpc_runtime_api/trait.ContractsApi.html
+[contracts-api-rustdocs]: https://substrate.dev/rustdocs/latest/pallet_contracts_rpc_runtime_api/trait.ContractsApi.html
 [pallet-crates]: https://crates.io/search?q=pallet-contracts-rpc

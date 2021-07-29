@@ -132,8 +132,8 @@ impl my_pallet::Config for Runtime{
 - [Verifiable Random Functions](https://en.wikipedia.org/wiki/Verifiable_random_function)
 
 [randomness-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/randomness
-[randomness-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.Randomness.html
-[h256-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/sp_core/struct.H256.html
-[encode-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/dispatch/trait.Encode.html#method.encode
-[wrappingadd-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/funty/trait.IsInteger.html#tymethod.wrapping_add
-[rcf-pallet-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/pallet_randomness_collective_flip/index.html
+[randomness-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/traits/trait.Randomness.html
+[h256-rustdocs]: https://substrate.dev/rustdocs/latest/sp_core/struct.H256.html
+[encode-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/dispatch/trait.Encode.html#method.encode
+[wrappingadd-rustdocs]: https://substrate.dev/rustdocs/latest/funty/trait.IsInteger.html#tymethod.wrapping_add
+[rcf-pallet-rustdocs]: https://substrate.dev/rustdocs/latest/pallet_randomness_collective_flip/index.html

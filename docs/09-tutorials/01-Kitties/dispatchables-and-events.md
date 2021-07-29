@@ -309,10 +309,10 @@ To recap, in this part of the tutorial you've learnt how:
 [frame-macros-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/macros#palletcall
 [txn-fees-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/fees
 [weights-kb]: https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight
-[contains-key-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageMap.html#tymethod.contains_key
-[insert-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageMap.html#tymethod.insert
-[storage-value-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/types/struct.StorageValue.html#method.put
+[contains-key-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageMap.html#tymethod.contains_key
+[insert-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageMap.html#tymethod.insert
+[storage-value-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/storage/types/struct.StorageValue.html#method.put
 [events-rustdocs]: https://crates.parity.io/frame_support/attr.pallet.html#event-palletevent-optional
 [events-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/events
 [polkadotjsapps]: https://polkadot.js.org/apps/#/explorer
-[dispatchresult-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/dispatch/type.DispatchResult.html
+[dispatchresult-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/dispatch/type.DispatchResult.html

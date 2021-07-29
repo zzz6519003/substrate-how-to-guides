@@ -168,5 +168,5 @@ impl constant_config::Config for Runtime {
 - [`Get`][get-trait-rustdocs]
 - [`#[pallet::extra_constants]`][extra-constants-rustdocs]
 
-[get-trait-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.Get.html
+[get-trait-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/traits/trait.Get.html
 [extra-constants-rustdocs]: https://crates.parity.io/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional

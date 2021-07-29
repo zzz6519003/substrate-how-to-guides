@@ -96,9 +96,9 @@ impl pallet_transaction_payment::Config for Runtime {
 
 #### Rust docs
 
-- [`WeightToFeeCoefficients`](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/type.WeightToFeeCoefficients.html)
+- [`WeightToFeeCoefficients`](https://substrate.dev/rustdocs/latest/frame_support/weights/type.WeightToFeeCoefficients.html)
 
-- [`WeightToFeeCoefficient`](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/type.WeightToFeeCoefficient.html)
+- [`WeightToFeeCoefficient`](https://substrate.dev/rustdocs/latest/frame_support/weights/type.WeightToFeeCoefficient.html)
 - [`WeightToFeePolynomial`](https://crates.parity.io/frame_support/weights/trait.WeightToFeePolynomial.html)
 
 [transaction-frame]: https://github.com/paritytech/substrate/tree/master/frame/transaction-payment

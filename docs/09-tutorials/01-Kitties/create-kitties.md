@@ -372,11 +372,11 @@ handle the creation and ownership of your Kitties! In this part of the tutorial,
 - Create and use Events
 
 [default-rustdocs]: https://doc.rust-lang.org/std/default/trait.Default.html
-[randomness-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.Randomness.html
-[hash-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/sp_runtime/traits/trait.Hash.html
-[h256-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/sp_core/struct.H256.html
-[randomness-collective-flip-frame]: https://substrate.dev/rustdocs/v3.0.0/pallet_randomness_collective_flip/index.html
-[nonce-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_system/struct.AccountInfo.html#structfield.nonce
-[2x64-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/struct.Twox64Concat.html
-[prelude-traits-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/sp_std/prelude/index.html#traits
+[randomness-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/traits/trait.Randomness.html
+[hash-rustdocs]: https://substrate.dev/rustdocs/latest/sp_runtime/traits/trait.Hash.html
+[h256-rustdocs]: https://substrate.dev/rustdocs/latest/sp_core/struct.H256.html
+[randomness-collective-flip-frame]: https://substrate.dev/rustdocs/latest/pallet_randomness_collective_flip/index.html
+[nonce-rustdocs]: https://substrate.dev/rustdocs/latest/frame_system/struct.AccountInfo.html#structfield.nonce
+[2x64-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/struct.Twox64Concat.html
+[prelude-traits-rustdocs]: https://substrate.dev/rustdocs/latest/sp_std/prelude/index.html#traits
 [derive-macro-rust]: https://doc.rust-lang.org/reference/procedural-macros.html#derive-macros

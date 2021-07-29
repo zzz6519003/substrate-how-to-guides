@@ -344,6 +344,6 @@ You've completed the first part of this series. At this stage, you've learnt the
 [substrate-node-template]: https://github.com/substrate-developer-hub/substrate-node-template
 [pallets-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/pallets
 [macros-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/macros#frame-v2-macros-and-attributes
-[storagevalue-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageValue.html
-[storage-api-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/index.html
+[storagevalue-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageValue.html
+[storage-api-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/storage/index.html
 [template-code]: https://github.com/substrate-developer-hub/substrate-how-to-guides/tree/main/static/code/kitties-tutorial
