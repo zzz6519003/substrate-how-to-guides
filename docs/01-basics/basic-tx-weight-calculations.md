@@ -92,8 +92,8 @@ Ok(Pays::Yes.into())
 
 #### Rust docs
 
-- [`ClassifyDispatch`](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.ClassifyDispatch.html)
-- [`WeightData`](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.WeighData.html)
+- [`ClassifyDispatch`](https://substrate.dev/rustdocs/latest/frame_support/weights/trait.ClassifyDispatch.html)
+- [`WeightData`](https://substrate.dev/rustdocs/latest/frame_support/weights/trait.WeighData.html)
 
 #### Other
 
@@ -101,8 +101,8 @@ Ok(Pays::Yes.into())
 
 [weights-kb]: https://substrate.dev/docs/en/knowledgebase/learn-substrate/weight
 [fees-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/fees
-[paysfee-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.PaysFee.html
-[get-dispatchinfo-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.GetDispatchInfo.html
+[paysfee-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/weights/trait.PaysFee.html
+[get-dispatchinfo-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/weights/trait.GetDispatchInfo.html
 [get-postdispatchinfo-rustdocs]: https://docs.rs/frame-support/3.0.0/frame_support/dispatch/type.DispatchResultWithPostInfo.html
 [pays-rustdocs]: https://docs.rs/frame-support/3.0.0/frame_support/weights/enum.Pays.html
-[dbweight-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/trait.Config.html#associatedtype.DbWeight
+[dbweight-rustdocs]: https://substrate.dev/rustdocs/latest/frame_system/pallet/trait.Config.html#associatedtype.DbWeight

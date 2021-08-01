@@ -146,10 +146,10 @@ Call the `remove_lock()` method from `Currency`:
 
 #### Rust docs
 
-- [Currency trait](https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.Currency.html)
+- [Currency trait](https://substrate.dev/rustdocs/latest/frame_support/traits/trait.Currency.html)
 - [LockableCurrency][lockable-rustdocs]
 - [LockIdentifier][lockidentifier-rustdocs]
 
-[staking-frame]: https://substrate.dev/rustdocs/v3.0.0/pallet_staking/index.html
-[lockable-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.LockableCurrency.html
-[lockidentifier-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/type.LockIdentifier.html
+[staking-frame]: https://substrate.dev/rustdocs/latest/pallet_staking/index.html
+[lockable-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/traits/trait.LockableCurrency.html
+[lockidentifier-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/traits/type.LockIdentifier.html

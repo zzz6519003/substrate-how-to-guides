@@ -137,4 +137,4 @@ std = [
 [parity-crates]: https://crates.parity.io/sc_service/index.html
 [timestamp-frame]: https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs#L413-L422
 [timestamp-crates]: https://crates.io/crates/pallet-timestamp
-[timestamp-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/pallet_timestamp/pallet/trait.Config.html#associated-types
+[timestamp-rustdocs]: https://substrate.dev/rustdocs/latest/pallet_timestamp/pallet/trait.Config.html#associated-types

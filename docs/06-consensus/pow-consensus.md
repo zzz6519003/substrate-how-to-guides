@@ -132,7 +132,7 @@ The construction of the [light client][lightclient-parity] service is quite simi
 
 [pow-playground]: https://playground.substrate.dev/?deploy=node-template
 [partialcomponents-rustdocs]: https://crates.parity.io/sc_service/struct.PartialComponents.html
-[powblockimport-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/sc_consensus_pow/struct.PowBlockImport.html
+[powblockimport-rustdocs]: https://substrate.dev/rustdocs/latest/sc_consensus_pow/struct.PowBlockImport.html
 [powblockimport-new-rustdocs]: https://crates.parity.io/sc_consensus_pow/struct.PowBlockImport.html#method.new_full
 [inherents-kb]: https://substrate.dev/docs/en/knowledgebase/learn-substrate/extrinsics#inherents
 [inherents-rustdocs]: https://crates.parity.io/sp_inherents/struct.InherentDataProviders.html

@@ -86,6 +86,6 @@ impl<T> PaysFee<T> for Linear {
 
 - [Transaction fees in Polkadot](https://wiki.polkadot.network/docs/en/learn-transaction-fees)
 
-[impl-weighdata-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.WeighData.html#impl-WeighData%3CT%3E-for-(Weight%2C%20DispatchClass%2C%20Pays
-[paysfee-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.PaysFee.html
-[classifydispatch-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/trait.ClassifyDispatch.html
+[impl-weighdata-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/weights/trait.WeighData.html#impl-WeighData%3CT%3E-for-(Weight%2C%20DispatchClass%2C%20Pays
+[paysfee-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/weights/trait.PaysFee.html
+[classifydispatch-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/weights/trait.ClassifyDispatch.html

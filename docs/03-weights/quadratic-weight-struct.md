@@ -92,4 +92,4 @@ impl<T> PaysFee<T> for Quadratic {
 
 - [Transaction fees in Polkadot](https://wiki.polkadot.network/docs/en/learn-transaction-fees)
 
-[dispatchclass-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/enum.DispatchClass.html
+[dispatchclass-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/weights/enum.DispatchClass.html

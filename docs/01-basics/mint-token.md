@@ -166,8 +166,8 @@ Refer to [this guide](./basic-pallet-integration) if you’re not yet familiar w
 
 - [Deposit event method][deposit-event-rustdocs]
 
-[storagemap-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageMap.html
+[storagemap-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageMap.html
 [blake2-128-concat-rustdocs]: https://substrate.dev/docs/en/knowledgebase/runtime/storage#hashing-algorithms
 [balances-frame]: https://substrate.dev/docs/en/knowledgebase/runtime/frame#balances
 [events-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/events
-[deposit-event-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/struct.Pallet.html#method.deposit_event
+[deposit-event-rustdocs]: https://substrate.dev/rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.deposit_event
