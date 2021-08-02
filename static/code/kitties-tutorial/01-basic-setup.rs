@@ -13,7 +13,9 @@ pub mod pallet {
 
     // TODO Part II: Struct for holding Kitty information.
 
-    // TODO Part II: Enum and implementation to handle Gender type in Kitty struct.
+    // TODO Part II: Enum declaration for Gender.
+
+    // TODO Part II: Implementation to handle Gender type in Kitty struct.
 
     #[pallet::pallet]
     #[pallet::generate_store(trait Store)]
@@ -25,7 +27,7 @@ pub mod pallet {
         /// Because this pallet emits events, it depends on the runtime's definition of an event.
         type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
 
-        // TODO Part II: The type of Random we want to specify for runtime.
+        // TODO Part II: Specify the type of Random we want to specify for runtime.
     }
 
     // Errors.
@@ -42,6 +44,8 @@ pub mod pallet {
     }
 
     // ACTION: Storage item to keep track of all Kitties.
+
+    // TODO Part II: Add Nonce storage item.
 
     // TODO Part II: Remaining storage items.
 
