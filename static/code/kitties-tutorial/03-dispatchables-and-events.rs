@@ -56,7 +56,7 @@ pub mod pallet {
     #[pallet::metadata(T::AccountId = "AccountId")]
     #[pallet::generate_deposit(pub(super) fn deposit_event)]
     pub enum Event<T: Config> {
-        // TODO Part III
+        // ACTION #3: Declare events
     }
 
     #[pallet::storage]
@@ -68,6 +68,12 @@ pub mod pallet {
     #[pallet::getter(fn get_nonce)]
     pub(super) type Nonce<T: Config> = StorageValue<_, u64, ValueQuery>;
 
+	// Stores a Kitty: it's unique traits and price.
+    #[pallet::storage]
+    #[pallet::getter(fn kitty)]
+    pub(super) type Kitties<T: Config> =
+        StorageMap<_, Twox64Concat, T::Hash, Kitty<T::Hash, T::Balance>, ValueQuery>;
+		
     // Remaining storage items.
 
     // Keeps track of what accounts own what Kitty.
@@ -109,7 +115,7 @@ pub mod pallet {
     #[pallet::call]
     impl<T: Config> Pallet<T> {
         
-        // ACTION: create_kitty
+        // ACTION #1: create_kitty
         
         // ACTION: set_price
         
@@ -150,7 +156,25 @@ pub mod pallet {
             T::Hashing::hash_of(&(seed, &sender, nonce))
         }
 
-        // ACTION: mint, transfer_from
+		// Helper to mint a Kitty.
+        fn mint(
+            to: T::AccountId,
+            kitty_id: T::Hash,
+            new_kitty: Kitty<T::Hash, T::Balance>,
+        ) -> DispatchResult {
+            ensure!(
+                !<KittyOwner<T>>::contains_key(kitty_id),
+                "Kitty already contains_key"
+            );
+
+		// ACTION #2: Write mint function
+
+		// ACTION #4: Write `mint` event
+
+			Ok(())
+        }
+
+		// ACTION #5: Write transfer_from
         
     }
 }
