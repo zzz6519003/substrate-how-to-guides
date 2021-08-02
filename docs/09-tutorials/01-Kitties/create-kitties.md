@@ -9,6 +9,12 @@ code: code/kitties-tutorial/02-create-kitties.rs
 _In this part of the tutorial, we'll build out the components of our pallet
 needed to manage the creation and ownership of our Kitties._
 
+## Overview
+
+This part of the tutorial dives into some pillar concepts for developing pallets with FRAME. Ontop of learning
+how to use existing types and traits, you'll learn how create your own (_FRAME doesn't have a concept of Gender!_). At the end
+of this part, you will have implemented all remaining storage items according to the logic outlined for the Substrate Kitty 
+application [in the overview of this tutorial](./overview).
 ## Learning outcomes
 
 :arrow_right: Writing a custom struct and using it in storage.
@@ -18,13 +24,6 @@ needed to manage the creation and ownership of our Kitties._
 :arrow_right: Using the Randomness trait in a helper function.
 
 :arrow_right: Adding and using `StorageMap` items to a pallet.
-
-## Overview
-
-This part of the tutorial dives into some pillar concepts for developing pallets with FRAME. Ontop of learning
-how to use existing types and traits, you'll learn how create your own (_FRAME doesn't have a concept of Gender!_). At the end
-of this part, you will have implemented all remaining storage items according to the logic outlined for the Substrate Kitty 
-application [in the overview of this tutorial](/overview).
 
 ## Steps
 
@@ -160,15 +159,15 @@ In order to implement the `Randomness` trait for our runtime, we must:
 
 **A. Specify it in our pallet's configuration trait.**
 
-The `Randomness` trait from `frame_support` requires specifying it with a paramater to replace the `Output` generic.
-Take a look at the documentation and the source code implementation to understand how this works. For our purposes,
+The `Randomness` trait from `frame_support` requires specifying it with a paramater to replace the `Output` and `BlockNumber` generics.
+Take a look at [the documentation][randomness-rustdocs] and the source code implementation to understand how this works. For our purposes,
 we want the output of functions using this trait to be [`H256`][h256-rustdocs] which you'll notice should already be declared at the
 top of your working codebase.
 
 Replace the ACTION #5 line with:
 
 ```rust
-type KittyRandomness: Randomness<H256>;
+type KittyRandomness: Randomness<H256, u32>;
 ```
 
 **B. Specify it for our runtime.**
@@ -355,13 +354,13 @@ handle the creation and changes in ownership of your Kitties! In this part of th
 - Create and use Events
 
 [default-rustdocs]: https://doc.rust-lang.org/std/default/trait.Default.html
-[randomness-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.Randomness.html
-[hash-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/sp_runtime/traits/trait.Hash.html
-[h256-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/sp_core/struct.H256.html
-[randomness-collective-flip-frame]: https://substrate.dev/rustdocs/v3.0.0/pallet_randomness_collective_flip/index.html
-[nonce-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_system/struct.AccountInfo.html#structfield.nonce
-[2x64-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/struct.Twox64Concat.html
-[prelude-traits-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/sp_std/prelude/index.html#traits
+[randomness-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/traits/trait.Randomness.html
+[hash-rustdocs]: https://substrate.dev/rustdocs/latest/sp_runtime/traits/trait.Hash.html
+[h256-rustdocs]: https://substrate.dev/rustdocs/latest/sp_core/struct.H256.html
+[randomness-collective-flip-frame]: https://substrate.dev/rustdocs/latest/pallet_randomness_collective_flip/index.html
+[nonce-rustdocs]: https://substrate.dev/rustdocs/latest/frame_system/struct.AccountInfo.html#structfield.nonce
+[2x64-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/struct.Twox64Concat.html
+[prelude-traits-rustdocs]: https://substrate.dev/rustdocs/latest/sp_std/prelude/index.html#traits
 [derive-macro-rust]: https://doc.rust-lang.org/reference/procedural-macros.html#derive-macros
 [storage-best-practice-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/storage#best-practices
 [storage-map-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/storage#storage-map

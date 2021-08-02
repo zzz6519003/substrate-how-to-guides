@@ -7,16 +7,6 @@ keywords: pallet design, intermediate, runtime
 
 _Write a dispatchable function that creates a Kitty capable of emitting its associated Event._
 
-## Learning outcomes
-
-:arrow_right: Write a dispatchable function that updates storage items using a helper function.
-
-:arrow_right: Write a private helper function with error handling
-
-:arrow_right: Write and use pallet Events.
-
-:arrow_right: Use PolkadotJS Apps UI to test pallet functionality.
-
 ## Overview
 
 In the previous section of this tutorial, we laid down the foundations geared to manage the ownership of our Kitties &mdash; even though they don't really exist yet! In this part of the tutorial, we'll be putting these foundations to use
@@ -28,6 +18,16 @@ of this tutorial. Breaking things down a little, we're going to:
 - **include `Events`**: using FRAME's `#[pallet::events]` macro.
 
 At the end of this part, we'll check that everything compiles without error and call our `create_kitty` extrinsic using the PolkadotJS Apps UI.
+
+## Learning outcomes
+
+:arrow_right: Write a dispatchable function that updates storage items using a helper function.
+
+:arrow_right: Write a private helper function with error handling
+
+:arrow_right: Write and use pallet Events.
+
+:arrow_right: Use PolkadotJS Apps UI to test pallet functionality.
 
 ## Steps
 

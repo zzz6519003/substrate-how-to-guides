@@ -8,16 +8,6 @@ keywords: pallet design, intermediate, runtime
 _This is a 5 part tutorial series that steps you through building a dApp for managing Substrate Kitties from scratch. Each part
 could take 30-60 minutes to complete depending on your level of experience._
 
-## Learning outcomes
-
-:arrow_right: Write and integrate a custom FRAME pallet to your runtime.
-
-:arrow_right: Use structs in storage and how to create and update storage items.
-
-:arrow_right: Write extrinsics and helper functions.
-
-:arrow_right: Use the PolkadotJS API to connect a Substrate node to custom a front-end.
-
 ## Overview
 
 Welcome to the Substrate Kitties tutorial. This 5 part tutorial series will teach you everything you need to know to build a blockchain designed to handle the creation and ownership management of Substrate Kitties. Before jumping into the next section, let's have a look at what we'll be doing.
@@ -69,6 +59,16 @@ builds without any error.
 You'll be writing most of the code yourself! Use the template files [here](https://github.com/substrate-developer-hub/substrate-how-to-guides/tree/main/static/code/kitties-tutorial)
 to help you complete each part.
 :::
+
+## Learning outcomes
+
+:arrow_right: Write and integrate a custom FRAME pallet to your runtime.
+
+:arrow_right: Use structs in storage and how to create and update storage items.
+
+:arrow_right: Write extrinsics and helper functions.
+
+:arrow_right: Use the PolkadotJS API to connect a Substrate node to custom a front-end.
 
 <!-- ## Steps
 

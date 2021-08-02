@@ -268,7 +268,7 @@ From the previous step, your pallet should contain a storage item called `AllKit
 single `u64` value. As part of the basic setup, we're doing great!
 
 :::info
-As mentioned in the [overview of this tutorial series](overview),
+As mentioned in the [overview of this tutorial series](./overview),
 you'll be implementing a total of 9 storage items which you'll discover as you
 write out your pallet's logic in the next parts.
 :::
