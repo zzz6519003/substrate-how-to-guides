@@ -24,7 +24,7 @@ Before we can start making Kitties, we first need to do a little groundwork. Thi
 
 ## Steps
 
-### 1. Get started with the node template
+### 1. Set-up your template node
 
 The [Substrate Node Template][substrate-node-template] provides us with an "out-of-the-box" blockchain node. Our biggest advantage
 in using it are that both networking and consensus layers are already built and all we need to focus on is building out
@@ -72,7 +72,7 @@ Assuming that your node builds successfully, launch it in development mode to ma
 
 You should see blocks being created in your terminal. The `--tmp` and `--dev` flags mean we're running a temporary node in development mode. 
 
-### 2. Write out `pallet_kitties`
+### 2. Write out `pallet_kitties` scaffold
 
 We'll be spending most of this tutorial in the `pallets` directory of our template node.
 Let's take a glance at the folder structure in our workspace:
@@ -262,7 +262,7 @@ In `kitties/src/lib.rs`, replace the ACTION line with:
 This creates a storage item for our pallet to keep track of a counter that will correspond to the total amount of Kitties
 in existence.
 
-### 4. Check that your pallet builds
+### 4. Build pallet
 
 From the previous step, your pallet should contain a storage item called `AllKittiesCount` which keeps track of a
 single `u64` value. As part of the basic setup, we're doing great!
@@ -280,8 +280,8 @@ Instead, we can use a command that only builds our pallet. From inside your pall
 cargo build -p pallet-kitties
 ```
 
-Does your pallet compile without error? Well done if it does! If not, go back and check that all the macros are in place and that you've included the
-FRAME dependencies.
+Does your pallet compile without error? Well done if it does! If not, go back and check that all the macros are in place and that 
+you've included the FRAME dependencies.
 
 :::note Congratulations!
 You've completed the first part of this series. At this stage, you've learnt the various patterns for:
