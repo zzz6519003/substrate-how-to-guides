@@ -28,9 +28,9 @@ Before we can start making Kitties, we first need to do a little groundwork. Thi
 
 The [Substrate Node Template][substrate-node-template] provides us with an "out-of-the-box" blockchain node. Our biggest advantage
 in using it are that both networking and consensus layers are already built and all we need to focus on is building out
-our runtime logic. Before we get there, we need to set-up our project.
+our [runtime][runtime-kb] and [pallet][pallets-kb] logic. Before we get there, we need to set-up our project in terms of naming and dependencies.
 
-We'll use a CLI tool to easily rename our node template.
+We'll use a CLI tool called [kickstart][kickstart-tool] to easily rename our node template.
 
 In the root directory of your local workspace, run the following command:
 
@@ -38,35 +38,39 @@ In the root directory of your local workspace, run the following command:
 kickstart https://github.com/sacha-l/kickstart-substrate
 ```
 
-Rename accordingly:
+This command will clone a copy of the most recent Node Template and ask you would like to call your node and pallet. Type in:
 
-`kitties` - as the name of our node
-`mykitties` - as the name of your pallet
+- `kitties` - as the name of our node
+- `mykitties` - as the name of your pallet
 
 This will create a directory called `substrate-node-template` with a copy of the [Substrate Node Template][substrate-node-template] containing the name changes that correspond our template node, runtime and pallet.
 
-Open the `substrate-node-template` directory in your favorite code editor and rename it to `kitties-tutorial` (or whatever you like). 
+Open the `substrate-node-template` directory in your favorite code editor and rename it to `kitties-tutorial`. Renaming this directory will be helpful once you start creating other projects with the node template &mdash; it'll help keep things organized! 
 
-Notice the directories that the `kickstart` command modified:
+:::note Notice the directories that the `kickstart` command modified:
 
-- **`node/`** - This contains all the logic that allows your node to interact with your runtime and RPC clients.
-- **`pallets/`** - Here's where all your custom pallets live.
-- **`runtime/`** - This is where all pallets (both custom "internal" and "external" ones) are aggregated and implemented for the chain's runtime.
+- **`/node/`** - This contains all the logic that allows your node to interact with your runtime and RPC clients.
+- **`/pallets/`** - Here's where all your custom pallets live.
+- **`/runtime/`** - This is where all pallets (both custom "internal" and "external" ones) are aggregated and implemented for the chain's runtime.
+:::
 
-Let's build our kitties node. It's normal if this command takes a little while depending on your machine &mdash; it's building 
-a whole bunch of crates from the Substrate crates and libraries:
+We can already build the node as is by running this command:
 
 ```bash
 cargo +nightly build --release
 ```
 
-Now that you've built your node, launch it in development mode to make sure it works:
+It's normal if this command takes a little while depending on your machine &mdash; it's building 
+a whole bunch of crates from the Substrate crates and libraries. The nice thing is that once we run this command the first time, it
+won't need to rebuild all the crates when we build subsequent times.
+
+Assuming that your node builds successfully, launch it in development mode to make sure it works:
 
 ```bash
 ./target/release/kitties-node --tmp --dev
 ```
 
-You should see blocks being created in your terminal.
+You should see blocks being created in your terminal. The `--tmp` and `--dev` flags mean we're running a temporary node in development mode. 
 
 ### 2. Write out `pallet_kitties`
 
@@ -121,7 +125,7 @@ Here's the most bare-bones version of the Kitties pallet we will be building in 
 adding code for the next sections of this tutorial, with comments marked with "TODO" to indicate code we will be writing later, and 
 "ACTION" to indicate code that will be written in the current part of the tutorial.
 
-Paste it in `/pallets/kitties/src/lib.rs`: 
+Paste the following code in `/pallets/kitties/src/lib.rs`: 
 
 ```rust
 #![cfg_attr(not(feature = "std"), no_std)]
@@ -198,14 +202,14 @@ pub mod pallet {
 }
 ```
 
-:::tip Your turn!
+<!-- :::tip Your turn!
 Copy over the bare-bones of the Kitties pallet into `kitties/src/lib.rs`.
 
 **Hint:** Each part of this tutorial has a file with code containing comments to guide you to complete each part.
 Download the [template code here][template-code] locally and use it to help you progress through each step!
-:::
+::: -->
 
-Run the following command to build and launch our chain. This can take a little while depending on your machine:
+Now try running the following command to rebuild your chain:
 
 ```bash
 cargo +nightly build --release
@@ -245,27 +249,18 @@ Let's start by adding the most simple logic we can to our runtime: a function wh
 To do this we'll use [`StorageValue`][storagevalue-rustdocs] from Substrate's [storage API][storage-api-rustdocs] which is a trait that depends
 on the storage macro.
 
-All that means for our purposes is that for any storage item we want to declare, we must include the `#[pallet::storage]`  macro beforehand. Using `StorageValue` as an example, this would look like this:
+All that means for our purposes is that for any storage item we want to declare, we must include the `#[pallet::storage]`  macro beforehand. Learn more about declaring storage items [here](https://substrate.dev/docs/en/knowledgebase/runtime/storage#declaring-storage-items). 
+
+In `kitties/src/lib.rs`, replace the ACTION line with: 
 
 ```rust
-#[pallet::storage]
-#[pallet::getter(fn get_storage_value)]
-pub(super) type SomeStorageValue <T: Config> = StorageValue <
-    _,
-    u64,
-    ValueQuery,
->;
-```
-
-:::tip Your turn!
-In `kitties/src/lib.rs`, copy the code snippet from step 2 and replace the ACTION line with: 
-
-```
     #[pallet::storage]
     #[pallet::getter(fn all_kitties_count)]
     pub(super) type AllKittiesCount<T: Config> = StorageValue<_, u64, ValueQuery>;
 ```
-:::
+
+This creates a storage item for our pallet to keep track of a counter that will correspond to the total amount of Kitties
+in existence.
 
 ### 4. Check that your pallet builds
 
@@ -293,7 +288,7 @@ You've completed the first part of this series. At this stage, you've learnt the
 
 - Customizing the Substrate node template and including a custom pallet.
 - Building a Substrate chain and checking that a target pallet compiles.
-- Declaring and using a `u64` storage item.
+- Declaring a single value `u64` storage item.
 :::
 
 ## Next steps
@@ -309,3 +304,5 @@ You've completed the first part of this series. At this stage, you've learnt the
 [storagevalue-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageValue.html
 [storage-api-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/index.html
 [template-code]: https://github.com/substrate-developer-hub/substrate-how-to-guides/tree/main/static/code/kitties-tutorial
+[runtime-kb]: https://substrate.dev/docs/en/knowledgebase/runtime/
+[kickstart-tool]: https://github.com/Keats/kickstart
