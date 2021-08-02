@@ -23,7 +23,7 @@ application [in the overview of this tutorial](./overview).
 
 :arrow_right: Using the Randomness trait in a helper function.
 
-:arrow_right: Adding and using `StorageMap` items to a pallet.
+:arrow_right: Adding `StorageMap` items to a pallet.
 
 ## Steps
 
@@ -237,7 +237,7 @@ unique IDs and DNA. Replace ACTION #8 with:
         }
 ```
 
-### 3. Writing remaining storage items
+### 4. Write remaining storage items
 
 #### A. Understanding storage item logic
 
