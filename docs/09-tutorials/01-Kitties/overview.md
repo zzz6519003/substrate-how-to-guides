@@ -8,7 +8,7 @@ keywords: pallet design, intermediate, runtime
 _This is a 5 part tutorial series that steps you through building a dApp for managing Substrate Kitties from scratch. Each part
 could take 30-60 minutes to complete depending on your level of experience._
 
-## Overview
+## Introduction
 
 Welcome to the Substrate Kitties tutorial. This 5 part tutorial series will teach you everything you need to know to build a blockchain designed to handle the creation and ownership management of Substrate Kitties. Before jumping into the next section, let's have a look at what we'll be doing.
 
@@ -27,12 +27,14 @@ In this tutorial, we'll intentionally keep things simple so that you can decide 
 
 :pouting_cat: Be transferred from one owner to another.
 
-> **What we won't cover:**
->
-> - Writing tests for our pallet.
-> - Declaring a configuration for the genesis of our chain.
->
-> These fall outside the scope of this tutorial. You can refer to the [how-to guides](/docs/intro) on how to do this once you've completed this tutorial series.
+### What we won't cover
+
+The following fall outside the scope of this tutorial:
+
+ - Writing tests for our pallet.
+ - Declaring a configuration for the genesis of our chain.
+
+ You can refer to the [how-to guides](/docs/intro) on how to do this once you've completed this tutorial series.
 
 ---
 
@@ -47,7 +49,7 @@ Bringing things down to a more granular level, this translates to the following 
 
 4. [**Private functions**](/docs/Tutorials/Kitties/create-kitties). We'll write 2 helper functions to handle randomness: `increment_nonce` and `random_hash`
 
-5. [**Helper functions**](/docs/Tutorials/Kitties/interacting-functions).We'll write 2 helper functions for our dispatchable functions: `mint` and `transfer_from`.
+5. [**Helper functions**](/docs/Tutorials/Kitties/interacting-functions). We'll write 2 helper functions for our dispatchable functions: `mint` and `transfer_from`.
 
 6. [**Rendering storage items**](/docs/Tutorials/Kitties/kitties-frontend). We'll connect to a React front-end template and create the UI for each dispatchable call.
 

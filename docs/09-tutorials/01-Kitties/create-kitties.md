@@ -1,7 +1,6 @@
 ---
 sidebar_position: 3
 keywords: pallet design, intermediate, runtime
-code: code/kitties-tutorial/02-create-kitties.rs
 ---
 
 # Part II: Uniqueness, custom types and storage maps
@@ -12,8 +11,9 @@ needed to manage the creation and ownership of our Kitties._
 ## Overview
 
 This part of the tutorial dives into some pillar concepts for developing pallets with FRAME. Ontop of learning
-how to use existing types and traits, you'll learn how create your own (_FRAME doesn't have a concept of Gender!_). At the end
-of this part, you will have implemented all remaining storage items according to the logic outlined for the Substrate Kitty 
+how to use existing types and traits, you'll learn how create your own types like providing your pallet with
+a Gender type.
+At the end of this part, you will have implemented all remaining storage items according to the logic outlined for the Substrate Kitty 
 application [in the overview of this tutorial](./overview).
 ## Learning outcomes
 
@@ -112,7 +112,7 @@ Replace the line containing ACTION #3 with:
 💡 **This is like saying:** let's give our enum a special trait that allows us to initialize it to a specific value.
 
 Great, we now know how to create a custom struct and specify its default value. But what about providing
-a way for a Kitty struct to be assigned a gender value? For that we need to learn one more thing.
+a way for a Kitty struct to be _assigned_ a gender value? For that we need to learn one more thing.
 
 #### B. Configuring functions for our Kitty struct
 
@@ -182,7 +182,8 @@ This requires you to integrate the `RandomnessCollectiveFlip` pallet to your run
 
 ```rust
 impl pallet_kitties::Config for Runtime {
-	type KittyRandomness = RandomCollectiveFlip;
+    type Event = Event;
+	type KittyRandomness = RandomCollectiveFlip; // <-- add this line.
 }
 ```
 
@@ -225,8 +226,7 @@ fn increment_nonce() -> DispatchResult {
 
 #### Implementing the random hashing function
 
-Now that we have all the bits and pieces set, we can provide our pallet with a randomness function that it will use to create 
-unique IDs and DNA. Replace ACTION #8 with:
+Now that we have all the bits and pieces required for our hashing function, replace the ACTION #8 line with:
 
 ```rust
         fn random_hash(sender: &T::AccountId) -> T::Hash {
@@ -236,6 +236,7 @@ unique IDs and DNA. Replace ACTION #8 with:
             T::Hashing::hash_of(&(seed, &sender, nonce))
         }
 ```
+Our function takes in an `AccountId` and returns the hash of a random seed, AccountId and the current nonce.
 
 ### 4. Write remaining storage items
 
@@ -276,7 +277,7 @@ In our application, ontop of keeping a single storage instance for Kitty objects
 - Kitties in existence
 - Owned Kitties
 
-:::note The overarching pattern here is to keep track of _who_ and _what_.
+:::note The overarching pattern for our Kitty application is to keep track of _who_ and _what_.
 
 This boils down to the following storage items (in addition to `Kitties` and `Nonce`):
 
@@ -335,6 +336,8 @@ Assuming you've finished implementing all of your storage items, now's a good ti
 cargo build -p pallet-kitties
 ```
 
+Running into difficulties? Check your solution against the [completed helper code](https://github.com/substrate-developer-hub/substrate-how-to-guides/blob/main/static/code/kitties-tutorial/03-dispatchables-and-events.rs) for this part of the tutorial.
+
 :::note Congratulations!
 If you've made it this far, you now have the foundations for your pallet to
 handle the creation and changes in ownership of your Kitties! In this part of the tutorial, we've learnt:
@@ -351,7 +354,7 @@ handle the creation and changes in ownership of your Kitties! In this part of th
 
 - Create a dispatchable function that mints a new Kitty
 - Create a helper function to handle storage updates
-- Create and use Events
+- Implement Errors and Events
 
 [default-rustdocs]: https://doc.rust-lang.org/std/default/trait.Default.html
 [randomness-rustdocs]: https://substrate.dev/rustdocs/latest/frame_support/traits/trait.Randomness.html

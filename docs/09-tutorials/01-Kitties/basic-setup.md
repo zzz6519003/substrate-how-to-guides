@@ -67,7 +67,7 @@ won't need to rebuild all the crates when we build subsequent times.
 Assuming that your node builds successfully, launch it in development mode to make sure it works:
 
 ```bash
-./target/release/kitties-node --tmp --dev
+./target/release/node-kitties --tmp --dev
 ```
 
 You should see blocks being created in your terminal. The `--tmp` and `--dev` flags mean we're running a temporary node in development mode. 
@@ -90,11 +90,11 @@ kitties-tutorial           <--  The name of our project directory
 |       |
 |       +-- src
 |           |
-|           +-- lib.rs     <-- 2. Remove contents
+|           +-- lib.rs     <-- Remove contents
 |           |
-|           +-- mock.rs    <-- 3. Remove file
+|           +-- mock.rs    <-- Remove file
 |           |
-|           +-- tests.rs   <-- 4. Remove file
+|           +-- tests.rs   <-- Remove file
 |
 +-- Cargo.toml              
 ```

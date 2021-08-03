@@ -36,6 +36,7 @@ pub mod pallet {
         // TODO Part III
     }
 
+    // Events.
     #[pallet::event]
     #[pallet::metadata(T::AccountId = "AccountId")]
     #[pallet::generate_deposit(pub(super) fn deposit_event)]
@@ -49,7 +50,7 @@ pub mod pallet {
 
     // TODO Part II: Remaining storage items.
 
-    // TODO Part III: Our pallet's genesis configuration.
+    // TODO Part IV: Our pallet's genesis configuration.
 
     #[pallet::call]
     impl<T: Config> Pallet<T> {
