@@ -49,9 +49,10 @@ pub mod pallet {
     // Errors.
     #[pallet::error]
     pub enum Error<T> {
-        // TODO Part III
+        // ACTION #5a: Declare errors.
     }
 
+    // Events.
     #[pallet::event]
     #[pallet::metadata(T::AccountId = "AccountId")]
     #[pallet::generate_deposit(pub(super) fn deposit_event)]
@@ -73,7 +74,7 @@ pub mod pallet {
     #[pallet::getter(fn kitty)]
     pub(super) type Kitties<T: Config> =
         StorageMap<_, Twox64Concat, T::Hash, Kitty<T::Hash, T::Balance>, ValueQuery>;
-		
+
     // Remaining storage items.
 
     // Keeps track of what accounts own what Kitty.
@@ -110,20 +111,20 @@ pub mod pallet {
     pub(super) type OwnedKittiesIndex<T: Config> =
         StorageMap<_, Twox64Concat, T::Hash, u64, ValueQuery>;
 
-    // ACTION: Our pallet's genesis configuration.
+    // TODO Part IV: Our pallet's genesis configuration.
 
     #[pallet::call]
     impl<T: Config> Pallet<T> {
         
         // ACTION #1: create_kitty
         
-        // ACTION: set_price
+        // TODO Part IV: set_price
         
-        // ACTION: transfer
+        // TODO Part IV: transfer
 
-        // ACTION: buy_kitty
+        // TODO Part IV: buy_kitty
         
-        // ACTION: breed_kitty
+        // TODO Part IV: breed_kitty
     }
 
     // Helper function for Kitty struct
@@ -141,7 +142,7 @@ pub mod pallet {
         // Helper to increment nonce
         fn increment_nonce() -> DispatchResult {
             <Nonce<T>>::try_mutate(|nonce| {
-                let next = nonce.checked_add(1).ok_or("Overflow")?;
+                let next = nonce.checked_add(1).ok_or("Overflow")?; // ACTION #5b: Add error handling
                 *nonce = next;
 
                 Ok(().into())
@@ -174,7 +175,7 @@ pub mod pallet {
 			Ok(())
         }
 
-		// ACTION #5: Write transfer_from
+		// TODO Part IV: Write transfer_from	
         
     }
 }
