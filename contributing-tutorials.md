@@ -42,3 +42,11 @@ These are the guidelines to follow, no matter the type of tutorial:
 
 - The final codebase must exist somewhere for anyone to be able to cross check their solution.
 - Helper files should be linked from the "Tutorial Introduction page" and each part must clearly indicate which helper file it corresponds to.
+
+## Notes: 
+Tutorials should follow these general guidelines, inspired by the [Divio Documentation System](https://documentation.divio.com):
+
+- **Learn by doing:** any explanations must only be articulated if they are relevant to what the learner is doing.
+- **Inspire confidence:** the learner has and immediate sense of achievement without any distraction.
+- **Repeatability:** each series of steps must be easily reproduced and lead to the same results as depicted by the outcomes of the tutorial.
+- **Specific:** a tutorial must have a very specific scope and outcome.
