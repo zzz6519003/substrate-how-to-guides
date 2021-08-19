@@ -78,15 +78,18 @@ pub fn special_function(
 Your other pallet will need to specify an origin type in its configuration trait:
 
 ```rust
-pub trait Config: frame_system::Config {
-	type PalletOrigin: EnsureOrigin<Self::Origin>;
-}
+#[pallet::config]
+	pub trait Config: frame_system::Config {
+		type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+		#[pallet::constant]
+    	type SpecialAccountId: Get<Self::AccountId>;
+	}
 ```
 
 #### ii. Inside a dispatchable 
 
 ```rust
-pub fn special_function_here(origin) -> DispatchResult {
+pub fn special_function_here(origin: OriginFor<T>) -> DispatchResult {
 			T::PalletOrigin::ensure_origin(origin)?;
 			Self::deposit_event(Event::Success);
 			Ok(())
@@ -107,14 +110,12 @@ Implement your pallet for your runtime, including custom types:
 // Define your account Id, make sure to store your key pairs.
 frame_support::ord_parameter_types! {
 	// `subkey inspect //SpecialAccountId`
-	pub const SpecialAccountId: AccountId = AccountId::from(hex_literal::hex!["todo"]);
+	pub const SpecialAccountId: AccountId = AccountId::from(hex_literal::hex!["60f28d2abe90a6bbfef78dc50bf798d52582b1da3868d8f470b22831e5edac73"]);
 }
 
 impl my_custom_pallet::Config for Runtime {
 	type Event = Event;
-	type Call = Call;
 	type SpecialAccountId = SpecialAccountId;
-	type Origin = Origin;
 }
 ```
 
