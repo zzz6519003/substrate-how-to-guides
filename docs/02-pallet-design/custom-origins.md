@@ -2,64 +2,70 @@
 sidebar_position: 9
 ---
 
-# How to create and use a custom origin 
+# Create a simple custom origin 
 
-_The guide's intentions should be clear by just reading the title._
-
+_Rudimentary identity authentication for a FRAME pallets._
 ## Goal
 
-Define and use a custom origin.
+Create a custom origin inside a pallet and enforce it in a signed dispatchable.
 
 ## Use cases
 
-_What practical use cases can this guide be applied to? This can be general, e.g. "implementing a second currency for users to pay fees in" or specific, for e.g. "a runtime migration from a `Vec<u32>` to SomeStruct ". It is likely that the more advanced the guide, the more specific its use cases will be. If more than one, bullet list. Otherwise, one phrase._
+Implement a dispatchable that can only be called by the origin defined from another pallet.
 
 ## Overview
 
 _A brief overview of why this is a useful guide and what concepts it uses. This is a good place to link to other devhub ressources, including other guides, aiming to give the reader the learning background required to understand how this guide can be useful to them._
 
 ## Steps
-
 ### 1. Add an Orgin type to your pallet's `Config` trait
+
+This type will be used when you implement your pallet for your runtime:
 
 ```rust
 pub trait Config: frame_system::Config {
     type Origin: From<Origin>;
+    type SpecialAccountId: Get<Self::AccountId>;
 }
 ```
 
 ### 2. Create a custom enum of type Origin
 
 ```rust
+// Our origin for this pallet.
 #[derive(PartialEq, Eq, Clone, sp_runtime::RuntimeDebug, codec::Encode, codec::Decode)]
 pub enum Origin {
-	Dumbo,
+
+	SpecialOrigin,
 }
 ```
 
 ### 3. Create a struct and implement `try_origin` on it
 
 ```rust
-/// Helper that other pallets may use to check that a dispatch is from Dumbo.
-pub struct EnsureDumbo;
+/// Helper that other pallets may use to check that a dispatch is from SpecialOrigin.
+pub struct EnsureSpecialOrigin;
 impl<
-    O: Into<Result<Origin, O>> + From<Origin>> frame_support::traits::EnsureOrigin<O> for EnsureDumbo {
+    O: Into<Result<Origin, O>> + From<Origin>> frame_support::traits::EnsureOrigin<O> for EnsureSpecialOrigin {
 	type Success = ();
 	fn try_origin(o: O) -> Result<Self::Success, O> {
 		o.into().and_then(|o| match o {
-			Origin::Dumbo => Ok(()),
+			Origin::SpecialOrigin => Ok(()),
 		})
 	}
 }
 ```
 
-### 4. Ensure orgin in dispatchable
+### 4. Ensure origin in dispatchable
 
 ```rust
-pub fn proxy_dumbo(origin, call: Box<<T as Trait>::Call>) -> dispatch::DispatchResult {
+pub fn special_function(
+    origin, 
+    call: Box<<T as Trait>::Call>
+    ) -> DispatchResultWithPostInfo {
 			let who = ensure_signed(origin)?;
-			frame_support::ensure!(who == T::DumboAccountId::get(), sp_runtime::DispatchError::BadOrigin);
-			let res = call.dispatch(Origin::Dumbo.into());
+			ensure!(who == T::SpecialAccountId::get(), DispatchError::BadOrigin);
+			let res = call.dispatch(Origin::SpecialOrigin.into());
 			Self::deposit_event(Event::Dumdid(res.map(|_| ()).map_err(|e| e.error)));
 			Ok(())
 		}
@@ -69,31 +75,57 @@ pub fn proxy_dumbo(origin, call: Box<<T as Trait>::Call>) -> dispatch::DispatchR
 
 #### i. Config trait
 
+Your other pallet will need to specify an origin type in its configuration trait:
+
 ```rust
 pub trait Config: frame_system::Config {
-	type DumboOrigin: frame_support::traits::EnsureOrigin<Self::Origin>;
+	type PalletOrigin: EnsureOrigin<Self::Origin>;
 }
 ```
 
 #### ii. Inside a dispatchable 
+
 ```rust
-pub fn dumbo_wants_peanuts(origin) -> dispatch::DispatchResult {
-			T::DumboOrigin::ensure_origin(origin)?;
-			Self::deposit_event(Event::DumboWantsPeanuts);
+pub fn special_function_here(origin) -> DispatchResult {
+			T::PalletOrigin::ensure_origin(origin)?;
+			Self::deposit_event(Event::Success);
 			Ok(())
 		}
 ```
 
 ### 6. Define the origins inside `runtime/src/lib.rs`
---
 
-_What are the steps that will be taken to achieve the goal? Each step should be action driven, with little description, minimal fluff,
-linking to other docs if needed. Code snippets can help illustrate the steps but should not take over the focus&mdash;i.e "how do I do this", not "what do I do"._
+Make sure you import your custom pallet if relevant:
+
+```rust
+use my_custom_pallet
+```
+
+Implement your pallet for your runtime, including custom types:
+
+```rust
+// Define your account Id, make sure to store your key pairs.
+frame_support::ord_parameter_types! {
+	// `subkey inspect //SpecialAccountId`
+	pub const SpecialAccountId: AccountId = AccountId::from(hex_literal::hex!["todo"]);
+}
+
+impl my_custom_pallet::Config for Runtime {
+	type Event = Event;
+	type Call = Call;
+	type SpecialAccountId = SpecialAccountId;
+	type Origin = Origin;
+}
+```
 
 ## Examples
 
-_Code-based examples that make use of this guide. This shows at least one reference of what this guide covers with a working example.This could be a reference to a Playground codebase instance, existing Substrate code or custom code that lives in the how-to guide repo._
+- Custom `RawOrigin` enum in FRAME'S [Collective pallet](https://substrate.dev/rustdocs/latest/src/pallet_collective/lib.rs.html#158)
+- `EnsureMember` from FRAME's [Collective pallet](https://substrate.dev/rustdocs/latest/src/pallet_collective/lib.rs.html#878)
+
+- Different origins in the [Membership pallet](https://github.com/paritytech/substrate/blob/master/frame/membership/src/lib.rs#L40-L53) 
 
 ## Resources
 
-_A bulleted list of links to similar guides; other devhub ressources; and related material. See options below._
+- [Subkey](https://substrate.dev/docs/en/knowledgebase/integrate/subkey)
+
