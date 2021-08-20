@@ -124,7 +124,17 @@ impl my_custom_pallet::Config for Runtime {
 	type SpecialAccountId = SpecialAccountId;
 }
 ```
+:::note
+You will need to add the `hex_literal` dependency in `runtime/Cargo.toml` and remove it from `runtime-benchmarks`.
+:::
 
+Last, make sure you add the pallet to the `construct_runtime!` macro:
+
+```rust
+// --snip
+OriginsPallet: my_custom_pallet::{Pallet, Call, Storage, Event<T>};
+// --snip
+```
 ## Examples
 
 - Custom `RawOrigin` enum in FRAME'S [Collective pallet](https://substrate.dev/rustdocs/latest/src/pallet_collective/lib.rs.html#158)
