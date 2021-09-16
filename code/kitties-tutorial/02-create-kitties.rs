@@ -4,12 +4,17 @@ pub use pallet::*;
 
 #[frame_support::pallet]
 pub mod pallet {
-    use frame_support::{sp_runtime::traits::{Hash, Zero},
-                        dispatch::{DispatchResultWithPostInfo, DispatchResult}, 
-                        traits::{Currency, ExistenceRequirement, Randomness},
-                        pallet_prelude::*};
-    use frame_system::pallet_prelude::*;
-    use sp_core::H256;
+    use frame_support::pallet_prelude::*;
+	use frame_system::pallet_prelude::*;
+	use frame_support::{
+		sp_runtime::traits::Hash,
+		traits::{ Randomness, Currency, tokens::ExistenceRequirement },
+		transactional
+	};
+	use sp_io::hashing::blake2_128;
+
+	#[cfg(feature = "std")]
+	use serde::{Deserialize, Serialize};
 
     // ACTION #1: Write a Struct to hold Kitty information.
     
@@ -28,7 +33,12 @@ pub mod pallet {
         /// Because this pallet emits events, it depends on the runtime's definition of an event.
         type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
 
+        /// The Currency handler for the Kitties pallet.
+		type Currency: Currency<Self::AccountId>;
+        
         // ACTION #5: Specify the type for Randomness we want to specify for runtime.
+
+        // ACTION #9: Add MaxKittyOwned constant
     }
 
     // Errors.
@@ -51,7 +61,7 @@ pub mod pallet {
     
     // ACTION #6: Add Nonce storage item.
 
-    // ACTION #9: Remaining storage items.
+    // ACTION #8: Remaining storage items.
 
     // TODO Part IV: Our pallet's genesis configuration.
 
@@ -60,25 +70,26 @@ pub mod pallet {
         
         // TODO Part III: create_kitty
         
-        // TODO Part III: set_price
+        // TODO Part IV: set_price
         
-        // TODO Part III: transfer
+        // TODO Part IV: transfer
 
-        // TODO Part III: buy_kitty
+        // TODO Part IV: buy_kitty
         
-        // TODO Part III: breed_kitty
+        // TODO Part IV: breed_kitty
     }
 
-    // ACTION #4: helper function for Kitty struct
-
     impl<T: Config> Pallet<T> {
+
+        // ACTION #4: helper function for Kitty struct
+
         // TODO Part III: helper functions for dispatchable functions
         
-        // ACTION #7: increment_nonce helper
+        // ACTION #7: funtion to randomly generate DNA
 
-        // ACTION #8: random_hash helper
-
-        // TODO: mint, transfer_from
+        // TODO Part III: mint
+        
+        // TODO Part IV: transfer_kitty_to
         
     }
 }

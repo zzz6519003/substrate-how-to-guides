@@ -4,12 +4,17 @@ pub use pallet::*;
 
 #[frame_support::pallet]
 pub mod pallet {
-    use frame_support::{sp_runtime::traits::{Hash, Zero},
-                        dispatch::{DispatchResultWithPostInfo, DispatchResult}, 
-                        traits::{Currency, ExistenceRequirement, Randomness},
-                        pallet_prelude::*};
-    use frame_system::pallet_prelude::*;
-    use sp_core::H256;
+    use frame_support::pallet_prelude::*;
+	use frame_system::pallet_prelude::*;
+	use frame_support::{
+		sp_runtime::traits::Hash,
+		traits::{ Randomness, Currency, tokens::ExistenceRequirement },
+		transactional
+	};
+	use sp_io::hashing::blake2_128;
+
+	#[cfg(feature = "std")]
+	use serde::{Deserialize, Serialize};
 
     // Struct for holding Kitty information.
     #[derive(Clone, Encode, Decode, Default, PartialEq)]
@@ -42,8 +47,16 @@ pub mod pallet {
     pub trait Config: pallet_balances::Config + frame_system::Config {
         /// Because this pallet emits events, it depends on the runtime's definition of an event.
         type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
-        // Specify the type for Randomness we want to specify for runtime.
-        type KittyRandomness: Randomness<H256, u32>;
+
+		/// The Currency handler for the Kitties pallet.
+		type Currency: Currency<Self::AccountId>;
+
+		/// The maximum amount of Kitties a single account can own.
+		#[pallet::constant]
+		type MaxKittyOwned: Get<u32>;
+
+		/// The type of Randomness we want to specify for this pallet.
+		type KittyRandomness: Randomness<Self::Hash, Self::BlockNumber>;
     }
 
     // Errors.
@@ -60,63 +73,40 @@ pub mod pallet {
         // ACTION #3: Declare events
     }
 
-    #[pallet::storage]
-    #[pallet::getter(fn all_kitties_count)]
-    pub(super) type AllKittiesCount<T: Config> = StorageValue<_, u64, ValueQuery>;
-    
-    // The Nonce storage item.
-    #[pallet::storage]
-    #[pallet::getter(fn get_nonce)]
-    pub(super) type Nonce<T: Config> = StorageValue<_, u64, ValueQuery>;
+	// Storage items.
 
-	// Stores a Kitty: it's unique traits and price.
-    #[pallet::storage]
-    #[pallet::getter(fn kitty)]
-    pub(super) type Kitties<T: Config> =
-        StorageMap<_, Twox64Concat, T::Hash, Kitty<T::Hash, T::Balance>, ValueQuery>;
+	#[pallet::storage]
+	#[pallet::getter(fn kitty_cnt)]
+	/// Keeps track of the number of Kitties in existence.
+	pub(super) type KittyCnt<T: Config> = StorageValue<_, u64, ValueQuery>;
 
-    // Remaining storage items.
+	#[pallet::storage]
+	#[pallet::getter(fn kitties)]
+	/// Stores a Kitty's unique traits, owner and price.
+	pub(super) type Kitties<T: Config> = StorageMap<_, Twox64Concat, T::Hash, Kitty<T>>;
 
-    // Keeps track of what accounts own what Kitty.
-    #[pallet::storage]
-    #[pallet::getter(fn owner_of)]
-    pub(super) type KittyOwner<T: Config> =
-        StorageMap<_, Twox64Concat, T::Hash, Option<T::AccountId>, ValueQuery>;
-
-    // An index to track of all Kitties.
-    #[pallet::storage]
-    #[pallet::getter(fn kitty_by_index)]
-    pub(super) type AllKittiesArray<T: Config> =
-        StorageMap<_, Twox64Concat, u64, T::Hash, ValueQuery>;
-
-    // Keeps track of all the Kitties.
-    #[pallet::storage]
-    pub(super) type AllKittiesIndex<T: Config> =
-        StorageMap<_, Twox64Concat, T::Hash, u64, ValueQuery>;
-
-    // Keep track of who a Kitty is owned by.
-    #[pallet::storage]
-    #[pallet::getter(fn kitty_of_owner_by_index)]
-    pub(super) type OwnedKittiesArray<T: Config> =
-        StorageMap<_, Twox64Concat, (T::AccountId, u64), T::Hash, ValueQuery>;
-
-    // Keeps track of the total amount of Kitties owned.
-    #[pallet::storage]
-    #[pallet::getter(fn owned_kitty_count)]
-    pub(super) type OwnedKittiesCount<T: Config> =
-        StorageMap<_, Twox64Concat, T::AccountId, u64, ValueQuery>;
-
-    // Keeps track of all owned Kitties by index.
-    #[pallet::storage]
-    pub(super) type OwnedKittiesIndex<T: Config> =
-        StorageMap<_, Twox64Concat, T::Hash, u64, ValueQuery>;
+	#[pallet::storage]
+	#[pallet::getter(fn kitties_owned)]
+	/// Keeps track of what accounts own what Kitty.
+	pub(super) type KittiesOwned<T: Config> =
+		StorageMap<_, Twox64Concat, T::AccountId, BoundedVec<T::Hash, T::MaxKittyOwned>, ValueQuery>;
 
     // TODO Part IV: Our pallet's genesis configuration.
 
     #[pallet::call]
     impl<T: Config> Pallet<T> {
+		/// Create a new unique kitty.
+		///
+		/// The actual kitty creation is done in the `mint()` function.
+		#[pallet::weight(100)]
+		pub fn create_kitty(origin: OriginFor<T>) -> DispatchResult {
         
         // ACTION #1: create_kitty
+
+        // ACTION #4: Deposit `Created` event
+        
+        Ok(())
+    }
         
         // TODO Part IV: set_price
         
@@ -138,33 +128,51 @@ pub mod pallet {
         }
     }
 
-    impl<T: Config> Pallet<T> {        
-        // Helper to increment nonce
-        fn increment_nonce() -> DispatchResult {
-            <Nonce<T>>::try_mutate(|nonce| {
-                let next = nonce.checked_add(1).ok_or("Overflow")?; // ACTION #5b: Add error handling
-                *nonce = next;
+    impl<T: Config> Pallet<T> {       
+        // Generate a random gender value
+        fn gen_gender() -> Gender {
+			let random = T::KittyRandomness::random(&b"gender"[..]).0;
+			match random.as_ref()[0] % 2 {
+				0 => Gender::Male,
+				_ => Gender::Female,
+			}
+		}
 
-                Ok(().into())
-            })
-        }
+        // Generate a random DNA value
+		fn gen_dna() -> [u8; 16] {
+			let payload = (
+				T::KittyRandomness::random(&b"dna"[..]).0,
+				<frame_system::Pallet<T>>::block_number(),
+			);
+			payload.using_encoded(blake2_128)
+		}
 
-        // Help to generate random value
-        fn random_hash(sender: &T::AccountId) -> T::Hash {
-            let nonce = <Nonce<T>>::get();
-            let seed = T::KittyRandomness::random_seed();
+        // Create new DNA with existing DNA
+		pub fn breed_dna(kid1: &T::Hash, kid2: &T::Hash) -> Result<[u8; 16], Error<T>> {
+			let dna1 = Self::kitties(kid1).ok_or(<Error<T>>::KittyNotExist)?.dna;
+			let dna2 = Self::kitties(kid2).ok_or(<Error<T>>::KittyNotExist)?.dna;
 
-            T::Hashing::hash_of(&(seed, &sender, nonce))
-        }
+			let mut new_dna = Self::gen_dna();
+			for i in 0..new_dna.len() {
+				new_dna[i] = (new_dna[i] & dna1[i]) | (!new_dna[i] & dna2[i]);
+			}
+			Ok(new_dna)
+		}
 
 		// ACTION #2: Write mint function
-
-		// ACTION #4: Write `mint` event
 
 			Ok(())
         }
 
-		// TODO Part IV: Write transfer_from	
+        // Helper to check correct kitty owner
+        pub fn is_kitty_owner(kitty_id: &T::Hash, acct: &T::AccountId) -> Result<bool, Error<T>> {
+			match Self::kitties(kitty_id) {
+				Some(kitty) => Ok(kitty.owner == *acct),
+				None => Err(<Error<T>>::KittyNotExist)
+			}
+		}
+
+		// TODO Part IV: Write transfer_kitty_to	
         
     }
 }
