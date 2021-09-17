@@ -18,7 +18,7 @@ Launching a parachain.
 ## Overview
 
 This guide outlines two steps to consider before moving on to implementing
-runtime upgrades for a parachain launch.
+a runtime upgrade for a parachain launch.
 
 ## Steps
 
@@ -38,7 +38,7 @@ functionality to help you notify the relay chain about the upcoming upgrade by:
 With both these functions called, the relay chain will be notified that the new
 upgrade has been scheduled.
 
-## 2. Choose your upgrade approach
+### 2. Choose your upgrade approach
 
 If your existing Substrate chain has a very large state, which you are migrating
 between different storage formats, it might not be possible to run all of the
@@ -48,7 +48,7 @@ use to remedy this problem:**
 1. If the amount of storage items to be migrated can feasibly be processed
    within two or three blocks you can run the migrations using the
    [Scheduler pallet](https://github.com/paritytech/substrate/tree/master/frame/scheduler)
-   to ensure they get executed regardless of block producer.
+   to ensure they get executed regardless of the block producer. Refer to [this guide](./upgrade-scheduler) on how to do that.
 
 2. Use versioned storage and only execute migrations when storage values that
    haven't yet been upgraded are accessed. This can cause variance in
@@ -59,16 +59,23 @@ use to remedy this problem:**
 3. If you must split your migrations among multiple blocks you can do it either
    on-chain or off-chain:
 
-   - An on-chain multiblock migration will require custom pallet logic to be
+   - An on-chain multi-block migration will require custom pallet logic to be
      written which can either queue changes over time or use the Scheduler
      pallet to migrate chunks of storage at a time.
 
    - Instead of adding migration code to your runtime you can generate the
-     migration manually off-chain and use multiple system.`setStorage` calls to
-     add and remove storage items as necessary via an origin with root
+     migration manually off-chain by using multiple `system.setStorage` calls to
+     add and remove storage items via an origin with root
      permission (for example democracy). If you are limited in the number of
      transactions you can make, you can batch multiple transactions to occur
-     over time via the scheduler.
+     over time via the scheduler. Follow these steps:
+
+      - Ensure you have the scheduler pallet available on your chain.
+      - Use the root origin to schedule any changes to state using ```scheduler.scheduleNamed``` in the Apps UI Extrinsics tab.
+      - Schedule changes for the blocks immediately after a ```system.setcode``` call is scheduled. 
+      - Use ```system.set_storage``` and ```system.kill_storage``` calls.
+      - Make sure that the scheduling fits within the PoV block size.
+      - Schedule the extrinsics in advance over multiple blocks.
 
 ## Examples
 
