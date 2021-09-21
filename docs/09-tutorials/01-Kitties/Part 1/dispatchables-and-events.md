@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-keywords: pallet design, intermediate, runtime
+keywords: [pallet design, intermediate, runtime]
 ---
 
 # Dispatchables, Events and Errors

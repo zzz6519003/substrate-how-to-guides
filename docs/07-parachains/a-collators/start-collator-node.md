@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-keywords: parachains
+keywords: [parachains]
 ---
 
 # Start a collator node and add more collators

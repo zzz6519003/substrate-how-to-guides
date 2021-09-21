@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-keywords: basics, beginner, runtime
+keywords: [basics, beginner, runtime]
 ---
 
 # Configuring genesis for Balances

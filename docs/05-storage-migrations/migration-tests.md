@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-keywords: storage migration, testing, runtime
+keywords: [storage migration, testing, runtime]
 ---
 
 # Migration tests

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 7
-keywords: basics, runtime
+keywords: [basics, runtime]
 ---
 
 # Using helper functions

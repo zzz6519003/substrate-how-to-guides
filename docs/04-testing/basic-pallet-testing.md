@@ -1,6 +1,6 @@
 ---
 sidebar_position: 7
-keywords: basics, testing, runtime
+keywords: [basics, testing, runtime]
 ---
 
 # Setting up tests for your pallet

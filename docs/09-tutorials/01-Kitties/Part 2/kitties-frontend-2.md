@@ -1,7 +1,7 @@
 ---
 title: Creating Custom Components
 sidebar_position: 2
-keywords: polkadotjs api, frontend
+keywords: [polkadotjs api, frontend]
 ---
 
 ## Overview

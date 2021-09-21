@@ -1,6 +1,6 @@
 ---
 sidebar_position: 8
-keywords: pallet design, beginner, runtime
+keywords: [pallet design, beginner, runtime]
 ---
 
 # Create and use a storage Map

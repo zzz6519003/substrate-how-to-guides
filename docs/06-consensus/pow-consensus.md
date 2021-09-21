@@ -1,10 +1,6 @@
 ---
 sidebar_position: 4
-keywords:
-  - node
-  - client
-  - consensus
-  - proof-of-work
+keywords: [node, client, consensus, proof-of-work]
 ---
 
 # Configure a chain to POW consensus

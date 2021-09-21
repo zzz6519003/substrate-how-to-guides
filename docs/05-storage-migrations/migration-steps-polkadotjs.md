@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-keywords: storage migration, runtime, advanced
+keywords: [storage migration, runtime, advanced]
 ---
 
 # Trigger a storage migration

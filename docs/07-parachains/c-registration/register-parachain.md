@@ -1,6 +1,6 @@
 ---
 sidebar_position: 7
-keywords: parachains
+keywords: [parachains]
 ---
 
 # How to register your Parachain

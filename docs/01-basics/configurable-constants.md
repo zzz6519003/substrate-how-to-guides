@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-keywords: basics, runtime
+keywords: [basics, runtime]
 ---
 
 # Configure a runtime constant

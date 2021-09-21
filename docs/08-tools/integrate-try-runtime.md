@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-keywords: storage migration, testing, runtime, tooling
+keywords: [storage migration, testing, runtime, tooling]
 ---
 
 # Include `try-runtime` in your project

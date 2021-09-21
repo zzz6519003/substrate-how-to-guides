@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-keywords: parachains
+keywords: [parachains]
 ---
 
 # Set-up your runtime and client

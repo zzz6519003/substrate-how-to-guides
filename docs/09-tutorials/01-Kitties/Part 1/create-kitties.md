@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-keywords: pallet design, intermediate, runtime
+keywords: [pallet design, intermediate, runtime]
 ---
 
 # Uniqueness, Custom Types, and Storage Maps

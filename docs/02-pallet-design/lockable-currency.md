@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-keywords: pallet design, currency, intermediate, runtime
+keywords: [pallet design, currency, intermediate, runtime]
 ---
 
 # Simple staking pallet

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-keywords: testing, runtime, beginner
+keywords: [testing, runtime, beginner]
 ---
 
 # Testing a transfer function

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-keywords: weights, runtime, FRAME v1
+keywords: [weights, runtime, FRAME v1]
 ---
 
 # Conditional weighting struct

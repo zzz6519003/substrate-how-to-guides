@@ -1,6 +1,6 @@
 ---
 sidebar_position: 8
-keywords: runtime, beginner, basics
+keywords: [runtime, beginner, basics]
 ---
 
 # Publish a pallet to its own crate

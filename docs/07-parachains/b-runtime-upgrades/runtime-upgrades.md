@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-keywords: parachains
+keywords: [parachains]
 ---
 
 # Preparing for On-Chain Upgrades

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-keywords: basics, beginner, runtime
+keywords: [basics, beginner, runtime]
 ---
 
 # Primitive token mint

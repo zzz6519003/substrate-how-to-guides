@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-keywords: parachains
+keywords: [parachains]
 ---
 # How to use the scheduler pallet for storage migrations 
 🎯

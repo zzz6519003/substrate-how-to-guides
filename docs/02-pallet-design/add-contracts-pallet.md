@@ -1,6 +1,6 @@
 ---
 sidebar_position: 6
-keywords: pallet design, intermediate, runtime
+keywords: [pallet design, intermediate, runtime]
 ---
 
 # Use the Contracts pallet

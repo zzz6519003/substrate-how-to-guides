@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-keywords: parachains, testing
+keywords: [parachains, testing]
 ---
 
 # Start a testnet on Rococo

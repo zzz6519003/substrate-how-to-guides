@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-keywords: weights, runtime, FRAME v1
+keywords: [weights, runtime, FRAME v1]
 ---
 
 # Quadratic weighting struct

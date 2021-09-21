@@ -1,6 +1,6 @@
 ---
 sidebar_position: 7
-keywords: pallet design, intermediate, runtime
+keywords: [pallet design, intermediate, runtime]
 ---
 
 # Generating on-chain randomness

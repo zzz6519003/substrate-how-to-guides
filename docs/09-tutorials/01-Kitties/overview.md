@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-keywords: pallet design, intermediate, runtime
+keywords: [pallet design, intermediate, runtime]
 ---
 
 # 😺 Substrate Kitties
