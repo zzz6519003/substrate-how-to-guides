@@ -6,8 +6,6 @@ import styles from "./styles.module.css"
 import Editor from "../../components/Editor"
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
-const path = require('path');
-
 export default function CodeViewDocItem(props) {
 	const { content: DocContent } = props;
 	const { frontMatter: { code } } = DocContent;
