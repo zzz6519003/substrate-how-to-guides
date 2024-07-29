@@ -20,7 +20,7 @@ Learn the steps for integrating a pallet to your runtime.
 
 ## Overview
 
-This guide is an extension to the ["Add a Pallet to Your Runtime" tutorial][add-a-pallet-tutorial], intended as a resource
+This guide is an extension to the ["Add a Pallet to Your Runtime" tutorial](https://docs.substrate.io/tutorials/build-application-logic/add-a-pallet/), intended as a resource
 for developers new to Substrate looking to quickly integrate a pallet to their runtime. It covers adding both local and external pallets to a runtime.
 
 ## Steps
